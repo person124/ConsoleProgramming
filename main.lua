@@ -1,11 +1,13 @@
 require("textures")
+require("tiles")
 
 function love.load()
 	textures.load()
+	tiles.load()
 end
 
 function love.draw()
 	love.graphics.print('Hello World', 400, 300)
 
-	love.graphics.draw(textures["test"], 40, 40)
+	tiles.render("test", 64, 64)
 end
