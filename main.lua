@@ -14,4 +14,6 @@ function love.draw()
 	screen.start()
 	tiles.render("test", 0, 0)
 	screen.stop()
+
+	love.graphics.print(screen.scaler, 400, 400)
 end
