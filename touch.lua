@@ -1,7 +1,7 @@
 touch = {}
 
 function touch.load()
-	touch.count = 0
+	touch.count = 0 -- Keeps track of the number of touches
 end
 
 function love.touchpressed(id, x, y, dx, dy, pressure)
@@ -14,6 +14,6 @@ end
 
 function love.touchmoved(id, x, y, dx, dy, pressure)
 	if touch.count == 2 then 
-		
+		screen.addOffset(dx, dy)
 	end
 end

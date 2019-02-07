@@ -7,6 +7,10 @@ function screen.load()
 	screen.baseWidth = 960
 	screen.baseHeight = 640
 
+	screen.offset = {}
+	screen.offset.x = 0
+	screen.offset.y = 0
+
 	-- a canvas to draw the subscreen to
 	screen.canvas = love.graphics.newCanvas(screen.baseWidth, screen.baseHeight)
 
@@ -59,6 +63,16 @@ function screen.stop(draw)
 	love.graphics.setColor(255, 255, 255)
 
 	if draw == nil then
-		love.graphics.draw(screen.canvas, screen.drawX, screen.drawY, 0, screen.scaler, screen.scaler)
+		love.graphics.draw(screen.canvas, screen.drawX, screen.drawY, 0, screen.scaler)
 	end
+end
+
+function screen.setOffset(x, y)
+	screen.offset.x = x
+	screen.offset.y = y
+end
+
+function screen.addOffset(dx, dy)
+	screen.offset.x = screen.offset.x + dx
+	screen.offset.y = screen.offset.y + dy
 end

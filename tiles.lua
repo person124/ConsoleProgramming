@@ -23,6 +23,9 @@ function tiles.render(id, xPos, yPos)
 
 	if not tile then return end
 
+	xPos = xPos - screen.offset.x
+	yPos = yPos - screen.offset.y
+
 	if not tile.quad then
 		love.graphics.draw(textures[tile.texture], xPos, yPos)
 	else
