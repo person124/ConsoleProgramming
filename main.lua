@@ -3,12 +3,16 @@ require("textures")
 require("tiles")
 require("map")
 
+require("touch")
+
 function love.load()
 	screen.load()
 	textures.load()
 	tiles.load()
 
 	map.load()
+
+	touch.load()
 end
 
 function love.draw()
@@ -19,5 +23,5 @@ function love.draw()
 	map.render()
 	screen.stop()
 
-	love.graphics.print(screen.scaler, 400, 400)
+	love.graphics.print(touch.count, 400, 400)
 end
