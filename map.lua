@@ -1,3 +1,8 @@
+--[[
+	This file is HEAVILY subject to change, in the current state exists
+	only to get an idea of what rendering would look like
+--]]
+
 map = {}
 
 function map.load()

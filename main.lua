@@ -1,10 +1,10 @@
-require("screen")
-require("textures")
-require("tiles")
-require("map")
+require("screen") -- Handles the subscreen and everything related to it
+require("textures") -- Handles texture loading and caching
+require("tiles") -- Handles all the different types of tiles
+require("map") -- Contains data of the current tile arragement
+require("touch") -- Handles touch/mouse input
 
-require("touch")
-
+-- Built in function called before the game starts, all data will be loaded in here
 function love.load()
 	screen.load()
 	textures.load()
@@ -15,12 +15,13 @@ function love.load()
 	touch.load()
 end
 
+
+-- Built in function called every frame to render the scene
 function love.draw()
 	love.graphics.print('Hello World', 400, 300)
 
 	screen.start()
-	--tiles.render("test", 0, 0)
-	map.render()
+		map.render()
 	screen.stop()
 
 	love.graphics.print(touch.count, 400, 400)

@@ -7,6 +7,7 @@ function screen.load()
 	screen.baseWidth = 960
 	screen.baseHeight = 640
 
+	-- This controls the camera offset of the map
 	screen.offset = {}
 	screen.offset.x = 0
 	screen.offset.y = 0
@@ -47,31 +48,41 @@ end
 
 -- This function enables drawing to the subscreen
 function screen.start()
+	-- Setting the color is NECESSARY
 	love.graphics.setColor(255, 255, 255)
-	love.graphics.setLineWidth(10)
 
+	-- Swap the draw canvas to the subscreen and clear it to get it ready
+	-- to be drawn too
 	love.graphics.setCanvas(screen.canvas)
 	love.graphics.clear()
+
+	-- Both of these things AREN'T needed, but for debug purposes are here
+	love.graphics.setLineWidth(10)
 	love.graphics.rectangle('line', 0, 0, screen.baseWidth, screen.baseHeight)
 end
 
 -- The function stops drawing to the subscreen as well as draws the subscreen
 -- centered. If a parameter is given then it WON'T draw the subscreen
 function screen.stop(draw)
+	-- Reset the canvas to the main one
 	love.graphics.setCanvas()
 
+	-- Change the draw color. This is NEEDED
 	love.graphics.setColor(255, 255, 255)
 
+	-- As long as nothing is passed, then draw away!
 	if draw == nil then
 		love.graphics.draw(screen.canvas, screen.drawX, screen.drawY, 0, screen.scaler)
 	end
 end
 
+-- Sets the screen's offset to specified numbers
 function screen.setOffset(x, y)
 	screen.offset.x = x
 	screen.offset.y = y
 end
 
+-- Adds the specified numbers to the offset
 function screen.addOffset(dx, dy)
 	screen.offset.x = screen.offset.x + dx
 	screen.offset.y = screen.offset.y + dy
