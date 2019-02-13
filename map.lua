@@ -16,6 +16,8 @@ function map.load()
 			map.tiles[i][j] = "test"
 		end
 	end
+
+	map.entities = {}
 end
 
 function map.render()
@@ -24,4 +26,12 @@ function map.render()
 			tiles.render(map.tiles[x][y], (x - 1) * 64, (y - 1) * 64)
 		end
 	end
+
+	for i=1,table.getn(map.entities) do
+		entity.render(map.entities[i])
+	end
+end
+
+function map.addEntity(ent)
+	table.insert(map.entities, entity.copy(ent))
 end
