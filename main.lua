@@ -1,6 +1,7 @@
 require("screen") -- Handles the subscreen and everything related to it
 require("textures") -- Handles texture loading and caching
 require("tiles") -- Handles all the different types of tiles
+require("entity")
 require("map") -- Contains data of the current tile arragement
 require("input") -- Handles touch/mouse input
 
