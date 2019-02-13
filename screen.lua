@@ -92,10 +92,10 @@ end
 -- Will return -1, -1 if the point isn't on the subscreen
 -- Otherwise will return windowX, windowY
 function screen.screenToSubScreen(inX, inY)
-	outX = 0
-	outY = 0
+	if inX == -1 or inY == -1 then return -1, -1 end
 
-	-- TO-DO
+	outX = -1
+	outY = -1
 
 	return outX, outY
 end

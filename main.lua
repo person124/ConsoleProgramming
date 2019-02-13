@@ -18,6 +18,9 @@ function love.load()
 	input.load()
 end
 
+function love.update(dt)
+	input.update()
+end
 
 -- Built in function called every frame to render the scene
 function love.draw()

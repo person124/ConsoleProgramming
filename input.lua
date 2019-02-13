@@ -18,6 +18,10 @@ function input.load()
 	end
 end
 
+function input.update()
+	input.screenX, input.screenY = screen.screenToSubScreen(input.x, input.y)
+end
+
 -- Built in function that is called on touch start
 function love.touchpressed(id, x, y, dx, dy, pressure)
 	input.count = input.count + 1
