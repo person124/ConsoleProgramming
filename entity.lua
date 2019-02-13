@@ -18,10 +18,10 @@ function entity.create(id, health, attack, speed, range, texture)
 end
 
 function entity.render(ent)
-	xPos = ent.x - screen.offset.x
-	yPos = ent.y - screen.offset.y
+	xPos = (ent.x * 64) - screen.offset.x
+	yPos = (ent.y * 64) - screen.offset.y
 
-	love.graphics.draw(textures[ent.texture], xPos * 64, yPos * 64)
+	love.graphics.draw(textures[ent.texture], xPos, yPos)
 end
 
 function entity.copy(ent)
