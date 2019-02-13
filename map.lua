@@ -18,6 +18,8 @@ function map.load()
 	end
 
 	map.entities = {}
+	map.addEntity(entity["unit"])
+	map.entities[1].x = 2
 end
 
 function map.render()

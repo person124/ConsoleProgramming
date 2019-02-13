@@ -1,5 +1,9 @@
 entity = {}
 
+function entity.load()
+	entity.create("unit", 10, 5, 2, 1, "unit")
+end
+
 function entity.create(id, health, attack, speed, range, texture)
 	entity[id] = {}
 	entity[id].hp = health
@@ -9,15 +13,15 @@ function entity.create(id, health, attack, speed, range, texture)
 
 	entity[id].texture = texture
 
-	entity[id].x = x
-	entity[id].y = y
+	entity[id].x = 0
+	entity[id].y = 0
 end
 
 function entity.render(ent)
 	xPos = ent.x - screen.offset.x
 	yPos = ent.y - screen.offset.y
 
-	love.graphics.draw(textures[ent.texture], xPos, yPos)
+	love.graphics.draw(textures[ent.texture], xPos * 64, yPos * 64)
 end
 
 function entity.copy(ent)

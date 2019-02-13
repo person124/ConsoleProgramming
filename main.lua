@@ -9,7 +9,9 @@ require("input") -- Handles touch/mouse input
 function love.load()
 	screen.load()
 	textures.load()
+
 	tiles.load()
+	entity.load()
 
 	map.load()
 
