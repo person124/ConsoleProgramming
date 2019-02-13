@@ -18,6 +18,8 @@ function love.load()
 	input.load()
 end
 
+-- Built in function called every frame to have updates
+-- dt parameter is the step update time
 function love.update(dt)
 	input.update()
 end
@@ -33,4 +35,6 @@ function love.draw()
 	love.graphics.print(input.count, 400, 400)
 
 	love.graphics.circle('fill', input.x, input.y, 20)
+
+	love.graphics.print(input.screenX .. " " .. input.screenY, 450, 400)
 end

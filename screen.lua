@@ -92,10 +92,25 @@ end
 -- Will return -1, -1 if the point isn't on the subscreen
 -- Otherwise will return windowX, windowY
 function screen.screenToSubScreen(inX, inY)
-	if inX == -1 or inY == -1 then return -1, -1 end
+	-- Check if the pointer is on the screen
+	if inX == -1 or inY == -1 then
+		return -1, -1
+	end
 
-	outX = -1
-	outY = -1
+	-- Check to see if the input is in the lower bounds
+	if inX < screen.drawX or inY < screen.drawY then
+		return -1, -1
+	end
+
+	-- Checl to see if the input is outside the upper bounds
+	if inX > (screen.drawX + screen.width) or
+	inY > (screen.drawY + screen.height) then
+		return -1, -1
+	end
+
+	-- Do some math to put the input in the screen
+	outX = (inX - screen.drawX) / screen.scaler
+	outY = (inY - screen.drawY) / screen.scaler
 
 	return outX, outY
 end
