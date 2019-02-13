@@ -28,4 +28,6 @@ function love.draw()
 	screen.stop()
 
 	love.graphics.print(input.count, 400, 400)
+
+	love.graphics.circle('fill', input.x, input.y, 20)
 end

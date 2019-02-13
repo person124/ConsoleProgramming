@@ -6,8 +6,11 @@ input = {}
 
 function input.load()
 	input.count = 0 -- Keeps track of the number of touches
-	input.x = 0 -- x location of the touch
-	input.y = 0 -- y location of the touch
+	input.x = -1 -- x location of the touch
+	input.y = -1 -- y location of the touch
+
+	input.screenX = -1 -- x location of the touch on sub-screen
+	input.screenY = -1 -- y location of the touch on sub-screen
 
 	input.mouse = {}
 	for i=1,3 do
@@ -28,8 +31,8 @@ function love.touchreleased(id, x, y, dx, dy, pressure)
 	input.count = input.count - 1
 	
 	if input.count == 0 then
-		input.x = 0
-		input.y = 1
+		input.x = -1
+		input.y = -1
 	end
 end
 
@@ -52,6 +55,9 @@ end
 function love.mousefocus(f)
 	if not f then
 		for i=1,3 do input.mouse[i] = false end
+
+		input.x = -1
+		input.y = -1
 	end
 end
 

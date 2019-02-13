@@ -87,3 +87,10 @@ function screen.addOffset(dx, dy)
 	screen.offset.x = screen.offset.x + dx
 	screen.offset.y = screen.offset.y + dy
 end
+
+function screen.screenToSubScreen(inX, inY)
+	outX = 0
+	outY = 0
+
+	return outX, outY
+end
