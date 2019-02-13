@@ -88,9 +88,14 @@ function screen.addOffset(dx, dy)
 	screen.offset.y = screen.offset.y + dy
 end
 
+-- Converts a point of the game window to a point in the subscreen
+-- Will return -1, -1 if the point isn't on the subscreen
+-- Otherwise will return windowX, windowY
 function screen.screenToSubScreen(inX, inY)
 	outX = 0
 	outY = 0
+
+	-- TO-DO
 
 	return outX, outY
 end
