@@ -7,7 +7,7 @@ Now, the reason why I said I am making a game framework and not a game is most o
 The rest of this readme will be a table showcase a schedule that I came up with just before the fourth week of work on the project started, as well as just before I _started_ work on the project. The schedule is something that I set myself, and can deviate from, but when I wrote it I imagined that it was the best course of action at the time.
 
 ## Schedule
-### Current Week: 4
+### Current Week: 5
 | Week Number | Planned Tasks |
 | :---------: | :-----------: |
 | 4           | * Basic Map Rendering * Image Loading * |
