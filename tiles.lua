@@ -4,10 +4,11 @@ tiles = {}
 -- quad can be nil
 -- id is the internal name
 -- name is the human name
-local function createTile(id, name, texture, quad)
+local function createTile(id, name, isSolid, texture, quad)
 	local tile = {}
 	tile.id = id
 	tile.name = name
+	tile.isSolid = isSolid
 	tile.texture = texture
 	tile.quad = quad
 	tiles[tile.id] = tile
@@ -16,7 +17,7 @@ end
 -- This is where example tiles will be created, this bit will most likely
 -- be removed later and replaced with a more auto-loading method
 function tiles.load()
-	createTile("test", "Test", "test")
+	createTile("test", "Test", false, "test")
 end
 
 -- render the tile with specified id at the specified location
