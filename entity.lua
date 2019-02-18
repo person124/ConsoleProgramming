@@ -30,7 +30,7 @@ end
 
 -- Copys the given entity and returns the copy
 function entity.copy(ent)
-	entCopy = {}
+	local entCopy = {}
 	entCopy.hp = ent.hp
 	entCopy.at = ent.at
 	entCopy.sp = ent.sp

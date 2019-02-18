@@ -20,6 +20,8 @@ function map.load()
 	map.entities = {}
 	map.addEntity(entity["unit"])
 	map.entities[1].x = 2
+	
+	map.getMovement(map.entities[1])
 end
 
 function map.render()
@@ -36,4 +38,20 @@ end
 
 function map.addEntity(ent)
 	table.insert(map.entities, entity.copy(ent))
+end
+
+local spreadFromTile(tileX, tileY, sp, rn)
+
+end
+
+-- Returns a list of movement/attack tiles that the unit can move/attack to
+-- if displayResults is true, it will show the results to the user
+function map.getMovement(ent, displayResults)
+	map.targeter = {}
+
+	local xCurrent, yCurrent = ent.x, ent.y
+	
+	for i=1,ent.sp do
+		spreadFromTile(xCurrent + i, xCurrent - i, ent.sp - i, rn)
+	end
 end
