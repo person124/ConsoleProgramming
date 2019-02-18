@@ -1,9 +1,9 @@
-require("screen") -- Handles the subscreen and everything related to it
-require("textures") -- Handles texture loading and caching
-require("tiles") -- Handles all the different types of tiles
-require("entity") -- Handles data for entity creation
-require("map") -- Contains data of the current tile arragement
-require("input") -- Handles touch/mouse input
+require("core/screen") -- Handles the subscreen and everything related to it
+require("core/textures") -- Handles texture loading and caching
+require("core/tiles") -- Handles all the different types of tiles
+require("core/entity") -- Handles data for entity creation
+require("core/map") -- Contains data of the current tile arragement
+require("core/input") -- Handles touch/mouse input
 
 -- Built in function called before the game starts, all data will be loaded in here
 function love.load()
