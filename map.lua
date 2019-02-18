@@ -23,7 +23,7 @@ function map.load()
 	map.entities = {}
 	map.addEntity(entity["unit"])
 	map.entities[1].x = 2
-	map.entities[1].y = 1
+	map.entities[1].y = 2
 	
 	map.getMovement(map.entities[1])
 end
@@ -34,7 +34,7 @@ function map.render()
 			tiles.render(map.tiles[x][y], (x - 1) * 64, (y - 1) * 64)
 
 			if map.movementTiles[x][y] then
-				love.graphics.rectangle('line', (x - 1) * 64, (y - 1) * 64, 64, 64)
+				love.graphics.rectangle('fill', (x - 1) * 64, (y - 1) * 64, 64, 64)
 			end
 		end
 	end
@@ -48,7 +48,8 @@ function map.addEntity(ent)
 	table.insert(map.entities, entity.copy(ent))
 end
 
-local function spreadFromTile(tileX, tileY, tilesLeft)
+-- Local recursive function to work out which tiles a unit can move to
+local function spreadFromTile(startX, startY, tileX, tileY, tilesLeft)
 	for x=-1,1 do
 		for y=-1,1 do
 			if (x ~= 0 and y == 0) or (y ~= 0 and x == 0) then
@@ -56,7 +57,13 @@ local function spreadFromTile(tileX, tileY, tilesLeft)
 				local adjustedY = tileY + y
 
 				if adjustedX > 0 and adjustedY > 0 and adjustedX <= map.width and adjustedY <= map.height then
+				if not (adjustedX == startX and adjustedY == startY) then	
 					map.movementTiles[adjustedX][adjustedY] = true
+
+					if tilesLeft - 1 > 0 then
+						spreadFromTile(startX, startY, adjustedX, adjustedY, tilesLeft - 1)
+					end
+				end
 				end
 			end
 		end
@@ -68,5 +75,5 @@ end
 function map.getMovement(ent, displayResults)
 	-- map.targeter = {}
 
-	spreadFromTile(ent.x, ent.y, ent.sp)
+	spreadFromTile(ent.x, ent.y, ent.x, ent.y, ent.sp)
 end
