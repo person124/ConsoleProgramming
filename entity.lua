@@ -22,8 +22,8 @@ end
 
 -- Draws the specified entity at the entities location
 function entity.render(ent)
-	xPos = (ent.x * 64) - screen.offset.x
-	yPos = (ent.y * 64) - screen.offset.y
+	xPos = ((ent.x - 1) * 64) - screen.offset.x
+	yPos = ((ent.y - 1) * 64) - screen.offset.y
 
 	love.graphics.draw(textures[ent.texture], xPos, yPos)
 end
