@@ -27,8 +27,8 @@ function input.update()
 	if not input.recieved then
 		input.recieved = true
 	
-		local tileX = math.floor(input.screenX / 64) + 1
-		local tileY = math.floor(input.screenY / 64) + 1
+		local tileX = math.floor((input.screenX + screen.offset.x) / 64) + 1
+		local tileY = math.floor((input.screenY + screen.offset.y) / 64) + 1
 		
 		map.tapTile(tileX, tileY)
 	end

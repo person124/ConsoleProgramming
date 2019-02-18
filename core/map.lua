@@ -34,7 +34,9 @@ function map.render()
 			tiles.render(map.tiles[x][y], (x - 1) * 64, (y - 1) * 64)
 
 			if map.movementTiles[x][y] then
-				love.graphics.rectangle('fill', (x - 1) * 64, (y - 1) * 64, 64, 64)
+				love.graphics.rectangle('fill',
+				(x - 1) * 64 - screen.offset.x,
+				(y - 1) * 64 - screen.offset.y, 64, 64)
 			end
 		end
 	end
