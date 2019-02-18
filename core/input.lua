@@ -16,10 +16,25 @@ function input.load()
 	for i=1,3 do
 		input.mouse[i] = false
 	end
+
+	input.recieved = false
 end
 
 function input.update()
 	input.screenX, input.screenY = screen.screenToSubScreen(input.x, input.y)
+
+	if input.screenX ~= -1 and input.screenY ~= -1 and input.count == 1 then
+	if not input.recieved then
+		input.recieved = true
+	
+		local tileX = math.floor(input.screenX / 64) + 1
+		local tileY = math.floor(input.screenY / 64) + 1
+		
+		map.tapTile(tileX, tileY)
+	end
+	else
+		input.recieved = false
+	end
 end
 
 -- Built in function that is called on touch start

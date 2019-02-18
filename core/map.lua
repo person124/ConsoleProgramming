@@ -48,6 +48,11 @@ function map.addEntity(ent)
 	table.insert(map.entities, entity.copy(ent))
 end
 
+-- When the player taps a tile call this function with the tile X and Y
+function map.tapTile(tileX, tileY)
+	--TODO!
+end
+
 -- Local recursive function to work out which tiles a unit can move to
 local function spreadFromTile(startX, startY, tileX, tileY, tilesLeft)
 	for x=-1,1 do
