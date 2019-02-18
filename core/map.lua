@@ -50,7 +50,12 @@ end
 
 -- When the player taps a tile call this function with the tile X and Y
 function map.tapTile(tileX, tileY)
-	--TODO!
+	if tileX <= map.width and tileY <= map.height and map.movementTiles[tileX][tileY] then
+		map.entities[1].x = tileX
+		map.entities[1].y = tileY
+
+		map.getMovement(map.entities[1])
+	end
 end
 
 -- Local recursive function to work out which tiles a unit can move to
@@ -78,7 +83,11 @@ end
 -- Returns a list of movement/attack tiles that the unit can move/attack to
 -- if displayResults is true, it will show the results to the user
 function map.getMovement(ent, displayResults)
-	-- map.targeter = {}
+	for i=1,map.width do
+		for j=1,map.height do
+			map.movementTiles[i][j] = false
+		end
+	end
 
 	spreadFromTile(ent.x, ent.y, ent.x, ent.y, ent.sp)
 end
