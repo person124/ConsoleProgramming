@@ -21,11 +21,20 @@ function map.load()
 	end
 
 	map.entities = {}
+
+	-- Test entity one
 	map.addEntity(entity["unit"])
 	map.entities[1].x = 2
 	map.entities[1].y = 2
 
-	map.currentlySelected = -1
+	-- Test Entity two
+	map.addEntity(entity["unit"])
+	map.entities[2].x = 2
+	map.entities[2].y = 4
+	map.entities[2].sp = 1
+
+
+	map.currentlySelected = nil
 end
 
 function map.render()
@@ -52,11 +61,23 @@ end
 
 -- When the player taps a tile call this function with the tile X and Y
 function map.tapTile(tileX, tileY)
-	if tileX <= map.width and tileY <= map.height and map.movementTiles[tileX][tileY] then
-		map.entities[1].x = tileX
-		map.entities[1].y = tileY
+	if map.currentlySelected == nil then
+		for i=1,table.getn(map.entities) do
+			if map.entities[i].x == tileX and map.entities[i].y == tileY then
+				map.currentlySelected = map.entities[i]
+				map.getMovement(map.entities[i], true)
+				return
+			end
+		end
+	else
+		if tileX <= map.width and tileY <= map.height and map.movementTiles[tileX][tileY] then
+			map.currentlySelected.x = tileX
+			map.currentlySelected.y = tileY
 
-		map.getMovement(map.entities[1])
+			map.currentlySelected = nil
+
+			map.clearMovement()
+		end
 	end
 end
 
@@ -85,11 +106,15 @@ end
 -- Returns a list of movement/attack tiles that the unit can move/attack to
 -- if displayResults is true, it will show the results to the user
 function map.getMovement(ent, displayResults)
+	map.clearMovement()
+
+	spreadFromTile(ent.x, ent.y, ent.x, ent.y, ent.sp)
+end
+
+function map.clearMovement()
 	for i=1,map.width do
 		for j=1,map.height do
 			map.movementTiles[i][j] = nil
 		end
 	end
-
-	spreadFromTile(ent.x, ent.y, ent.x, ent.y, ent.sp)
 end
