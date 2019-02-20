@@ -16,7 +16,7 @@ function map.load()
 		map.movementTiles[i] = {}
 		for j=1,map.height do
 			map.tiles[i][j] = "test"
-			map.movementTiles[i][j] = false
+			map.movementTiles[i][j] = nil
 		end
 	end
 
@@ -24,8 +24,8 @@ function map.load()
 	map.addEntity(entity["unit"])
 	map.entities[1].x = 2
 	map.entities[1].y = 2
-	
-	map.getMovement(map.entities[1])
+
+	map.currentlySelected = -1
 end
 
 function map.render()
@@ -33,7 +33,7 @@ function map.render()
 		for y=1,map.height do
 			tiles.render(map.tiles[x][y], (x - 1) * 64, (y - 1) * 64)
 
-			if map.movementTiles[x][y] then
+			if map.movementTiles[x][y] ~= nil then
 				love.graphics.rectangle('fill',
 				(x - 1) * 64 - screen.offset.x,
 				(y - 1) * 64 - screen.offset.y, 64, 64)
@@ -87,7 +87,7 @@ end
 function map.getMovement(ent, displayResults)
 	for i=1,map.width do
 		for j=1,map.height do
-			map.movementTiles[i][j] = false
+			map.movementTiles[i][j] = nil
 		end
 	end
 
