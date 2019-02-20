@@ -35,6 +35,8 @@ function map.load()
 
 
 	map.currentlySelected = nil
+
+	map.clearMovement()
 end
 
 function map.render()
@@ -42,7 +44,7 @@ function map.render()
 		for y=1,map.height do
 			tiles.render(map.tiles[x][y], (x - 1) * 64, (y - 1) * 64)
 
-			if map.movementTiles[x][y] ~= nil then
+			if map.movementTiles[x][y] == true then
 				love.graphics.rectangle('fill',
 				(x - 1) * 64 - screen.offset.x,
 				(y - 1) * 64 - screen.offset.y, 64, 64)
@@ -91,7 +93,9 @@ local function spreadFromTile(startX, startY, tileX, tileY, tilesLeft)
 
 				if adjustedX > 0 and adjustedY > 0 and adjustedX <= map.width and adjustedY <= map.height then
 				if not (adjustedX == startX and adjustedY == startY) then	
-					map.movementTiles[adjustedX][adjustedY] = true
+					if map.movementTiles[adjustedX][adjustedY] == nil then
+						map.movementTiles[adjustedX][adjustedY] = true
+					end
 
 					if tilesLeft - 1 > 0 then
 						spreadFromTile(startX, startY, adjustedX, adjustedY, tilesLeft - 1)
@@ -116,5 +120,9 @@ function map.clearMovement()
 		for j=1,map.height do
 			map.movementTiles[i][j] = nil
 		end
+	end
+
+	for i=1,table.getn(map.entities) do
+		map.movementTiles[map.entities[i].x][map.entities[i].y] = false	
 	end
 end
