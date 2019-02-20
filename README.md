@@ -15,7 +15,7 @@ The rest of this readme will be a table showcase a schedule that I came up with 
 | 6           | * Tile Loading * Entity Attacking * |
 | 7           | * *Turn* Creation * Basic Enemy AI * |
 | 8           | * **Prototype Due** * Sound Loading * Animation Creation * |
-| SPRING BREAK| **It's Spring Break Y'all** |
+| **SPRING BREAK** | **It's Spring Break Y'all** |
 | 9           | * Sound Integration * Entity Loading * |
 | 10          | * AI Improvement * Extending Tile Features * |
 | 11          | * Menu Creation/Improvement * In-Game Map Editor * |
@@ -23,3 +23,10 @@ The rest of this readme will be a table showcase a schedule that I came up with 
 | 13          | * Bug Squishing * In-Game Map Editor * Level Creation * |
 | 14          | * Bug Squishing * Level Creation * |
 | 15          | * Project Due! * Finish Stuff Up * |
+
+## Real Cycle
+Even though I *plan* to do stuff it might not be what I actually do, so this chart will display what I actually do week by week.
+| Week Number | Actuall Tasks Completed |
+| :---------: | :---------------------: |
+| 4           | Basic Map Rendering, Image Loading |
+| 5           | *Basic* Entity Creation, *Basic* Entity Movement |
