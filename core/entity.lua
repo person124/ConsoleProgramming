@@ -52,6 +52,8 @@ end
 -- Copys the given entity and returns the copy
 function entity.copy(ent)
 	local entCopy = {}
+	
+	entCopy.stats = ent.stats
 	entCopy.hp = ent.hp
 	entCopy.at = ent.at
 	entCopy.sp = ent.sp
