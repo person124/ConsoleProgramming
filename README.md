@@ -26,7 +26,8 @@ The rest of this readme will be a table showcase a schedule that I came up with 
 
 ## Real Cycle
 Even though I *plan* to do stuff it might not be what I actually do, so this chart will display what I actually do week by week.
-| Week Number | Actuall Tasks Completed |
-| :---------: | :---------------------: |
+
+| Week Number | Actual Tasks Completed |
+| :---------: | :--------------------: |
 | 4           | Basic Map Rendering, Image Loading |
 | 5           | *Basic* Entity Creation, *Basic* Entity Movement |
