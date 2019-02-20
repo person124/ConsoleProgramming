@@ -1,5 +1,18 @@
 entity = {}
 
+-- This functions allows the creation of protected tables
+-- On use will make a table write only
+-- http://andrejs-cainikovs.blogspot.com/2009/05/lua-constants.html
+local function protect(tbl)
+	return setmetatable({}, {
+		__index = tbl,
+		__newindex = function(t, key, value)
+			error("attempting to change constant " ..
+				tostring(key) .. " to " .. tostring(value), 2)
+		end
+	})
+end
+
 -- Loads in built-in entities
 function entity.load()
 	entity.create("unit", 10, 5, 2, 1, "unit")
@@ -9,6 +22,14 @@ end
 -- id is internal name
 function entity.create(id, health, attack, speed, range, texture)
 	entity[id] = {}
+
+	entity[id].stats = {}
+	entity[id].stats.hp = health
+	entity[id].stats.at = attack
+	entity[id].stats.sp = speed
+	entity[id].stats.rn = range
+	entity[id].stats = protect(entity[id].stats)
+
 	entity[id].hp = health
 	entity[id].at = attack
 	entity[id].sp = speed
