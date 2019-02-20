@@ -27,15 +27,7 @@ end
 
 -- Built in function called every frame to render the scene
 function love.draw()
-	love.graphics.print('Hello World', 400, 300)
-
 	screen.start()
 		map.render()
 	screen.stop()
-
-	love.graphics.print(input.count, 400, 400)
-
-	love.graphics.circle('fill', input.x, input.y, 20)
-
-	love.graphics.print(input.screenX .. " " .. input.screenY, 450, 400)
 end
