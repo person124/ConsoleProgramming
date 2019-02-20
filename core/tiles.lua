@@ -6,12 +6,17 @@ tiles = {}
 -- name is the human name
 local function createTile(id, name, isSolid, texture, quad)
 	local tile = {}
-	tile.id = id
-	tile.name = name
+
+	tile.const = {}
+	tile.const.id = id
+	tile.const.name = name
+	protect(tile.const)
+
 	tile.isSolid = isSolid
 	tile.texture = texture
 	tile.quad = quad
-	tiles[tile.id] = tile
+
+	tiles[tile.const.id] = tile
 end
 
 -- This is where example tiles will be created, this bit will most likely

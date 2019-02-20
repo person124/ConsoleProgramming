@@ -1,3 +1,4 @@
+require("core/utils")
 require("core/screen") -- Handles the subscreen and everything related to it
 require("core/textures") -- Handles texture loading and caching
 require("core/tiles") -- Handles all the different types of tiles
