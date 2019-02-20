@@ -4,10 +4,12 @@ tiles = {}
 -- quad can be nil
 -- id is the internal name
 -- name is the human name
-local function createTile(id, name, isSolid, texture, quad)
+local function createTile(isInternal, id, name, isSolid, texture, quad)
+	print(isInternal)
 	local tile = {}
 
 	tile.const = {}
+	tile.const.builtIn = isInternal
 	tile.const.id = id
 	tile.const.name = name
 	protect(tile.const)
@@ -22,7 +24,29 @@ end
 -- This is where example tiles will be created, this bit will most likely
 -- be removed later and replaced with a more auto-loading method
 function tiles.load()
-	createTile("test", "Test", false, "test")
+	tiles.loadFile("assets/example_tile", true)
+end
+
+function tiles.loadFile(fileName, isBuiltIn)
+	local loadedFile = require(fileName)
+	
+	local builtIn = false
+	if isBuiltIn ~= nil then
+		builtIn = isBuiltIn
+	end
+	
+	for i=1,table.getn(loadedFile) do
+		local tile = loadedFile[i]
+		
+		-- Check the tile data
+		assert(tile.id ~= nil, "No ID set for " .. fileName)
+		assert(tile.name ~= nil, "No name set for " .. fileName)
+		assert(tile.isSolid ~= nil, "No solidity set for " .. fileName)
+		assert(tile.texture ~= nil, "No texture set for " .. fileName)
+		
+		-- If it passes, then create tile
+		createTile(builtIn, tile.id, tile.name, tile.isSolid, tile.texture)
+	end
 end
 
 -- render the tile with specified id at the specified location

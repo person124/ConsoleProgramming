@@ -115,6 +115,7 @@ function map.getMovement(ent, displayResults)
 	spreadFromTile(ent.x, ent.y, ent.x, ent.y, ent.sp)
 end
 
+-- Clears the list of movement tiles
 function map.clearMovement()
 	for i=1,map.width do
 		for j=1,map.height do
