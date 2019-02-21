@@ -8,8 +8,8 @@ map = {}
 -- Currently this function loads in the example map data
 -- Will be replaced by a better more versatile map loader
 function map.load()
-	map.width = 3
-	map.height = 5
+	map.width = 16
+	map.height = 30
 
 	map.tiles = {}
 	map.movementTiles = {}
@@ -39,6 +39,7 @@ function map.load()
 	map.currentlySelected = nil
 
 	map.clearMovement()
+	map.getMinMaxOffset()
 end
 
 
@@ -131,5 +132,32 @@ function map.clearMovement()
 
 	for i=1,table.getn(map.entities) do
 		map.movementTiles[map.entities[i].x][map.entities[i].y] = false	
+	end
+end
+
+-- Using the current map width and height
+-- Calculate/Get the max/min offsets to make sure
+-- the level can't be scrolled off screen
+-- Returns two the min then the max both with two members
+-- x and y.
+function map.getMinMaxOffset()
+	-- If the calculation has already been done, return the result
+	if map.offsetLimit ~= nil then
+		return map.offsetLimit.min, map.offsetLimit.max
+	end
+	
+	--Otherwise, calculate it
+	map.offsetLimit = {}
+	map.offsetLimit.min = {}
+	map.offsetLimit.min.x = 0
+	map.offsetLimit.min.y = 0
+	map.offsetLimit.max = {}
+	
+	-- If doesn't go off the right/bottom, NO MOVEMENT
+	if map.width * 64 > screen.baseWidth then
+		map.offsetLimit.max.x = (map.width * 64) - screen.baseWidth
+	end
+	if map.height * 64 > screen.baseHeight then
+		map.offsetLimit.max.y = (map.height * 64) - screen.baseHeight
 	end
 end

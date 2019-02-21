@@ -86,6 +86,12 @@ end
 function screen.addOffset(dx, dy)
 	screen.offset.x = screen.offset.x + dx
 	screen.offset.y = screen.offset.y + dy
+	
+	local offMin, offMax = map.getMinMaxOffset()
+	
+	-- minmax is in utils
+	screen.offset.x = minmax(screen.offset.x, offMin.x, offMax.x)
+	screen.offset.y = minmax(screen.offset.y, offMin.y, offMax.y)
 end
 
 -- Converts a point of the game window to a point in the subscreen
