@@ -76,10 +76,22 @@ function screen.stop(draw)
 	end
 end
 
+-- Makes sure the current offset aligns with the min and
+-- the max that map allows
+local function checkOffset()
+	-- Make sure the offset is within the map's boundaries
+	local offMin, offMax = map.getMinMaxOffset()
+	-- minmax is in utils
+	screen.offset.x = minmax(screen.offset.x, offMin.x, offMax.x)
+	screen.offset.y = minmax(screen.offset.y, offMin.y, offMax.y)
+end
+
 -- Sets the screen's offset to specified numbers
 function screen.setOffset(x, y)
 	screen.offset.x = x
 	screen.offset.y = y
+	
+	checkOffset()
 end
 
 -- Adds the specified numbers to the offset
@@ -87,11 +99,7 @@ function screen.addOffset(dx, dy)
 	screen.offset.x = screen.offset.x + dx
 	screen.offset.y = screen.offset.y + dy
 	
-	local offMin, offMax = map.getMinMaxOffset()
-	
-	-- minmax is in utils
-	screen.offset.x = minmax(screen.offset.x, offMin.x, offMax.x)
-	screen.offset.y = minmax(screen.offset.y, offMin.y, offMax.y)
+	checkOffset()
 end
 
 -- Converts a point of the game window to a point in the subscreen

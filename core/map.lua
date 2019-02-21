@@ -8,8 +8,8 @@ map = {}
 -- Currently this function loads in the example map data
 -- Will be replaced by a better more versatile map loader
 function map.load()
-	map.width = 16
-	map.height = 30
+	map.width = 3
+	map.height = 5
 
 	map.tiles = {}
 	map.movementTiles = {}
@@ -152,12 +152,29 @@ function map.getMinMaxOffset()
 	map.offsetLimit.min.x = 0
 	map.offsetLimit.min.y = 0
 	map.offsetLimit.max = {}
+	map.offsetLimit.max.x = 0
+	map.offsetLimit.max.y = 0
 	
-	-- If doesn't go off the right/bottom, NO MOVEMENT
+	-- If the level doesn't fit on one screen
 	if map.width * 64 > screen.baseWidth then
 		map.offsetLimit.max.x = (map.width * 64) - screen.baseWidth
+	else
+		-- This is if the level fits on one screen
+		local centerX = screen.baseWidth * 0.5
+		local xOff = centerX - (map.width * 32) -- 32 is because 64/2
+	
+		map.offsetLimit.min.x = -xOff
+		map.offsetLimit.max.x = -xOff
 	end
+	
+	-- The same setup as before but with y
 	if map.height * 64 > screen.baseHeight then
 		map.offsetLimit.max.y = (map.height * 64) - screen.baseHeight
+	else
+		local centerY = screen.baseHeight * 0.5
+		local yOff = centerY - (map.height * 32)
+	
+		map.offsetLimit.min.y = -yOff
+		map.offsetLimit.max.y = -yOff
 	end
 end
