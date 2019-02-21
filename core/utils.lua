@@ -10,3 +10,11 @@ function protect(tbl)
 		end
 	})
 end
+
+-- Makes sure num is within min and max inclusive
+-- returns the result
+function minmax(num, min, max)
+	if num < min then return min
+	elseif num > max then return max
+	else return num end
+end
