@@ -43,8 +43,19 @@ function tiles.loadFile(fileName, isBuiltIn)
 		assert(tile.isSolid ~= nil, "No solidity set for " .. fileName)
 		assert(tile.texture ~= nil, "No texture set for " .. fileName)
 		
+		-- If the tile has quad data then use it
+		local quad = nil
+		if tile.quad ~= nil then
+			local x = tile.quad.x * 64
+			local y = tile.quad.y * 64
+			local width = textures[tile.quad.texture]:getWidth()
+			local height = textures[tile.quad.texture]:getHeight()
+			
+			quad = love.graphics.newQuad(x, y, 64, 64, width, height)
+		end
+		
 		-- If it passes, then create tile
-		createTile(builtIn, tile.id, tile.name, tile.isSolid, tile.texture)
+		createTile(builtIn, tile.id, tile.name, tile.isSolid, tile.texture, quad)
 	end
 end
 
