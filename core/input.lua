@@ -112,6 +112,6 @@ function love.mousemoved(x, y, dx, dy)
 	input.y = y
 
 	if input.mouse[2] then
-		screen.addOffset(dx, dy)
+		screen.addOffset(-dx, -dy)
 	end
 end
