@@ -5,7 +5,6 @@ tiles = {}
 -- id is the internal name
 -- name is the human name
 local function createTile(isInternal, id, name, isSolid, texture, quad)
-	print(isInternal)
 	local tile = {}
 
 	tile.const = {}

@@ -21,10 +21,21 @@ function input.load()
 end
 
 function input.update()
-	input.screenX, input.screenY = screen.screenToSubScreen(input.x, input.y)
+	if input.mouse[1] then
+		input.count = 1
+	else
+		input.count = 0
+	end
 
-	if input.screenX ~= -1 and input.screenY ~= -1 and input.count == 1 then
+	if input.count == 1 then
 	if not input.recieved then
+		-- Only update screen coords if needed
+		input.screenX, input.screenY = screen.screenToSubScreen(input.x, input.y)
+	
+		if input.screenX == -1 or input.screenY == -1 then
+			return
+		end
+	
 		input.recieved = true
 	
 		local tileX = math.floor((input.screenX + screen.offset.x) / 64) + 1
