@@ -40,6 +40,9 @@ function map.load()
 
 	map.clearMovement()
 	map.getMinMaxOffset()
+	
+	-- This is called to center the screen if needed
+	screen.setOffset(0, 0)
 end
 
 
