@@ -20,12 +20,14 @@ local function createTile(isInternal, id, name, isSolid, texture, quad)
 	tiles[tile.const.id] = tile
 end
 
--- This is where example tiles will be created, this bit will most likely
--- be removed later and replaced with a more auto-loading method
+-- This is where the built in tiles will be loaded as well as any other
+-- needed settings or information
 function tiles.load()
 	tiles.loadFile("assets/example_tile", true)
 end
 
+-- This will load tile(s) from a file, if the second parameter is true
+-- Than the tiles will be marked as built in ones and not deleted on refresh
 function tiles.loadFile(fileName, isBuiltIn)
 	local loadedFile = require(fileName)
 	

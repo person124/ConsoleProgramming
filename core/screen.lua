@@ -102,7 +102,7 @@ function screen.screenToSubScreen(inX, inY)
 		return -1, -1
 	end
 
-	-- Checl to see if the input is outside the upper bounds
+	-- Check to see if the input is outside the upper bounds
 	if inX > (screen.drawX + screen.width) or
 	inY > (screen.drawY + screen.height) then
 		return -1, -1

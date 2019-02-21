@@ -5,6 +5,8 @@
 
 map = {}
 
+-- Currently this function loads in the example map data
+-- Will be replaced by a better more versatile map loader
 function map.load()
 	map.width = 3
 	map.height = 5
@@ -33,12 +35,14 @@ function map.load()
 	map.entities[2].y = 4
 	map.entities[2].sp = 1
 
-
+	-- This represents the currently selected entity
 	map.currentlySelected = nil
 
 	map.clearMovement()
 end
 
+
+-- Draws the map and entities to the screen
 function map.render()
 	for x=1,map.width do
 		for y=1,map.height do
@@ -57,6 +61,8 @@ function map.render()
 	end
 end
 
+-- Makes a copy of the given entity and adds it to the
+-- List of entities
 function map.addEntity(ent)
 	table.insert(map.entities, entity.copy(ent))
 end
