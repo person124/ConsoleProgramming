@@ -5,6 +5,9 @@
 
 map = {}
 
+local movementTile = 3
+local attackTile = 5
+
 -- Currently this function loads in the example map data
 -- Will be replaced by a better more versatile map loader
 function map.load()
@@ -52,8 +55,12 @@ function map.render()
 		for y=1,map.height do
 			tiles.render(map.tiles[x][y], (x - 1) * 64, (y - 1) * 64)
 
-			if map.movementTiles[x][y] == true then
+			if map.movementTiles[x][y] == movementTile then
 				love.graphics.draw(textures["movement"],
+				(x - 1) * 64 - screen.offset.x,
+				(y - 1) * 64 - screen.offset.y)
+			elseif map.movementTiles[x][y] == attackTile then
+				love.graphics.draw(textures["attack"],
 				(x - 1) * 64 - screen.offset.x,
 				(y - 1) * 64 - screen.offset.y)
 			end
@@ -94,7 +101,7 @@ function map.tapTile(tileX, tileY)
 end
 
 -- Local recursive function to work out which tiles a unit can move to
-local function spreadFromTile(startX, startY, tileX, tileY, tilesLeft)
+local function spreadFromTile(startX, startY, tileX, tileY, movementTilesLeft, attackTilesLeft)
 	for x=-1,1 do
 		for y=-1,1 do
 			if (x ~= 0 and y == 0) or (y ~= 0 and x == 0) then
@@ -104,11 +111,15 @@ local function spreadFromTile(startX, startY, tileX, tileY, tilesLeft)
 				if adjustedX > 0 and adjustedY > 0 and adjustedX <= map.width and adjustedY <= map.height then
 				if not (adjustedX == startX and adjustedY == startY) then	
 					if map.movementTiles[adjustedX][adjustedY] == nil then
-						map.movementTiles[adjustedX][adjustedY] = true
+						map.movementTiles[adjustedX][adjustedY] = movementTile
+					end
+					
+					if map.movementTiles[adjustedX][adjustedY] == false then
+						map.movementTiles[adjustedX][adjustedY] = attackTile
 					end
 
-					if tilesLeft - 1 > 0 then
-						spreadFromTile(startX, startY, adjustedX, adjustedY, tilesLeft - 1)
+					if movementTilesLeft - 1 > 0 then
+						spreadFromTile(startX, startY, adjustedX, adjustedY, movementTilesLeft - 1)
 					end
 				end
 				end
@@ -122,7 +133,7 @@ end
 function map.getMovement(ent, displayResults)
 	map.clearMovement()
 
-	spreadFromTile(ent.x, ent.y, ent.x, ent.y, ent.sp)
+	spreadFromTile(ent.x, ent.y, ent.x, ent.y, ent.sp, ent.rn)
 end
 
 -- Clears the list of movement tiles
