@@ -52,6 +52,7 @@ end
 
 -- Draws the map and entities to the screen
 function map.render()
+	-- Tile rendering
 	for x=1,map.width do
 		for y=1,map.height do
 			tiles.render(map.tiles[x][y], (x - 1) * 64, (y - 1) * 64)
@@ -68,8 +69,21 @@ function map.render()
 		end
 	end
 
+	-- Entity rendering
 	for i=1,table.getn(map.entities) do
 		entity.render(map.entities[i])
+	end
+	
+	-- Entity information rendering
+	love.graphics.setColor(0, 0, 0, 255)
+	love.graphics.rectangle("fill", 0, 0, screen.baseWidth, 33)
+	love.graphics.setColor(255, 255, 255, 255)
+	if map.currentlySelected ~= nil then
+		local ent = map.currentlySelected
+		love.graphics.print("HP: " .. ent.hp .. " / " .. ent.stats.hp .. "          " ..
+							"AT: " .. ent.at .. " / " .. ent.stats.at .. "          " ..
+							"SP: " .. ent.sp .. " / " .. ent.stats.sp .. "          " ..
+							"RN: " .. ent.rn .. " / " .. ent.stats.rn, 0, 0, 0, 2.5)
 	end
 end
 
@@ -83,7 +97,8 @@ end
 function map.tapTile(tileX, tileY)
 	if map.currentlySelected == nil then
 		for i=1,table.getn(map.entities) do
-			if map.entities[i].x == tileX and map.entities[i].y == tileY then
+			if map.entities[i].x == tileX and map.entities[i].y == tileY 
+				and not map.entities[i].isEnemy then
 				map.currentlySelected = map.entities[i]
 				map.getMovement(map.entities[i], true)
 				return
