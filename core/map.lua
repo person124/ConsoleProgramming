@@ -23,6 +23,7 @@ function map.load()
 	end
 	
 	map.movementTiles = {}
+	map.attackTiles = {}
 
 	map.entities = {}
 
@@ -64,6 +65,14 @@ function map.render()
 			(p.x - 1) * 64 - screen.offset.x,
 			(p.y - 1) * 64 - screen.offset.y)
 	end
+	
+	-- Attack grid rendering
+	for i=1,table.getn(map.attackTiles) do
+		local p = map.attackTiles[i]
+		love.graphics.draw(textures["attack"],
+			(p.x - 1) * 64 - screen.offset.x,
+			(p.y - 1) * 64 - screen.offset.y)
+	end
 
 	-- Entity rendering
 	for i=1,table.getn(map.entities) do
@@ -98,7 +107,7 @@ function map.tapTile(tileX, tileY)
 				if map.entities[i].x == tileX and map.entities[i].y == tileY 
 					and not map.entities[i].isEnemy then
 					map.currentlySelected = map.entities[i]
-					map.movementTiles = ai.plan(map, map.entities[i])
+					map.movementTiles, map.attackTiles = ai.plan(map, map.entities[i])
 					return
 				end
 			end
@@ -112,6 +121,7 @@ function map.tapTile(tileX, tileY)
 				map.currentlySelected = nil
 
 				map.movementTiles = {}
+				map.attackTiles = {}
 			end
 		end
 
@@ -176,11 +186,22 @@ function map.isEntityOnSpace(xPos, yPos)
 end
 
 -- Returns the solidity of the tiles at the specified location
--- If outside the scope of the level it will return false
+-- If outside the scope of the level it will return true
 function map.isSolid(tileX, tileY)
 	if tileX > 0 and tileY > 0 and tileX <= map.width and tileY <= map.height then
 		return map.tiles[tileX][tileY].isSolid
 	end
 	
-	return false
+	return true
+end
+
+-- Returns an entity at the specified location, will return nil if nothing is there
+function map.getEntity(tileX, tileY)
+	for i=1,table.getn(map.entities) do
+		if map.entities[i].x == tileX and map.entities[i].y == tileY then
+			return map.entities[i]
+		end
+	end
+	
+	return nil
 end
