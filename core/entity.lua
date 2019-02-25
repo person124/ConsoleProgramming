@@ -47,6 +47,8 @@ function entity.copy(ent)
 	entCopy.at = ent.at
 	entCopy.sp = ent.sp
 	entCopy.rn = ent.rn
+	
+	entCopy.isEnemy = ent.isEnemy
 
 	entCopy.texture = ent.texture
 

@@ -22,7 +22,7 @@ local function spreadFromTileMovement(map, tileX, tileY, tilesLeft, moveTiles)
 	end end
 end
 
-local function spreadFromTileAttack(map, tileX, tileY, tilesLeft, moveTiles, attackTiles)
+local function spreadFromTileAttack(map, tileX, tileY, entityTeam, tilesLeft, moveTiles, attackTiles)
 	-- Start an x and y nested for loop
 	for x=-1,1 do for y=-1,1 do
 		-- Make sure we are only testing x OR y
@@ -31,21 +31,22 @@ local function spreadFromTileAttack(map, tileX, tileY, tilesLeft, moveTiles, att
 			local adjY = tileY + y
 			
 			-- Does boundary checks during solid check
-			if map.isSolid(adjX, adjY) then
+			if not map.isSolid(adjX, adjY) then
 				local point = getPoint(adjX, adjY)
 				
 				if not containsPoint(moveTiles, point) then
-					-- TODO improve this
 					local entity = map.getEntity(adjX, adjY)
-					if entity == nil or entity.isEnemy then
-						table.insert(attackTiles, point)
+					if entity ~= nil then
+						if entity.isEnemy ~= entityTeam then
+							table.insert(attackTiles, point)
+						end
 					elseif not containsPoint(moveTiles, point) then
 						table.insert(attackTiles, point)
 					end
 				end
 				
 				if tilesLeft - 1 > 0 then
-					spreadFromTileAttack(map, adjX, adjY, tilesLeft - 1, moveTiles, attackTiles)
+					spreadFromTileAttack(map, adjX, adjY, entityTeam, tilesLeft - 1, moveTiles, attackTiles)
 				end
 			end
 		end
@@ -54,7 +55,7 @@ end
 
 local function planAttack(map, ent, moveTiles, attackTiles)
 	for i=1,table.getn(moveTiles) do
-		spreadFromTileAttack(map, moveTiles[i].x, moveTiles[i].y, ent.rn, moveTiles, attackTiles)
+		spreadFromTileAttack(map, moveTiles[i].x, moveTiles[i].y, ent.isEnemy, ent.rn, moveTiles, attackTiles)
 	end
 end
 

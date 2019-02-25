@@ -113,7 +113,6 @@ function map.tapTile(tileX, tileY)
 			end
 		else
 			local point = getPoint(tileX, tileY)
-			print(point.x, point.y)
 			if containsPoint(map.movementTiles, point) then
 				map.currentlySelected.x = tileX
 				map.currentlySelected.y = tileY
