@@ -174,3 +174,13 @@ function map.isEntityOnSpace(xPos, yPos)
 	
 	return false
 end
+
+-- Returns the solidity of the tiles at the specified location
+-- If outside the scope of the level it will return false
+function map.isSolid(tileX, tileY)
+	if tileX > 0 and tileY > 0 and tileX <= map.width and tileY <= map.height then
+		return map.tiles[tileX][tileY].isSolid
+	end
+	
+	return false
+end
