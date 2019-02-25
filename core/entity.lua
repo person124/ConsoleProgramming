@@ -21,6 +21,8 @@ function entity.create(id, health, attack, speed, range, texture)
 	entity[id].at = attack
 	entity[id].sp = speed
 	entity[id].rn = range
+	
+	entity[id].isEnemy = false
 
 	entity[id].texture = texture
 

@@ -37,6 +37,7 @@ function map.load()
 	map.entities[2].x = 2
 	map.entities[2].y = 4
 	map.entities[2].sp = 1
+	map.entities[2].isEnemy = true
 
 	-- This represents the currently selected entity
 	map.currentlySelected = nil
@@ -102,6 +103,8 @@ end
 
 -- Local recursive function to work out which tiles a unit can move to
 local function spreadFromTile(startX, startY, tileX, tileY, movementTilesLeft, attackTilesLeft)
+	if attackTilesLeft < 0 then return end
+
 	for x=-1,1 do
 		for y=-1,1 do
 			if (x ~= 0 and y == 0) or (y ~= 0 and x == 0) then
@@ -110,8 +113,13 @@ local function spreadFromTile(startX, startY, tileX, tileY, movementTilesLeft, a
 
 				if adjustedX > 0 and adjustedY > 0 and adjustedX <= map.width and adjustedY <= map.height then
 				if not (adjustedX == startX and adjustedY == startY) then	
-					if map.movementTiles[adjustedX][adjustedY] == nil then
-						map.movementTiles[adjustedX][adjustedY] = movementTile
+					if map.movementTiles[adjustedX][adjustedY] == nil or
+						map.movementTiles[adjustedX][adjustedY] == attackTile then
+						if movementTilesLeft > 0 then
+							map.movementTiles[adjustedX][adjustedY] = movementTile
+						elseif attackTilesLeft >= 0 then
+							map.movementTiles[adjustedX][adjustedY] = attackTile
+						end
 					end
 					
 					if map.movementTiles[adjustedX][adjustedY] == false then
@@ -119,7 +127,9 @@ local function spreadFromTile(startX, startY, tileX, tileY, movementTilesLeft, a
 					end
 
 					if movementTilesLeft - 1 > 0 then
-						spreadFromTile(startX, startY, adjustedX, adjustedY, movementTilesLeft - 1)
+						spreadFromTile(startX, startY, adjustedX, adjustedY, movementTilesLeft - 1, attackTilesLeft)
+					elseif attackTilesLeft >= 0 then
+						spreadFromTile(startX, startY, adjustedX, adjustedY, 0, attackTilesLeft - 1)
 					end
 				end
 				end
