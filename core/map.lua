@@ -36,7 +36,7 @@ function map.load()
 	map.entities[2].x = 2
 	map.entities[2].y = 4
 	map.entities[2].sp = 1
-	map.entities[2].isEnemy = true
+	-- map.entities[2].isEnemy = true
 
 	-- This represents the currently selected entity
 	map.currentlySelected = nil

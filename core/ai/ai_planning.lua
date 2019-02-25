@@ -23,7 +23,7 @@ local function spreadFromTileMovement(map, tileX, tileY, tilesLeft, tableToAdd)
 			local adjY = tileY + y
 			
 			if adjX > 0 and adjY > 0 and adjX <= map.width and adjY <= map.height then
-				-- check solidity
+				-- check solidity TODO
 			
 				local point = getPoint(adjX, adjY)
 			
@@ -31,7 +31,7 @@ local function spreadFromTileMovement(map, tileX, tileY, tilesLeft, tableToAdd)
 					table.insert(tableToAdd, point)
 				end
 				
-				if tilesLeft - 1 >= 0 then
+				if tilesLeft - 1 > 0 then
 					spreadFromTileMovement(map, adjX, adjY, tilesLeft - 1, tableToAdd)
 				end
 			end
@@ -40,7 +40,6 @@ local function spreadFromTileMovement(map, tileX, tileY, tilesLeft, tableToAdd)
 end
 
 local function planMovement(map, ent, tableToAdd)
-	print(ent.sp)
 	spreadFromTileMovement(map, ent.x, ent.y, ent.sp, tableToAdd)
 end
 
