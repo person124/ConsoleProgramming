@@ -36,7 +36,7 @@ function map.load()
 	map.entities[2].x = 2
 	map.entities[2].y = 4
 	map.entities[2].sp = 1
-	-- map.entities[2].isEnemy = true
+	map.entities[2].isEnemy = true
 
 	-- This represents the currently selected entity
 	map.currentlySelected = nil
@@ -91,25 +91,30 @@ end
 
 -- When the player taps a tile call this function with the tile X and Y
 function map.tapTile(tileX, tileY)
-	if map.currentlySelected == nil then
-		for i=1,table.getn(map.entities) do
-			if map.entities[i].x == tileX and map.entities[i].y == tileY 
-				and not map.entities[i].isEnemy then
-				map.currentlySelected = map.entities[i]
-				-- map.getMovement(map.entities[i], true)
-				map.movementTiles = ai.plan(map, map.entities[i])
-				return
+	if tileX > 0 and tileY > 0 and tileX <= map.width and tileY <= map.height then
+
+		if map.currentlySelected == nil then
+			for i=1,table.getn(map.entities) do
+				if map.entities[i].x == tileX and map.entities[i].y == tileY 
+					and not map.entities[i].isEnemy then
+					map.currentlySelected = map.entities[i]
+					map.movementTiles = ai.plan(map, map.entities[i])
+					return
+				end
+			end
+		else
+			local point = getPoint(tileX, tileY)
+			print(point.x, point.y)
+			if containsPoint(map.movementTiles, point) then
+				map.currentlySelected.x = tileX
+				map.currentlySelected.y = tileY
+
+				map.currentlySelected = nil
+
+				map.movementTiles = {}
 			end
 		end
-	else
-		if tileX <= map.width and tileY <= map.height and map.movementTiles[tileX][tileY] then
-			map.currentlySelected.x = tileX
-			map.currentlySelected.y = tileY
 
-			map.currentlySelected = nil
-
-			map.clearMovement()
-		end
 	end
 end
 

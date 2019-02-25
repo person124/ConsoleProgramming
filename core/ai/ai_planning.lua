@@ -1,19 +1,3 @@
-local function getPoint(x, y)
-	local point = {}
-	point.x = x
-	point.y = y
-	return point
-end
-
--- Returns true if table contains specified value
-local function contains(tab, value)
-	for i=1,table.getn(tab) do
-		if tab[i] == value then return true end
-	end
-	
-	return false
-end
-
 local function spreadFromTileMovement(map, tileX, tileY, tilesLeft, tableToAdd)
 	-- Start an x and y nested for loop
 	for x=-1,1 do for y=-1,1 do
@@ -27,7 +11,7 @@ local function spreadFromTileMovement(map, tileX, tileY, tilesLeft, tableToAdd)
 			
 				local point = getPoint(adjX, adjY)
 			
-				if not contains(tableToAdd, point) and not map.isEntityOnSpace(adjX, adjY) then
+				if not containsPoint(tableToAdd, point) and not map.isEntityOnSpace(adjX, adjY) then
 					table.insert(tableToAdd, point)
 				end
 				

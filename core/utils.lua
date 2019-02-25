@@ -18,3 +18,22 @@ function minmax(num, min, max)
 	elseif num > max then return max
 	else return num end
 end
+
+-- Simple point structure
+function getPoint(x, y)
+	local point = {}
+	point.x = x
+	point.y = y
+	return point
+end
+
+-- Returns true if table contains specified point
+function containsPoint(tab, value)
+	for i=1,table.getn(tab) do
+		if tab[i].x == value.x and tab[i].y == value.y then
+			return true
+		end
+	end
+	
+	return false
+end
