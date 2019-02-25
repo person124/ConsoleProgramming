@@ -23,8 +23,14 @@ local function spreadFromTileMovement(map, tileX, tileY, tilesLeft, tableToAdd)
 	end end
 end
 
-local function planMovement(map, ent, tableToAdd)
-	spreadFromTileMovement(map, ent.x, ent.y, ent.sp, tableToAdd)
+local function spreadFromTileAttack(map, tileX, tileY, attackTilesLeft, moveTiles, attackTiles)
+	
+end
+
+local function planAttack(map, ent, moveTiles, attackTiles)
+	for i=1,table.getn(moveTiles) do
+		spreadFromTileAttack(map, moveTiles[i].x, moveTiles[i].y, ent.rn, moveTiles, attackTiles)
+	end
 end
 
 -- This function will plot out a list of tiles that the specified entity
@@ -33,9 +39,10 @@ function plan(map, ent)
 	local moveTiles = {}
 	local attackTiles = {}
 	
-	planMovement(map, ent, moveTiles)
+	spreadFromTileMovement(map, ent.x, ent.y, ent.sp, moveTiles)
+	spreadFromTileAttack(map, ent, moveTiles, attackTiles)
 	
-	return moveTiles
+	return moveTiles, attackTiles
 end
 
 return plan
