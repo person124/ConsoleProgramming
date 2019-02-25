@@ -15,15 +15,14 @@ function map.load()
 	map.height = 5
 
 	map.tiles = {}
-	map.movementTiles = {}
 	for i=1,map.width do
 		map.tiles[i] = {}
-		map.movementTiles[i] = {}
 		for j=1,map.height do
 			map.tiles[i][j] = "test"
-			map.movementTiles[i][j] = nil
 		end
 	end
+	
+	map.movementTiles = {}
 
 	map.entities = {}
 
@@ -42,7 +41,6 @@ function map.load()
 	-- This represents the currently selected entity
 	map.currentlySelected = nil
 
-	map.clearMovement()
 	map.getMinMaxOffset()
 	
 	-- This is called to center the screen if needed
@@ -56,17 +54,15 @@ function map.render()
 	for x=1,map.width do
 		for y=1,map.height do
 			tiles.render(map.tiles[x][y], (x - 1) * 64, (y - 1) * 64)
-
-			if map.movementTiles[x][y] == movementTile then
-				love.graphics.draw(textures["movement"],
-				(x - 1) * 64 - screen.offset.x,
-				(y - 1) * 64 - screen.offset.y)
-			elseif map.movementTiles[x][y] == attackTile then
-				love.graphics.draw(textures["attack"],
-				(x - 1) * 64 - screen.offset.x,
-				(y - 1) * 64 - screen.offset.y)
-			end
 		end
+	end
+	
+	-- Movement grid rendering
+	for i=1,table.getn(map.movementTiles) do
+		local p = map.movementTiles[i]
+		love.graphics.draw(textures["movement"],
+			(p.x - 1) * 64 - screen.offset.x,
+			(p.y - 1) * 64 - screen.offset.y)
 	end
 
 	-- Entity rendering
@@ -100,7 +96,8 @@ function map.tapTile(tileX, tileY)
 			if map.entities[i].x == tileX and map.entities[i].y == tileY 
 				and not map.entities[i].isEnemy then
 				map.currentlySelected = map.entities[i]
-				map.getMovement(map.entities[i], true)
+				-- map.getMovement(map.entities[i], true)
+				map.movementTiles = ai.plan(map, map.entities[i])
 				return
 			end
 		end
@@ -113,64 +110,6 @@ function map.tapTile(tileX, tileY)
 
 			map.clearMovement()
 		end
-	end
-end
-
--- Local recursive function to work out which tiles a unit can move to
-local function spreadFromTile(startX, startY, tileX, tileY, movementTilesLeft, attackTilesLeft)
-	if attackTilesLeft < 0 then return end
-
-	for x=-1,1 do
-		for y=-1,1 do
-			if (x ~= 0 and y == 0) or (y ~= 0 and x == 0) then
-				local adjustedX = tileX + x
-				local adjustedY = tileY + y
-
-				if adjustedX > 0 and adjustedY > 0 and adjustedX <= map.width and adjustedY <= map.height then
-				if not (adjustedX == startX and adjustedY == startY) then	
-					if map.movementTiles[adjustedX][adjustedY] == nil or
-						map.movementTiles[adjustedX][adjustedY] == attackTile then
-						if movementTilesLeft > 0 then
-							map.movementTiles[adjustedX][adjustedY] = movementTile
-						elseif attackTilesLeft >= 0 then
-							map.movementTiles[adjustedX][adjustedY] = attackTile
-						end
-					end
-					
-					if map.movementTiles[adjustedX][adjustedY] == false then
-						map.movementTiles[adjustedX][adjustedY] = attackTile
-					end
-
-					if movementTilesLeft - 1 > 0 then
-						spreadFromTile(startX, startY, adjustedX, adjustedY, movementTilesLeft - 1, attackTilesLeft)
-					elseif attackTilesLeft >= 0 then
-						spreadFromTile(startX, startY, adjustedX, adjustedY, 0, attackTilesLeft - 1)
-					end
-				end
-				end
-			end
-		end
-	end
-end
-
--- Returns a list of movement/attack tiles that the unit can move/attack to
--- if displayResults is true, it will show the results to the user
-function map.getMovement(ent, displayResults)
-	map.clearMovement()
-
-	spreadFromTile(ent.x, ent.y, ent.x, ent.y, ent.sp, ent.rn)
-end
-
--- Clears the list of movement tiles
-function map.clearMovement()
-	for i=1,map.width do
-		for j=1,map.height do
-			map.movementTiles[i][j] = nil
-		end
-	end
-
-	for i=1,table.getn(map.entities) do
-		map.movementTiles[map.entities[i].x][map.entities[i].y] = false	
 	end
 end
 
@@ -216,4 +155,17 @@ function map.getMinMaxOffset()
 		map.offsetLimit.min.y = -yOff
 		map.offsetLimit.max.y = -yOff
 	end
+end
+
+
+-- Returns true if an entity is on a space
+-- Otherwise returns false
+function map.isEntityOnSpace(xPos, yPos)
+	for i=1,table.getn(map.entities) do
+		if map.entities[i].x == xPos and map.entities[i].y == yPos then
+			return true
+		end
+	end
+	
+	return false
 end

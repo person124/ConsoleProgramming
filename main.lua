@@ -6,6 +6,8 @@ require("core/entity") -- Handles data for entity creation
 require("core/map") -- Contains data of the current tile arragement
 require("core/input") -- Handles touch/mouse input
 
+require("core/ai_core")
+
 -- Built in function called before the game starts, all data will be loaded in here
 function love.load()
 	screen.load()
