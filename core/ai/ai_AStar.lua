@@ -47,7 +47,8 @@ local function getPath(finishNode)
 	return path
 end
 
-function AStar(map, start, finish) -- TODO ADD MAP SOLIDITY
+-- TODO ADD HEURISTIC!!!!
+function AStar(map, start, finish)
 	-- Init open and closed lists
 	local open = {}
 	local closed = {}

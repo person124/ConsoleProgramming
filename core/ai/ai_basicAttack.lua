@@ -21,6 +21,12 @@ function basicAttack(map, attacker, target, moveMap)
 	-- 2)
 	local toUseID = 0
 	local maxDistance = 0
+	
+	-- Get current distance first
+	moveMap[-1] = getPoint(attacker.x, attacker.y)
+	toUseID = -1
+	maxDistance = getDistance(map, moveMap[-1], endPoint)
+	
 	for i=1,table.getn(moveMap) do
 		-- Go with the tile that is the farthest away
 		local dist = getDistance(map, moveMap[i], endPoint)
@@ -38,6 +44,7 @@ function basicAttack(map, attacker, target, moveMap)
 	
 	-- 4)
 	target.funcs.damage(attacker, target, attacker.at)
+	map.refresh()
 end
 
 return basicAttack

@@ -245,3 +245,13 @@ function map.moveEntity(ent, tileX, tileY)
 	ent.x = tileX
 	ent.y = tileY
 end
+
+-- Reloads the map, clearing any killed entities
+function map.refresh()
+	for i=1,table.getn(map.entities) do
+		if map.entities[i].hp <= 0 then
+			table.remove(map.entities, i)
+			i = 1
+		end
+	end
+end
