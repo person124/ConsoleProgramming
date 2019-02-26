@@ -122,8 +122,7 @@ function map.tapTile(tileX, tileY)
 
 		local point = getPoint(tileX, tileY)
 		if containsPoint(map.movementTiles, point) then
-			map.currentlySelected.x = tileX
-			map.currentlySelected.y = tileY
+			map.moveEntity(map.currentlySelected, tileX, tileY)
 		end
 
 		map.currentlySelected = nil
@@ -209,4 +208,10 @@ function map.getEntity(tileX, tileY)
 	end
 	
 	return nil
+end
+
+-- Moves the specified entity to the specified location
+function map.moveEntity(ent, tileX, tileY)
+	ent.x = tileX
+	ent.y = tileY
 end
