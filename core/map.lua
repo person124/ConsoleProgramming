@@ -5,9 +5,6 @@
 
 map = {}
 
-local movementTile = 3
-local attackTile = 5
-
 -- Currently this function loads in the example map data
 -- Will be replaced by a better more versatile map loader
 function map.load()
@@ -108,31 +105,30 @@ end
 function map.tapTile(tileX, tileY)
 	if tileX > 0 and tileY > 0 and tileX <= map.width and tileY <= map.height then
 
-		if map.currentlySelected == nil then
-			for i=1,table.getn(map.entities) do
-				if map.entities[i].x == tileX and map.entities[i].y == tileY then
-					
-					map.currentlySelected = map.entities[i]
-					
-					if not map.currentlySelected.isEnemy then
-						map.movementTiles, map.attackTiles = ai.plan(map, map.entities[i])
-					end
-					
-					return
+		for i=1,table.getn(map.entities) do
+			if map.entities[i].x == tileX and map.entities[i].y == tileY then
+				map.currentlySelected = map.entities[i]
+
+				if not map.currentlySelected.isEnemy then
+					map.movementTiles, map.attackTiles = ai.plan(map, map.entities[i])
+				else
+					map.movementTiles = {}
+					map.attackTiles = {}
 				end
-			end
-		else
-			local point = getPoint(tileX, tileY)
-			if containsPoint(map.movementTiles, point) then
-				map.currentlySelected.x = tileX
-				map.currentlySelected.y = tileY
 
-				map.currentlySelected = nil
-
-				map.movementTiles = {}
-				map.attackTiles = {}
+				return
 			end
 		end
+
+		local point = getPoint(tileX, tileY)
+		if containsPoint(map.movementTiles, point) then
+			map.currentlySelected.x = tileX
+			map.currentlySelected.y = tileY
+		end
+
+		map.currentlySelected = nil
+		map.movementTiles = {}
+		map.attackTiles = {}
 
 	end
 end
