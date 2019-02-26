@@ -5,17 +5,17 @@
 --]]
 
 local function getDistance(map, point1, point2)
-
+	
 end
 
-function basicAttack(map, ent, target, moveMap)
+function basicAttack(map, attacker, target, moveMap)
 	-- Steps:
 	-- 1) Get range
 	-- 2) Get movement tile at specified range
 	-- 3) Move unit
 	-- 4) Apply damage
 	
-	-- 1) range is just ent.rn
+	-- 1) range is just attacker.rn
 	local endPoint = getPoint(target.x, target.y)
 	-- 2)
 	local toUseID = 0
@@ -23,7 +23,7 @@ function basicAttack(map, ent, target, moveMap)
 	for i=1,table.getn(moveMap) do
 		-- Go with the tile that is the farthest away
 		local dist = getDistance(moveMap[i], endPoint)
-		if dist <= ent.rn and dist > maxDistance then
+		if dist <= attacker.rn and dist > maxDistance then
 			toUseID = i
 			maxDistance = dist
 		end
@@ -33,10 +33,10 @@ function basicAttack(map, ent, target, moveMap)
 	if toUseID == 0 then return end
 	
 	-- 3)
-	map.moveEntity(ent, moveMap[toUseID].x, moveMap[toUseID].y)
+	map.moveEntity(attacker, moveMap[toUseID].x, moveMap[toUseID].y)
 	
 	-- 4)
-	target.funcs.damage(ent, target, ent.at)
+	target.funcs.damage(attacker, target, attacker.at)
 end
 
 return basicAttack
