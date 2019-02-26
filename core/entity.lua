@@ -4,6 +4,8 @@
 
 entity = {}
 
+local entityDefaultFuncs = require("core/entityDefaultFunctions")
+
 -- Loads in built-in entities
 function entity.load()
 	entity.create("unit", 10, 5, 2, 1, "unit")
@@ -14,6 +16,7 @@ end
 function entity.create(id, health, attack, speed, range, texture)
 	entity[id] = {}
 
+	-- Default entity stats (protected)
 	entity[id].stats = {}
 	entity[id].stats.hp = health
 	entity[id].stats.at = attack
@@ -21,17 +24,24 @@ function entity.create(id, health, attack, speed, range, texture)
 	entity[id].stats.rn = range
 	entity[id].stats = protect(entity[id].stats)
 
+	-- Applied entity stats
 	entity[id].hp = health
 	entity[id].at = attack
 	entity[id].sp = speed
 	entity[id].rn = range
 	
+	-- Is the entity not on the player's team
 	entity[id].isEnemy = false
 
+	-- The texture of the entity
 	entity[id].texture = texture
 
+	-- The position of the entity
 	entity[id].x = 0
 	entity[id].y = 0
+	
+	-- Entity Functions
+	entity[id].funcs = entityDefaultFuncs
 end
 
 -- Draws the specified entity at the entities location
