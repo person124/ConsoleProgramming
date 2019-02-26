@@ -4,6 +4,11 @@
 	while moving the attacker to a suitable space.
 --]]
 
+local function getDistance(map, start, finish)
+	local path = ai.AStar(map, start, finish)
+	return table.getn(path)
+end
+
 function basicAttack(map, attacker, target, moveMap)
 	-- Steps:
 	-- 1) Get range
@@ -18,7 +23,7 @@ function basicAttack(map, attacker, target, moveMap)
 	local maxDistance = 0
 	for i=1,table.getn(moveMap) do
 		-- Go with the tile that is the farthest away
-		local dist = getDistance(moveMap[i], endPoint)
+		local dist = getDistance(map, moveMap[i], endPoint)
 		if dist <= attacker.rn and dist > maxDistance then
 			toUseID = i
 			maxDistance = dist

@@ -35,7 +35,19 @@ local function removeValue(map, value)
 	end
 end
 
-function AStar(map, start, finish)
+local function getPath(finishNode)
+	local path = {}
+	local current = finishNode
+	
+	while current.prev ~= nil do
+		table.insert(path, 1, getPoint(current.x, current.y))
+		current = current.prev
+	end
+	
+	return path
+end
+
+function AStar(map, start, finish) -- TODO ADD MAP SOLIDITY
 	-- Init open and closed lists
 	local open = {}
 	local closed = {}
@@ -62,29 +74,39 @@ function AStar(map, start, finish)
 		table.insert(successors, node(point.x - 1, point.y, point))
 		table.insert(successors, node(point.x + 1, point.y, point))
 		
+		-- For each successor
 		for i=1,table.getn(successors) do
 			local temp = successors[i]
 			temp.cost = point.cost + 1
 
+			-- Check if its the goal
 			if isGoal(temp, finish) then
 				return getPath(temp)
 			end
 			
+			-- Otherwise see if its in the open list, and compare cost
 			local other = containsValue(open, temp)
 			if other ~= nil and other.cost > temp.cost then
 				table.insert(open, temp)
 			else
+				-- Otherwise check if its in the closed list
 				other = containsValue(closed, temp)
 				
 				if other ~= nil then
+					-- Compare cost, and add to open if lower
 					if other.cost > temp.cost then
 						table.insert(open, temp)
 						removeValue(closed, temp)
 					end
 				else
+					-- If its not in any list than add it to the open one
 					table.insert(open, temp)
+				end
 			end
 		end
+		
+		-- After checked all successors, add the point to the closed list
+		table.insert(closed, point)
 	end
 	
 	-- If pathing failed then return nil
