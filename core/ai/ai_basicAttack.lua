@@ -4,10 +4,6 @@
 	while moving the attacker to a suitable space.
 --]]
 
-local function getDistance(map, point1, point2)
-	
-end
-
 function basicAttack(map, attacker, target, moveMap)
 	-- Steps:
 	-- 1) Get range
