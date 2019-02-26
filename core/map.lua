@@ -125,9 +125,9 @@ function map.tapTile(tileX, tileY)
 			
 			-- 2)
 			local ent = map.getEntity(tileX, tileY)
-			if containsPoint(map.attackTiles, point) and ent ~= nil then
+			if ent ~= nil and containsPoint(map.attackTiles, point) then
 				-- Call attack function
-				ai.basicAttack(map, map.currentSelected, ent, map.movementTiles)
+				ai.basicAttack(map, map.currentlySelected, ent, map.movementTiles)
 				clearSelection()
 				return
 			end

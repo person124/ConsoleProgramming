@@ -42,6 +42,7 @@ function entity.create(id, health, attack, speed, range, texture)
 	
 	-- Entity Functions
 	entity[id].funcs = entityDefaultFuncs
+	entity[id].funcs = protect(entity[id].funcs)
 end
 
 -- Draws the specified entity at the entities location
@@ -68,6 +69,8 @@ function entity.copy(ent)
 
 	entCopy.x = ent.x
 	entCopy.y = ent.y
+	
+	entCopy.funcs = ent.funcs
 
 	return entCopy
 end

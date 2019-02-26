@@ -28,8 +28,8 @@ end
 
 local function removeValue(map, value)
 	for i=1,table.getn(map) do
-		if map[i].x == value.x and map[i].y == value.y then
-			table.removeValue(map, i)
+		if map[i] == value then
+			table.remove(map, i)
 			return
 		end
 	end
@@ -78,6 +78,9 @@ function AStar(map, start, finish) -- TODO ADD MAP SOLIDITY
 		for i=1,table.getn(successors) do
 			local temp = successors[i]
 			temp.cost = point.cost + 1
+			
+			-- Don't go if it is solid
+			if not map.isSolid(temp.x, temp.y) then
 
 			-- Check if its the goal
 			if isGoal(temp, finish) then
@@ -103,9 +106,12 @@ function AStar(map, start, finish) -- TODO ADD MAP SOLIDITY
 					table.insert(open, temp)
 				end
 			end
+			
+			-- end of isSolid
+			end
 		end
 		
-		-- After checked all successors, add the point to the closed list
+		removeValue(open, point)
 		table.insert(closed, point)
 	end
 	
