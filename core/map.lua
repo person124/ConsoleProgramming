@@ -85,10 +85,16 @@ function map.render()
 	love.graphics.setColor(255, 255, 255, 255)
 	if map.currentlySelected ~= nil then
 		local ent = map.currentlySelected
+		
+		-- Render selected entity stats
 		love.graphics.print("HP: " .. ent.hp .. " / " .. ent.stats.hp .. "          " ..
 							"AT: " .. ent.at .. " / " .. ent.stats.at .. "          " ..
 							"SP: " .. ent.sp .. " / " .. ent.stats.sp .. "          " ..
 							"RN: " .. ent.rn .. " / " .. ent.stats.rn, 0, 0, 0, 2.5)
+		-- Render circle around selected entity
+		love.graphics.draw(textures["selected-" .. tostring(ent.isEnemy)],
+			(ent.x - 1) * 64 - screen.offset.x,
+			(ent.y - 1) * 64 - screen.offset.y)
 	end
 end
 
@@ -104,10 +110,14 @@ function map.tapTile(tileX, tileY)
 
 		if map.currentlySelected == nil then
 			for i=1,table.getn(map.entities) do
-				if map.entities[i].x == tileX and map.entities[i].y == tileY 
-					and not map.entities[i].isEnemy then
+				if map.entities[i].x == tileX and map.entities[i].y == tileY then
+					
 					map.currentlySelected = map.entities[i]
-					map.movementTiles, map.attackTiles = ai.plan(map, map.entities[i])
+					
+					if not map.currentlySelected.isEnemy then
+						map.movementTiles, map.attackTiles = ai.plan(map, map.entities[i])
+					end
+					
 					return
 				end
 			end
