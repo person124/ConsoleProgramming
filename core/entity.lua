@@ -1,3 +1,7 @@
+--[[
+	This file contains the information/functions that entity need to use for loading and such
+--]]
+
 entity = {}
 
 -- Loads in built-in entities

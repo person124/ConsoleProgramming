@@ -1,6 +1,6 @@
 --[[
-	This file is HEAVILY subject to change, in the current state exists
-	only to get an idea of what rendering would look like
+	This file contains information to use for map handling.
+	This file will be altered later to better import map data.
 --]]
 
 map = {}

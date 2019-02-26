@@ -1,3 +1,8 @@
+--[[
+	This function will return two arrays. One thats a list of tiles the specified entity
+	can move to, the second is a list of tiles that the specified entity can attack.
+--]]
+
 local function spreadFromTileMovement(map, tileX, tileY, tilesLeft, moveTiles)
 	-- Start an x and y nested for loop
 	for x=-1,1 do for y=-1,1 do
