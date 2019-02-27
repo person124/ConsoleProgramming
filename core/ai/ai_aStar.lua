@@ -48,7 +48,7 @@ local function getPath(finishNode)
 end
 
 -- TODO ADD HEURISTIC!!!!
-function AStar(map, start, finish)
+function aStar(map, start, finish)
 	-- Init open and closed lists
 	local open = {}
 	local closed = {}
@@ -120,4 +120,4 @@ function AStar(map, start, finish)
 	return nil
 end
 
-return AStar
+return aStar

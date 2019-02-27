@@ -8,4 +8,4 @@ ai.plan = require("core/ai/ai_planning")
 
 ai.basicAttack = require("core/ai/ai_basicAttack")
 
-ai.AStar = require("core/ai/ai_AStar")
+ai.aStar = require("core/ai/ai_aStar")
