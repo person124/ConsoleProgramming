@@ -9,7 +9,14 @@ local function node(x, y, prevousNode)
 	temp.y = y
 	temp.prev = prevousNode
 	temp.cost = 0
+	temp.heur = 0
 	return temp
+end
+
+local function heuristic(point, finish)
+	local x = finish.x - point.x
+	local y = finish.y - point.y
+	return (x * x) + (y * y)
 end
 
 local function isGoal(point, finish)
@@ -47,7 +54,6 @@ local function getPath(finishNode)
 	return path
 end
 
--- TODO ADD HEURISTIC!!!!
 function aStar(map, start, finish)
 	-- Init open and closed lists
 	local open = {}
@@ -62,8 +68,8 @@ function aStar(map, start, finish)
 		local lowestCost = 10000
 		local point = nil
 		for i=1,table.getn(open) do
-			if open[i].cost < lowestCost then
-				lowestCost = open[i].cost
+			if open[i].heur < lowestCost then
+				lowestCost = open[i].heur
 				point = open[i]
 			end
 		end
@@ -79,6 +85,7 @@ function aStar(map, start, finish)
 		for i=1,table.getn(successors) do
 			local temp = successors[i]
 			temp.cost = point.cost + 1
+			temp.heur = temp.cost + heuristic(temp, finish)
 			
 			-- Don't go if it is solid
 			if not map.isSolid(temp.x, temp.y) then
