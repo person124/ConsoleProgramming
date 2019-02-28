@@ -8,6 +8,8 @@ require("core/input") -- Handles touch/mouse input
 
 require("core/ai_core")
 
+local screenFiller = nil
+
 -- Built in function called before the game starts, all data will be loaded in here
 function love.load()
 	screen.load()
@@ -19,6 +21,8 @@ function love.load()
 	map.load()
 
 	input.load()
+
+	screenFiller = require("core/screenFiller")
 end
 
 -- Built in function called every frame to have updates
@@ -29,6 +33,8 @@ end
 
 -- Built in function called every frame to render the scene
 function love.draw()
+	love.graphics.draw(screenFiller)
+
 	screen.start()
 		map.render()
 	screen.stop()
