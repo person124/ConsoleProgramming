@@ -54,11 +54,7 @@ function screen.start()
 	-- Swap the draw canvas to the subscreen and clear it to get it ready
 	-- to be drawn too
 	love.graphics.setCanvas(screen.canvas)
-	love.graphics.clear()
-
-	-- Both of these things AREN'T needed, but for debug purposes are here
-	love.graphics.setLineWidth(10)
-	love.graphics.rectangle('line', 0, 0, screen.baseWidth, screen.baseHeight)
+	love.graphics.clear(0, 0, 0, 255)
 end
 
 -- The function stops drawing to the subscreen as well as draws the subscreen
