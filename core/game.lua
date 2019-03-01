@@ -9,4 +9,8 @@ function game.tapTile(tileX, tileY)
 	game.map.tapTile(tileX, tileY)
 end
 
+function game.render(screen)
+	game.map.render(screen)
+end
+
 return game

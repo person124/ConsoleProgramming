@@ -4,8 +4,6 @@ local main = {}
 require("core/utils") -- This contains global public functions
 require("core/ai_core") -- Contains AI functions
 
-local game = require("core/game")
-
 -- This is used to generate a background so the screen is not
 -- Black and empty where the game isn't
 local screenFiller = nil
@@ -32,7 +30,8 @@ function love.load()
 	main.entity = require("core/entities")
 	main.entity.load()
 
-	game.load()
+	main.game = require("core/game")
+	main.game.load()
 
 	screenFiller = require("core/screenFiller")
 end
@@ -40,7 +39,7 @@ end
 -- Built in function called every frame to have updates
 -- dt parameter is the step update time
 function love.update(dt)
-	main.input.update(game, main.screen)
+	main.input.update(main.game, main.screen)
 end
 
 -- Built in function called every frame to render the scene
@@ -48,12 +47,16 @@ function love.draw()
 	love.graphics.draw(screenFiller)
 
 	main.screen.start()
-		game.map.render(main.screen)
+		main.game.render(main.screen)
 	main.screen.stop()
 end
 
 function getGameInstance()
-	return game
+	return main.game
+end
+
+function getCurrentMap()
+	return main.game.map
 end
 
 function getInputInstance()
