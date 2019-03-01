@@ -51,12 +51,14 @@ function love.draw()
 	main.screen.stop()
 end
 
-function getGameInstance()
-	return main.game
+-- Below this point are the getter functions
+
+function getTexturesInstance()
+	return main.textures
 end
 
-function getCurrentMap()
-	return main.game.map
+function getTexture(id)
+	return main.textures[id]
 end
 
 function getInputInstance()
@@ -65,14 +67,6 @@ end
 
 function getScreenInstance()
 	return main.screen
-end
-
-function getTexturesInstance()
-	return main.textures
-end
-
-function getTexture(id)
-	return main.textures[id]
 end
 
 function getTilesInstance()
@@ -89,4 +83,12 @@ end
 
 function getEntity(id)
 	return main.entity[id]
+end
+
+function getGameInstance()
+	return main.game
+end
+
+function getCurrentMap()
+	return main.game.map
 end
