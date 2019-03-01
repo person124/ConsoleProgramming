@@ -3,7 +3,7 @@
 	This file will be altered later to better import map data.
 --]]
 
-map = {}
+local map = {}
 
 -- Currently this function loads in the example map data
 -- Will be replaced by a better more versatile map loader
@@ -42,16 +42,16 @@ function map.load()
 	map.getMinMaxOffset()
 	
 	-- This is called to center the screen if needed
-	screen.setOffset(0, 0)
+	getScreenInstance().setOffset(0, 0)
 end
 
 
 -- Draws the map and entities to the screen
-function map.render()
+function map.render(screen)
 	-- Tile rendering
 	for x=1,map.width do
 		for y=1,map.height do
-			tiles.render(map.tiles[x][y], (x - 1) * 64, (y - 1) * 64)
+			tiles.render(map.tiles[x][y], (x - 1) * 64, (y - 1) * 64, screen)
 		end
 	end
 	
@@ -73,7 +73,7 @@ function map.render()
 
 	-- Entity rendering
 	for i=1,table.getn(map.entities) do
-		entity.render(map.entities[i])
+		entity.render(map.entities[i], screen)
 	end
 	
 	-- Entity information rendering
@@ -168,6 +168,8 @@ end
 -- Returns two the min then the max both with two members
 -- x and y.
 function map.getMinMaxOffset()
+	local screen = getScreenInstance()
+
 	-- If the calculation has already been done, return the result
 	if map.offsetLimit ~= nil then
 		return map.offsetLimit.min, map.offsetLimit.max

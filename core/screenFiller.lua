@@ -1,3 +1,4 @@
+local screen = getScreenInstance()
 local width = love.graphics.getWidth()
 local height = love.graphics.getHeight()
 local lineCount = 10

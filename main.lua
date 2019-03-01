@@ -5,7 +5,7 @@ require("core/utils") -- This contains global public functions
 require("core/ai_core") -- Contains AI functions
 
 
-require("core/screen") -- Handles the subscreen and everything related to it
+require("core/screen") 
 require("core/textures") -- Handles texture loading and caching
 require("core/tiles") -- Handles all the different types of tiles
 require("core/entity") -- Handles data for entity creation
@@ -21,7 +21,10 @@ function love.load()
 	main.input = require("core/input")
 	main.input.load()
 	
-	screen.load()
+	-- Handles the subscreen and everything related to it
+	main.screen = require("core/screen")
+	main.screen.load()
+
 	textures.load()
 
 	tiles.load()
@@ -35,16 +38,16 @@ end
 -- Built in function called every frame to have updates
 -- dt parameter is the step update time
 function love.update(dt)
-	main.input.update(game)
+	main.input.update(game, main.screen)
 end
 
 -- Built in function called every frame to render the scene
 function love.draw()
 	love.graphics.draw(screenFiller)
 
-	screen.start()
-		map.render()
-	screen.stop()
+	main.screen.start()
+		game.map.render(main.screen)
+	main.screen.stop()
 end
 
 function getGameInstance()
@@ -53,4 +56,8 @@ end
 
 function getInputInstance()
 	return main.input
+end
+
+function getScreenInstance()
+	return main.screen
 end

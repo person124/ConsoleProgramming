@@ -46,7 +46,7 @@ function entity.create(id, health, attack, speed, range, texture)
 end
 
 -- Draws the specified entity at the entities location
-function entity.render(ent)
+function entity.render(ent, screen)
 	xPos = ((ent.x - 1) * 64) - screen.offset.x
 	yPos = ((ent.y - 1) * 64) - screen.offset.y
 

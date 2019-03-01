@@ -61,8 +61,9 @@ function tiles.loadFile(fileName, isBuiltIn)
 	end
 end
 
+-- TODO Rework!
 -- render the tile with specified id at the specified location
-function tiles.render(id, xPos, yPos)
+function tiles.render(id, xPos, yPos, screen)
 	-- Checks to make sure an id was passed at all
 	if id == nil then return end
 

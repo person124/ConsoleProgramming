@@ -1,4 +1,4 @@
-input = {}
+local input = {}
 
 --[[
 	TOUCH SCREEN RELATED THINGS!!!!!!
@@ -20,7 +20,7 @@ function input.load()
 	input.recieved = false
 end
 
-function input.update(game)
+function input.update(game, screen)
 	if input.mouse[1] then
 		input.count = 1
 	else

@@ -1,4 +1,4 @@
-screen = {}
+local screen = {}
 
 -- This function generates the sub screen and does necessary math
 -- to set it up
@@ -124,3 +124,5 @@ function screen.screenToSubScreen(inX, inY)
 
 	return outX, outY
 end
+
+return screen
