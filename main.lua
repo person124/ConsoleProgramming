@@ -4,8 +4,6 @@ local main = {}
 require("core/utils") -- This contains global public functions
 require("core/ai_core") -- Contains AI functions
 
-require("core/tiles")
-require("core/entity") -- Handles data for entity creation
 local game = require("core/game")
 
 -- This is used to generate a background so the screen is not
@@ -30,7 +28,9 @@ function love.load()
 	main.tiles = require("core/tiles")
 	main.tiles.load()
 
-	entity.load()
+	-- Handles data for entity creation
+	main.entity = require("core/entities")
+	main.entity.load()
 
 	game.load()
 
@@ -78,4 +78,12 @@ end
 
 function getTile(id)
 	return main.tiles[id]
+end
+
+function getEntitiesInstance()
+	return main.entity
+end
+
+function getEntity(id)
+	return main.entity[id]
 end

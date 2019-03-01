@@ -25,12 +25,12 @@ function map.load()
 	map.entities = {}
 
 	-- Test entity one
-	map.addEntity(entity["unit"])
+	map.addEntity("unit")
 	map.entities[1].x = 2
 	map.entities[1].y = 2
 
 	-- Test Entity two
-	map.addEntity(entity["unit"])
+	map.addEntity("unit")
 	map.entities[2].x = 2
 	map.entities[2].y = 4
 	map.entities[2].sp = 1
@@ -73,7 +73,7 @@ function map.render(screen)
 
 	-- Entity rendering
 	for i=1,table.getn(map.entities) do
-		entity.render(map.entities[i], screen)
+		getEntitiesInstance().render(map.entities[i], screen)
 	end
 	
 	-- Entity information rendering
@@ -97,8 +97,10 @@ end
 
 -- Makes a copy of the given entity and adds it to the
 -- List of entities
-function map.addEntity(ent)
-	table.insert(map.entities, entity.copy(ent))
+function map.addEntity(entity)
+	local ent = getEntity(entity) -- Converting id to entity
+	-- Adding the copy to the table
+	table.insert(map.entities, getEntitiesInstance().copy(ent))
 end
 
 -- Clears the selected entity

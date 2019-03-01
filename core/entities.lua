@@ -2,7 +2,7 @@
 	This file contains the information/functions that entity need to use for loading and such
 --]]
 
-entity = {}
+local entity = {}
 
 local entityDefaultFuncs = require("core/entityDefaultFunctions")
 
@@ -74,3 +74,5 @@ function entity.copy(ent)
 
 	return entCopy
 end
+
+return entity
