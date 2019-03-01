@@ -1,4 +1,4 @@
-tiles = {}
+local tiles = {}
 
 -- create a tile with the specified data
 -- quad can be nil
@@ -62,24 +62,21 @@ function tiles.loadFile(fileName, isBuiltIn)
 end
 
 -- TODO Rework!
--- render the tile with specified id at the specified location
-function tiles.render(id, xPos, yPos, screen)
-	-- Checks to make sure an id was passed at all
-	if id == nil then return end
-
-	local tile = tiles[id]
-
-	-- Checks to make sure a tile exists at that point
-	if not tile then return end
-
+-- render the specified tile at the specified location
+function tiles.render(tile, xPos, yPos, screen)
 	-- Calculate the positon of the tile including screen offsets
-	xPos = xPos - screen.offset.x
-	yPos = yPos - screen.offset.y
+	local adjX = (xPos - 1) * 64
+	local adjY = (yPos - 1) * 64
+	
+	adjX = adjX - screen.offset.x
+	adjY = adjY - screen.offset.y
 
 	-- If the tile has a quad then render it using it, otherwise render normally
 	if not tile.quad then
-		love.graphics.draw(getTexture(tile.texture), xPos, yPos)
+		love.graphics.draw(getTexture(tile.texture), adjX, adjY)
 	else
-		love.graphics.draw(getTexture(tile.texture), tile.quad, xPos, yPos)
+		love.graphics.draw(getTexture(tile.texture), tile.quad, adjX, adjY)
 	end
 end
+
+return tiles

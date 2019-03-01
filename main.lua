@@ -4,9 +4,8 @@ local main = {}
 require("core/utils") -- This contains global public functions
 require("core/ai_core") -- Contains AI functions
 
-require("core/tiles") -- Handles all the different types of tiles
+require("core/tiles")
 require("core/entity") -- Handles data for entity creation
---require("core/map") -- Contains data of the current tile arrangement
 local game = require("core/game")
 
 -- This is used to generate a background so the screen is not
@@ -15,6 +14,11 @@ local screenFiller = nil
 
 -- Built in function called before the game starts, all data will be loaded in here
 function love.load()
+	-- Handles texture loading and caching
+	main.textures = require("core/textures")
+	main.textures.load()
+
+	-- Handles touch/mouse input
 	main.input = require("core/input")
 	main.input.load()
 	
@@ -22,11 +26,10 @@ function love.load()
 	main.screen = require("core/screen")
 	main.screen.load()
 
-	-- Handles texture loading and caching
-	main.textures = require("core/textures")
-	main.textures.load()
+	-- Handles all the different types of tiles
+	main.tiles = require("core/tiles")
+	main.tiles.load()
 
-	tiles.load()
 	entity.load()
 
 	game.load()
@@ -67,4 +70,12 @@ end
 
 function getTexture(id)
 	return main.textures[id]
+end
+
+function getTilesInstance()
+	return main.tiles
+end
+
+function getTile(id)
+	return main.tiles[id]
 end

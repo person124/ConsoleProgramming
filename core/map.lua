@@ -15,7 +15,7 @@ function map.load()
 	for i=1,map.width do
 		map.tiles[i] = {}
 		for j=1,map.height do
-			map.tiles[i][j] = "test"
+			map.tiles[i][j] = getTile("test")
 		end
 	end
 	
@@ -51,7 +51,7 @@ function map.render(screen)
 	-- Tile rendering
 	for x=1,map.width do
 		for y=1,map.height do
-			tiles.render(map.tiles[x][y], (x - 1) * 64, (y - 1) * 64, screen)
+			getTilesInstance().render(map.tiles[x][y], x, y, screen)
 		end
 	end
 	
