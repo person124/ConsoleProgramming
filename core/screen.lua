@@ -76,7 +76,7 @@ end
 -- the max that map allows
 local function checkOffset()
 	-- Make sure the offset is within the map's boundaries
-	local offMin, offMax = map.getMinMaxOffset()
+	local offMin, offMax = getGameInstance().map.getMinMaxOffset()
 	-- minmax is in utils
 	screen.offset.x = minmax(screen.offset.x, offMin.x, offMax.x)
 	screen.offset.y = minmax(screen.offset.y, offMin.y, offMax.y)

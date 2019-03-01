@@ -255,3 +255,5 @@ function map.refresh()
 		end
 	end
 end
+
+return map
