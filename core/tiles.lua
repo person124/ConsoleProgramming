@@ -50,8 +50,8 @@ function tiles.loadFile(fileName, isBuiltIn)
 		if tile.quad ~= nil then
 			local x = tile.quad.x * 64
 			local y = tile.quad.y * 64
-			local width = textures[tile.quad.texture]:getWidth()
-			local height = textures[tile.quad.texture]:getHeight()
+			local width = getTexture(tile.quad.texture):getWidth()
+			local height = getTexture(tile.quad.texture):getHeight()
 			
 			quad = love.graphics.newQuad(x, y, 64, 64, width, height)
 		end
@@ -78,8 +78,8 @@ function tiles.render(id, xPos, yPos, screen)
 
 	-- If the tile has a quad then render it using it, otherwise render normally
 	if not tile.quad then
-		love.graphics.draw(textures[tile.texture], xPos, yPos)
+		love.graphics.draw(getTexture(tile.texture), xPos, yPos)
 	else
-		love.graphics.draw(textures[tile.texture], tile.quad, xPos, yPos)
+		love.graphics.draw(getTexture(tile.texture), tile.quad, xPos, yPos)
 	end
 end

@@ -4,9 +4,6 @@ local main = {}
 require("core/utils") -- This contains global public functions
 require("core/ai_core") -- Contains AI functions
 
-
-require("core/screen") 
-require("core/textures") -- Handles texture loading and caching
 require("core/tiles") -- Handles all the different types of tiles
 require("core/entity") -- Handles data for entity creation
 --require("core/map") -- Contains data of the current tile arrangement
@@ -25,7 +22,9 @@ function love.load()
 	main.screen = require("core/screen")
 	main.screen.load()
 
-	textures.load()
+	-- Handles texture loading and caching
+	main.textures = require("core/textures")
+	main.textures.load()
 
 	tiles.load()
 	entity.load()
@@ -60,4 +59,12 @@ end
 
 function getScreenInstance()
 	return main.screen
+end
+
+function getTexturesInstance()
+	return main.textures
+end
+
+function getTexture(id)
+	return main.textures[id]
 end

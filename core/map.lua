@@ -58,7 +58,7 @@ function map.render(screen)
 	-- Movement grid rendering
 	for i=1,table.getn(map.movementTiles) do
 		local p = map.movementTiles[i]
-		love.graphics.draw(textures["movement"],
+		love.graphics.draw(getTexture("movement"),
 			(p.x - 1) * 64 - screen.offset.x,
 			(p.y - 1) * 64 - screen.offset.y)
 	end
@@ -66,7 +66,7 @@ function map.render(screen)
 	-- Attack grid rendering
 	for i=1,table.getn(map.attackTiles) do
 		local p = map.attackTiles[i]
-		love.graphics.draw(textures["attack"],
+		love.graphics.draw(getTexture("attack"),
 			(p.x - 1) * 64 - screen.offset.x,
 			(p.y - 1) * 64 - screen.offset.y)
 	end
@@ -89,7 +89,7 @@ function map.render(screen)
 							"SP: " .. ent.sp .. " / " .. ent.stats.sp .. "          " ..
 							"RN: " .. ent.rn .. " / " .. ent.stats.rn, 0, 0, 0, 2.5)
 		-- Render circle around selected entity
-		love.graphics.draw(textures["selected-" .. tostring(ent.isEnemy)],
+		love.graphics.draw(getTexture("selected-" .. tostring(ent.isEnemy)),
 			(ent.x - 1) * 64 - screen.offset.x,
 			(ent.y - 1) * 64 - screen.offset.y)
 	end

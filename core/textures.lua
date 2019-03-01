@@ -1,4 +1,4 @@
-textures = {}
+local textures = {}
 
 -- This functions loads in images as specified in the file
 -- textures.dat located in the assets folder
@@ -22,3 +22,5 @@ function textures.load()
 		end
 	end
 end
+
+return textures

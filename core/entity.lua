@@ -50,7 +50,7 @@ function entity.render(ent, screen)
 	xPos = ((ent.x - 1) * 64) - screen.offset.x
 	yPos = ((ent.y - 1) * 64) - screen.offset.y
 
-	love.graphics.draw(textures[ent.texture], xPos, yPos)
+	love.graphics.draw(getTexture(ent.texture), xPos, yPos)
 end
 
 -- Copys the given entity and returns the copy
