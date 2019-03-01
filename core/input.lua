@@ -115,3 +115,5 @@ function love.mousemoved(x, y, dx, dy)
 		screen.addOffset(-dx, -dy)
 	end
 end
+
+return input
