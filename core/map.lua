@@ -158,10 +158,10 @@ function map.tapTile(tileX, tileY)
 				return
 			end
 		end
-
-		-- 5)
-		clearSelection()
 	end
+
+	-- 5)
+	clearSelection()
 end
 
 -- Using the current map width and height
