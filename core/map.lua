@@ -123,11 +123,11 @@ function map.tapTile(tileX, tileY)
 	if tileX > 0 and tileY > 0 and tileX <= map.width and tileY <= map.height then
 		-- Check if something is currently selected
 		if map.currentlySelected ~= nil and not map.currentlySelected.isEnemy then
-			local point = getPoint(tileX, tileY)
+			local point = utils.getPoint(tileX, tileY)
 			
 			-- 2)
 			local ent = map.getEntity(tileX, tileY)
-			if ent ~= nil and containsPoint(map.attackTiles, point) then
+			if ent ~= nil and utils.containsPoint(map.attackTiles, point) then
 				-- Call attack function
 				ai.basicAttack(map, map.currentlySelected, ent, map.movementTiles)
 				clearSelection()
@@ -135,7 +135,7 @@ function map.tapTile(tileX, tileY)
 			end
 			
 			-- 3)
-			if containsPoint(map.movementTiles, point) then
+			if utils.containsPoint(map.movementTiles, point) then
 				-- Move the entity
 				map.moveEntity(map.currentlySelected, tileX, tileY)
 				clearSelection()

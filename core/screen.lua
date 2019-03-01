@@ -77,9 +77,9 @@ end
 local function checkOffset()
 	-- Make sure the offset is within the map's boundaries
 	local offMin, offMax = getCurrentMap().getMinMaxOffset()
-	-- minmax is in utils
-	screen.offset.x = minmax(screen.offset.x, offMin.x, offMax.x)
-	screen.offset.y = minmax(screen.offset.y, offMin.y, offMax.y)
+	-- utils.minmax is in utils
+	screen.offset.x = utils.minmax(screen.offset.x, offMin.x, offMax.x)
+	screen.offset.y = utils.minmax(screen.offset.y, offMin.y, offMax.y)
 end
 
 -- Sets the screen's offset to specified numbers

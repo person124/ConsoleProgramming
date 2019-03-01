@@ -16,13 +16,13 @@ end
 function entity.create(id, health, attack, speed, range, texture)
 	entity[id] = {}
 
-	-- Default entity stats (protected)
+	-- Default entity stats (utils.protected)
 	entity[id].stats = {}
 	entity[id].stats.hp = health
 	entity[id].stats.at = attack
 	entity[id].stats.sp = speed
 	entity[id].stats.rn = range
-	entity[id].stats = protect(entity[id].stats)
+	entity[id].stats = utils.protect(entity[id].stats)
 
 	-- Applied entity stats
 	entity[id].hp = health
@@ -42,7 +42,7 @@ function entity.create(id, health, attack, speed, range, texture)
 	
 	-- Entity Functions
 	entity[id].funcs = entityDefaultFuncs
-	entity[id].funcs = protect(entity[id].funcs)
+	entity[id].funcs = utils.protect(entity[id].funcs)
 end
 
 -- Draws the specified entity at the entities location

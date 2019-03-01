@@ -47,7 +47,7 @@ local function getPath(finishNode)
 	local current = finishNode
 	
 	while current.prev ~= nil do
-		table.insert(path, 1, getPoint(current.x, current.y))
+		table.insert(path, 1, utils.getPoint(current.x, current.y))
 		current = current.prev
 	end
 	

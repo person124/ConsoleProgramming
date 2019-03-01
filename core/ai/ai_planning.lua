@@ -13,9 +13,9 @@ local function spreadFromTileMovement(map, tileX, tileY, tilesLeft, moveTiles)
 			
 			-- Does boundary checks during solid check
 			if not map.isSolid(adjX, adjY) then
-				local point = getPoint(adjX, adjY)
+				local point = utils.getPoint(adjX, adjY)
 			
-				if not containsPoint(moveTiles, point) and not map.isEntityOnSpace(adjX, adjY) then
+				if not utils.containsPoint(moveTiles, point) and not map.isEntityOnSpace(adjX, adjY) then
 					table.insert(moveTiles, point)
 				end
 				
@@ -37,15 +37,15 @@ local function spreadFromTileAttack(map, tileX, tileY, entityTeam, tilesLeft, mo
 			
 			-- Does boundary checks during solid check
 			if not map.isSolid(adjX, adjY) then
-				local point = getPoint(adjX, adjY)
+				local point = utils.getPoint(adjX, adjY)
 				
-				if not containsPoint(moveTiles, point) then
+				if not utils.containsPoint(moveTiles, point) then
 					local entity = map.getEntity(adjX, adjY)
 					if entity ~= nil then
 						if entity.isEnemy ~= entityTeam then
 							table.insert(attackTiles, point)
 						end
-					elseif not containsPoint(moveTiles, point) then
+					elseif not utils.containsPoint(moveTiles, point) then
 						table.insert(attackTiles, point)
 					end
 				end

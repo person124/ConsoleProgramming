@@ -17,13 +17,13 @@ function basicAttack(map, attacker, target, moveMap)
 	-- 4) Apply damage
 	
 	-- 1) range is just attacker.rn
-	local endPoint = getPoint(target.x, target.y)
+	local endPoint = utils.getPoint(target.x, target.y)
 	-- 2)
 	local toUseID = 0
 	local maxDistance = 0
 	
 	-- Get current distance first
-	moveMap[-1] = getPoint(attacker.x, attacker.y)
+	moveMap[-1] = utils.getPoint(attacker.x, attacker.y)
 	maxDistance = getDistance(map, moveMap[-1], endPoint)
 	if maxDistance <= attacker.rn then
 		toUseID = -1

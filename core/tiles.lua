@@ -11,7 +11,7 @@ local function createTile(isInternal, id, name, isSolid, texture, quad)
 	tile.const.builtIn = isInternal
 	tile.const.id = id
 	tile.const.name = name
-	protect(tile.const)
+	utils.protect(tile.const)
 
 	tile.isSolid = isSolid
 	tile.texture = texture
