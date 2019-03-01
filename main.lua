@@ -5,9 +5,10 @@ require("core/tiles") -- Handles all the different types of tiles
 require("core/entity") -- Handles data for entity creation
 require("core/map") -- Contains data of the current tile arragement
 require("core/input") -- Handles touch/mouse input
+require("core/ai_core") -- Contains AI functions
 
-require("core/ai_core")
-
+-- This is used to generate a background so the screen is not
+-- Black and empty where the game isn't
 local screenFiller = nil
 
 -- Built in function called before the game starts, all data will be loaded in here
