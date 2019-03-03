@@ -40,6 +40,8 @@ end
 -- dt parameter is the step update time
 function love.update(dt)
 	main.input.update(main.game, main.screen)
+	
+	main.game.update(dt)
 end
 
 -- Built in function called every frame to render the scene

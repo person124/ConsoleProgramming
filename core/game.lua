@@ -93,12 +93,46 @@ local function tapTileInternal(tileX, tileY)
 	map.clearSelection()
 end
 
+local function pruneDeadEntities()
+	for i=1,table.getn(game.turn.player) do
+		if game.turn.player[i].hp <= 0 then
+			table.remove(game.turn.player, i)
+			i = 1
+		end
+	end
+	
+	for i=1,table.getn(game.turn.enemy) do
+		if game.turn.enemy[i].hp <= 0 then
+			table.remove(game.turn.enemy, i)
+			i = 1
+		end
+	end
+end
+
 function game.load()
 	game.map = require("core/map")
 	game.map.load()
 	
 	-- Generate the first turn
 	generateTurn()
+end
+
+-- The main update function for game loop
+-- Used only during the enemies turn
+function game.update(dt)
+	-- If its the player's turn the leave
+	if game.turn.isPlayerTurn then return end
+	
+	-- TODO
+	-- Steps:
+	-- 1) Get the first enemy in the list
+	-- 2) Set the offset view to them
+	-- 3) Pause for a bit
+	-- 4) Update them
+	-- 5) Pause for a bit
+	-- 6) Remove enemy from the list
+	-- 7) Repeat until empty
+	-- 8) Re-generate the turn
 end
 
 function game.tapTile(tileX, tileY)
@@ -111,8 +145,10 @@ function game.tapTile(tileX, tileY)
 		-- Check to see if the turn is done
 		if table.getn(game.turn.player) == table.getn(game.turn.usedEntities) then
 			-- If both tables are the same size then the player's turn is done
-			game.turn.usedEntities = {}
 			game.turn.isPlayerTurn = false
+			
+			-- Check and remove dead entities
+			pruneDeadEntities()
 		end
 	end
 end
