@@ -40,8 +40,8 @@ function basicAttack(map, attacker, target, moveMap)
 		end
 	end
 	
-	-- If no tile was selected then wut???
-	if toUseID == 0 then return end
+	-- If no tile was selected then return false
+	if toUseID == 0 then return false end
 	
 	-- 3)
 	map.moveEntity(attacker, moveMap[toUseID].x, moveMap[toUseID].y)
@@ -49,6 +49,8 @@ function basicAttack(map, attacker, target, moveMap)
 	-- 4)
 	target.funcs.damage(attacker, target, attacker.at)
 	map.refresh()
+	
+	return true
 end
 
 return basicAttack

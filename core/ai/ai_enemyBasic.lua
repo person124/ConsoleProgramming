@@ -4,9 +4,17 @@
 --]]
 
 function enemyBasic(map, ent, playerEnts)
-	local closestUnit = nil
-	local closestDistance = 10000
-	local closetPath = nil
+	-- Get the tiles
+	local moveTiles, attackTiles = ai.plan(map, ent)
+
+	local distance = 10000
+	for i=1,table.getn(attackTiles) do
+		local enemy = map.getEntity(attackTiles[i].x, attackTiles[i].y)
+		if enemy ~= nil then
+			ai.basicAttack(map, ent, enemy, moveTiles)
+			return
+		end
+	end
 end
 
 return enemyBasic

@@ -50,3 +50,19 @@ function utils.containsObject(tab, obj)
 	
 	return false
 end
+
+-- Scans the table and removes dead entities from it
+function utils.removeDeadEntities(tab)
+	local done = false
+	
+	while not done do
+		for i=1,table.getn(tab) do
+			if tab[i].hp <= 0 then
+				table.remove(tab, i)
+				done = false
+			else
+				done = true
+			end
+		end
+	end
+end

@@ -96,19 +96,9 @@ local function tapTileInternal(tileX, tileY)
 end
 
 local function pruneDeadEntities()
-	for i=1,table.getn(game.turn.player) do
-		if game.turn.player[i].hp <= 0 then
-			table.remove(game.turn.player, i)
-			i = 1
-		end
-	end
+	utils.removeDeadEntities(game.turn.player)
 	
-	for i=1,table.getn(game.turn.enemy) do
-		if game.turn.enemy[i].hp <= 0 then
-			table.remove(game.turn.enemy, i)
-			i = 1
-		end
-	end
+	utils.removeDeadEntities(game.turn.enemy)
 end
 
 function game.load()
@@ -141,7 +131,13 @@ function game.update(dt)
 	if turn.waitTime <= 0 then
 		if turn.enemyUnit == nil then
 			-- 1)
-			turn.enemyUnit = turn.enemy[0]
+			turn.enemyUnit = turn.enemy[1]
+			
+			-- Do a check to see if there is an enemy
+			if turn.enemyUnit == nil then
+				print("WIN!")
+				return
+			end
 		
 			-- 2)
 			local x = turn.enemyUnit.x
@@ -153,7 +149,8 @@ function game.update(dt)
 			turn.waitTime = 3
 		else
 			-- 4)
-			
+			ai.enemyBasic(game.map, turn.enemyUnit, turn.player)
+			generateTurn()
 		end
 	else
 		turn.waitTime = turn.waitTime - dt
