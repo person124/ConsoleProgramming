@@ -4,7 +4,7 @@ local height = love.graphics.getHeight()
 local lineCount = 10
 
 -- Canvas setup
-local screenFiller = love.graphics.newCanvas(width, height);
+local screenFiller = love.graphics.newCanvas(width, height)
 love.graphics.setBlendMode("alpha")
 love.graphics.setCanvas(screenFiller)
 love.graphics.clear(54, 35, 54) -- Dark Dark Purple
@@ -37,4 +37,4 @@ love.graphics.setLineWidth(5)
 love.graphics.rectangle('line', screen.drawX, screen.drawY, screen.width, screen.height)
 
 love.graphics.setCanvas()
-return screenFiller;
+return screenFiller
