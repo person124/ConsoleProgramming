@@ -107,11 +107,25 @@ function game.tapTile(tileX, tileY)
 
 	if game.turn.isPlayerTurn then
 		tapTileInternal(tileX, tileY)
+		
+		-- Check to see if the turn is done
+		if table.getn(game.turn.player) == table.getn(game.turn.usedEntities) then
+			-- If both tables are the same size then the player's turn is done
+			game.turn.usedEntities = {}
+			game.turn.isPlayerTurn = false
+		end
 	end
 end
 
 function game.render(screen)
 	game.map.render(screen)
+	
+	if not game.turn.isPlayerTurn then
+		love.graphics.setColor(255, 0, 0)
+		love.graphics.rectangle("fill", 0, 0, screen.baseWidth, 33)
+		love.graphics.setColor(0, 0, 255)
+		love.graphics.print("Enemy Turn!")
+	end
 end
 
 return game
