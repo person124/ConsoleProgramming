@@ -123,7 +123,7 @@ end
 -- Used only during the enemies turn
 function game.update(dt)
 	-- If its the player's turn the leave
-	if game.turn.isPlayerTurn then return 
+	if game.turn.isPlayerTurn then return end
 	
 	local turn = game.turn
 	
