@@ -54,10 +54,9 @@ end
 -- Scans the table and removes dead entities from it
 function utils.removeDeadEntities(tab)
 	local done = false
-	
 	while not done do
 		for i=1,table.getn(tab) do
-			if tab[i].hp <= 0 then
+			if tab[i] ~= nil and tab[i].hp <= 0 then
 				table.remove(tab, i)
 				done = false
 			else

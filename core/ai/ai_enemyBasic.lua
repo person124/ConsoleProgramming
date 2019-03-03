@@ -15,6 +15,8 @@ function enemyBasic(map, ent, playerEnts)
 			return
 		end
 	end
+	
+	-- TODO add something if no entities within range
 end
 
 return enemyBasic

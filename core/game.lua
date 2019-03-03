@@ -25,7 +25,10 @@ local function generateTurn()
 	game.turn.isPlayerTurn = true
 	game.turn.usedEntities = {}
 	game.turn.enemyUnit = nil
+	game.turn.enemyMoved = false
 	game.turn.waitTime = 0
+	
+	-- TODO add win condition here
 end
 
 -- This function is the internal function to manage the player
@@ -130,14 +133,15 @@ function game.update(dt)
 	
 	if turn.waitTime <= 0 then
 		if turn.enemyUnit == nil then
-			-- 1)
-			turn.enemyUnit = turn.enemy[1]
-			
-			-- Do a check to see if there is an enemy
-			if turn.enemyUnit == nil then
-				print("WIN!")
+			-- 7)
+			if table.getn(turn.enemy) == 0 then
+				-- 8)
+				generateTurn()
 				return
 			end
+		
+			-- 1)
+			turn.enemyUnit = turn.enemy[1]
 		
 			-- 2)
 			local x = turn.enemyUnit.x
@@ -148,9 +152,22 @@ function game.update(dt)
 			-- Wait time is three seconds
 			turn.waitTime = 3
 		else
-			-- 4)
-			ai.enemyBasic(game.map, turn.enemyUnit, turn.player)
-			generateTurn()
+			if not turn.enemyMoved then
+				-- 4)
+				ai.enemyBasic(game.map, turn.enemyUnit, turn.player)
+				-- Clear any dead enemies/player entities
+				pruneDeadEntities()
+			
+				-- 5)
+				-- Wait time is three seconds
+				turn.waitTime = 3
+				turn.enemyMoved = true
+			else
+				-- 6)
+				turn.enemyUnit = nil
+				table.remove(turn.enemy, 1)
+				turn.enemyMoved = false
+			end
 		end
 	else
 		turn.waitTime = turn.waitTime - dt
