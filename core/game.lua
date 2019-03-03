@@ -47,25 +47,25 @@ local function tapTileInternal(tileX, tileY)
 			
 			local ent = map.getEntity(tileX, tileY)
 			-- This if checks to see if the entity has already moved
-			if not utils.containsObject(turn.usedEntities, ent) then
+			if not utils.containsObject(game.turn.usedEntities, map.currentlySelected) then
 			
 			-- 2)
 			if ent ~= nil and utils.containsPoint(map.attackTiles, point) then
+				-- Add entity to the list of used entities
+				table.insert(game.turn.usedEntities, map.currentlySelected)
 				-- Call attack function
 				ai.basicAttack(map, map.currentlySelected, ent, map.movementTiles)
 				map.clearSelection()
-				-- Add entity to the list of used entities
-				table.insert(turn.usedEntities, ent)
 				return
 			end
 			
 			-- 3)
 			if utils.containsPoint(map.movementTiles, point) then
+				-- Add entity to the list of used entities
+				table.insert(game.turn.usedEntities, map.currentlySelected)
 				-- Move the entity
 				map.moveEntity(map.currentlySelected, tileX, tileY)
 				map.clearSelection()
-				-- Add entity to the list of used entities
-				table.insert(turn.usedEntities, ent)
 				return
 			end
 			
