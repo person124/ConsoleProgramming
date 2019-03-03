@@ -24,6 +24,8 @@ local function generateTurn()
 	-- 4)
 	game.turn.isPlayerTurn = true
 	game.turn.usedEntities = {}
+	game.turn.enemyUnit = nil
+	game.turn.waitTime = 0
 end
 
 -- This function is the internal function to manage the player
@@ -121,7 +123,9 @@ end
 -- Used only during the enemies turn
 function game.update(dt)
 	-- If its the player's turn the leave
-	if game.turn.isPlayerTurn then return end
+	if game.turn.isPlayerTurn then return 
+	
+	local turn = game.turn
 	
 	-- TODO
 	-- Steps:
@@ -133,6 +137,27 @@ function game.update(dt)
 	-- 6) Remove enemy from the list
 	-- 7) Repeat until empty
 	-- 8) Re-generate the turn
+	
+	if turn.waitTime <= 0 then
+		if turn.enemyUnit == nil then
+			-- 1)
+			turn.enemyUnit = turn.enemy[0]
+		
+			-- 2)
+			local x = turn.enemyUnit.x
+			local y = turn.enemyUnit.y
+			getScreenInstance().setOffset(x, y)
+		
+			-- 3)
+			-- Wait time is three seconds
+			turn.waitTime = 3
+		else
+			-- 4)
+			
+		end
+	else
+		turn.waitTime = turn.waitTime - dt
+	end
 end
 
 function game.tapTile(tileX, tileY)
