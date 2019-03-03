@@ -5,7 +5,7 @@ local function generateTurn()
 	-- 1) Clear the turn table
 	-- 2) Get the list of player entities
 	-- 3) Get the list of enemy entities
-	-- 4) Set player turn to true
+	-- 4) Set other turn variables
 
 	-- 1)
 	game.turn = {}
@@ -23,6 +23,7 @@ local function generateTurn()
 	
 	-- 4)
 	game.turn.isPlayerTurn = true
+	game.turn.usedEntities = {}
 end
 
 -- This function is the internal function to manage the player
@@ -42,13 +43,19 @@ local function tapTileInternal(tileX, tileY)
 		-- Check if something is currently selected
 		if map.currentlySelected ~= nil and not map.currentlySelected.isEnemy then
 			local point = utils.getPoint(tileX, tileY)
+			local turn = game.turn -- variable to improve reading
+			
+			local ent = map.getEntity(tileX, tileY)
+			-- This if checks to see if the entity has already moved
+			if not utils.containsObject(turn.usedEntities, ent) then
 			
 			-- 2)
-			local ent = map.getEntity(tileX, tileY)
 			if ent ~= nil and utils.containsPoint(map.attackTiles, point) then
 				-- Call attack function
 				ai.basicAttack(map, map.currentlySelected, ent, map.movementTiles)
 				map.clearSelection()
+				-- Add entity to the list of used entities
+				table.insert(turn.usedEntities, ent)
 				return
 			end
 			
@@ -57,8 +64,12 @@ local function tapTileInternal(tileX, tileY)
 				-- Move the entity
 				map.moveEntity(map.currentlySelected, tileX, tileY)
 				map.clearSelection()
+				-- Add entity to the list of used entities
+				table.insert(turn.usedEntities, ent)
 				return
 			end
+			
+			end -- Matches the contains object if
 		end
 	
 		-- 4)

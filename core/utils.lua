@@ -39,3 +39,14 @@ function utils.containsPoint(tab, value)
 	
 	return false
 end
+
+-- Returns true if table contains copy of specified object
+function utils.containsObject(tab, obj)
+	for i=1,table.getn(tab) do
+		if tab[i] == obj then
+			return true
+		end
+	end
+	
+	return false
+end
