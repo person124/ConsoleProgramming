@@ -8,16 +8,22 @@ local map = {}
 -- Currently this function loads in the example map data
 -- Will be replaced by a better more versatile map loader
 function map.load()
-	map.width = 3
+	map.width = 5
 	map.height = 5
 
 	map.tiles = {}
 	for i=1,map.width do
 		map.tiles[i] = {}
 		for j=1,map.height do
-			map.tiles[i][j] = getTile("test")
+			map.tiles[i][j] = getTile("grass")
 		end
 	end
+	
+	map.tiles[3][4] = getTile("wall")
+	map.tiles[3][2] = getTile("wall")
+	map.tiles[3][3] = getTile("wall")
+	map.tiles[2][3] = getTile("wall")
+	map.tiles[4][3] = getTile("wall")
 	
 	map.movementTiles = {}
 	map.attackTiles = {}
@@ -26,13 +32,13 @@ function map.load()
 
 	-- Test entity one
 	map.addEntity("unit")
-	map.entities[1].x = 2
-	map.entities[1].y = 2
+	map.entities[1].x = 3
+	map.entities[1].y = 1
 
 	-- Test Entity two
 	map.addEntity("unit")
-	map.entities[2].x = 2
-	map.entities[2].y = 4
+	map.entities[2].x = 3
+	map.entities[2].y = 5
 	map.entities[2].sp = 1
 	map.entities[2].isEnemy = true
 

@@ -5,3 +5,5 @@ movement movement.png
 attack attack.png
 selected-false selected_friendly.png
 selected-true selected_enemy.png
+grass grass.png
+wall wall.png
