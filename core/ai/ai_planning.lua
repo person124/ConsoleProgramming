@@ -59,6 +59,10 @@ local function spreadFromTileAttack(map, tileX, tileY, entityTeam, tilesLeft, mo
 end
 
 local function planAttack(map, ent, moveTiles, attackTiles)
+	-- Start with the point the entity is on
+	spreadFromTileAttack(map, ent.x, ent.y, ent.isEnemy, ent.rn, moveTiles, attackTiles)
+
+	-- Then do the rest of there movement points
 	for i=1,table.getn(moveTiles) do
 		spreadFromTileAttack(map, moveTiles[i].x, moveTiles[i].y, ent.isEnemy, ent.rn, moveTiles, attackTiles)
 	end
