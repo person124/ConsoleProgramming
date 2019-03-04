@@ -7,7 +7,7 @@ Now, the reason why I said I am making a game framework and not a game is most o
 The rest of this readme will be a table showcase a schedule that I came up with just before the fourth week of work on the project started, as well as just before I _started_ work on the project. The schedule is something that I set myself, and can deviate from, but when I wrote it I imagined that it was the best course of action at the time.
 
 ## Schedule
-### Current Week: 7
+### Current Week: 8
 | Week Number | Planned Tasks |
 | :---------: | :-----------: |
 | 4           | * Basic Map Rendering * Image Loading * |
@@ -22,7 +22,7 @@ The rest of this readme will be a table showcase a schedule that I came up with 
 | 12          | * **Prototype Due** * Bug Squishing * In-Game Map Editor * Level Creation * |
 | 13          | * Bug Squishing * In-Game Map Editor * Level Creation * |
 | 14          | * Bug Squishing * Level Creation * |
-| 15          | * Project Due! * Finish Stuff Up * |
+| 15          | * **Project Due!** * Finish Stuff Up * |
 
 ## Real Cycle
 Even though I *plan* to do stuff it might not be what I actually do, so this chart will display what I actually do week by week.
@@ -32,3 +32,4 @@ Even though I *plan* to do stuff it might not be what I actually do, so this cha
 | 4           | Basic Map Rendering, Image Loading |
 | 5           | *Basic* Entity Creation, *Basic* Entity Movement |
 | 6           | Improved Level Panning, Now Display Entity Information, Tile Loading, Attack Range Displays, Entities Can Be Marked As Enemies |
+| 7           | Added Prototype Demo Map, Fancy Background Image, Attacking, *Turns*, Basic AI |
