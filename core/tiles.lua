@@ -30,21 +30,21 @@ end
 -- Than the tiles will be marked as built in ones and not deleted on refresh
 function tiles.loadFile(fileName, isBuiltIn)
 	local loadedFile = require(fileName)
-	
+
 	local builtIn = false
 	if isBuiltIn ~= nil then
 		builtIn = isBuiltIn
 	end
-	
+
 	for i=1,table.getn(loadedFile) do
 		local tile = loadedFile[i]
-		
+
 		-- Check the tile data
 		assert(tile.id ~= nil, "No ID set for " .. fileName)
 		assert(tile.name ~= nil, "No name set for " .. fileName)
 		assert(tile.isSolid ~= nil, "No solidity set for " .. fileName)
 		assert(tile.texture ~= nil, "No texture set for " .. fileName)
-		
+
 		-- If the tile has quad data then use it
 		local quad = nil
 		if tile.quad ~= nil then
@@ -52,10 +52,10 @@ function tiles.loadFile(fileName, isBuiltIn)
 			local y = tile.quad.y * 64
 			local width = getTexture(tile.quad.texture):getWidth()
 			local height = getTexture(tile.quad.texture):getHeight()
-			
+
 			quad = love.graphics.newQuad(x, y, 64, 64, width, height)
 		end
-		
+
 		-- If it passes, then create tile
 		createTile(builtIn, tile.id, tile.name, tile.isSolid, tile.texture, quad)
 	end
@@ -67,7 +67,7 @@ function tiles.render(tile, xPos, yPos, screen)
 	-- Calculate the positon of the tile including screen offsets
 	local adjX = (xPos - 1) * 64
 	local adjY = (yPos - 1) * 64
-	
+
 	adjX = adjX - screen.offset.x
 	adjY = adjY - screen.offset.y
 

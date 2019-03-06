@@ -20,14 +20,14 @@ local function generateTurn()
 			table.insert(game.turn.player, game.map.entities[i])
 		end
 	end
-	
+
 	-- 4)
 	game.turn.isPlayerTurn = true
 	game.turn.usedEntities = {}
 	game.turn.enemyUnit = nil
 	game.turn.enemyMoved = false
 	game.turn.waitTime = 0
-	
+
 	-- TODO add win condition here
 end
 
@@ -48,12 +48,11 @@ local function tapTileInternal(tileX, tileY)
 		-- Check if something is currently selected
 		if map.currentlySelected ~= nil and not map.currentlySelected.isEnemy then
 			local point = utils.getPoint(tileX, tileY)
-			local turn = game.turn -- variable to improve reading
-			
+
 			local ent = map.getEntity(tileX, tileY)
 			-- This if checks to see if the entity has already moved
 			if not utils.containsObject(game.turn.usedEntities, map.currentlySelected) then
-			
+
 			-- 2)
 			if ent ~= nil and utils.containsPoint(map.attackTiles, point) then
 				-- Add entity to the list of used entities
@@ -63,7 +62,7 @@ local function tapTileInternal(tileX, tileY)
 				map.clearSelection()
 				return
 			end
-			
+
 			-- 3)
 			if utils.containsPoint(map.movementTiles, point) then
 				-- Add entity to the list of used entities
@@ -73,10 +72,10 @@ local function tapTileInternal(tileX, tileY)
 				map.clearSelection()
 				return
 			end
-			
+
 			end -- Matches the contains object if
 		end
-	
+
 		-- 4)
 		for i=1,table.getn(map.entities) do
 			if map.entities[i].x == tileX and map.entities[i].y == tileY then
@@ -100,14 +99,14 @@ end
 
 local function pruneDeadEntities()
 	utils.removeDeadEntities(game.turn.player)
-	
+
 	utils.removeDeadEntities(game.turn.enemy)
 end
 
 function game.load()
 	game.map = require("core/map")
 	game.map.load()
-	
+
 	-- Generate the first turn
 	generateTurn()
 end
@@ -117,9 +116,9 @@ end
 function game.update(dt)
 	-- If its the player's turn the leave
 	if game.turn.isPlayerTurn then return end
-	
+
 	local turn = game.turn
-	
+
 	-- TODO
 	-- Steps:
 	-- 1) Get the first enemy in the list
@@ -130,7 +129,7 @@ function game.update(dt)
 	-- 6) Remove enemy from the list
 	-- 7) Repeat until empty
 	-- 8) Re-generate the turn
-	
+
 	if turn.waitTime <= 0 then
 		if turn.enemyUnit == nil then
 			-- 7)
@@ -139,15 +138,15 @@ function game.update(dt)
 				generateTurn()
 				return
 			end
-		
+
 			-- 1)
 			turn.enemyUnit = turn.enemy[1]
-		
+
 			-- 2)
 			local x = turn.enemyUnit.x
 			local y = turn.enemyUnit.y
 			getScreenInstance().setOffset(x, y)
-		
+
 			-- 3)
 			-- Wait time is three seconds
 			turn.waitTime = 3
@@ -157,7 +156,7 @@ function game.update(dt)
 				ai.enemyBasic(game.map, turn.enemyUnit, turn.player)
 				-- Clear any dead enemies/player entities
 				pruneDeadEntities()
-			
+
 				-- 5)
 				-- Wait time is three seconds
 				turn.waitTime = 3
@@ -180,12 +179,12 @@ function game.tapTile(tileX, tileY)
 
 	if game.turn.isPlayerTurn then
 		tapTileInternal(tileX, tileY)
-		
+
 		-- Check to see if the turn is done
 		if table.getn(game.turn.player) == table.getn(game.turn.usedEntities) then
 			-- If both tables are the same size then the player's turn is done
 			game.turn.isPlayerTurn = false
-			
+
 			-- Check and remove dead entities
 			pruneDeadEntities()
 		end
@@ -194,7 +193,7 @@ end
 
 function game.render(screen)
 	game.map.render(screen)
-	
+
 	if not game.turn.isPlayerTurn then
 		love.graphics.setColor(255, 0, 0)
 		love.graphics.rectangle("fill", 0, 0, screen.baseWidth, 33)

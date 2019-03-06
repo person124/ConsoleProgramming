@@ -18,13 +18,13 @@ function map.load()
 			map.tiles[i][j] = getTile("grass")
 		end
 	end
-	
+
 	map.tiles[3][4] = getTile("wall")
 	map.tiles[3][2] = getTile("wall")
 	map.tiles[3][3] = getTile("wall")
 	map.tiles[2][3] = getTile("wall")
 	map.tiles[4][3] = getTile("wall")
-	
+
 	map.movementTiles = {}
 	map.attackTiles = {}
 
@@ -46,7 +46,7 @@ function map.load()
 	map.currentlySelected = nil
 
 	map.getMinMaxOffset()
-	
+
 	-- This is called to center the screen if needed
 	getScreenInstance().setOffset(0, 0)
 end
@@ -60,7 +60,7 @@ function map.render(screen)
 			getTilesInstance().render(map.tiles[x][y], x, y, screen)
 		end
 	end
-	
+
 	-- Movement grid rendering
 	for i=1,table.getn(map.movementTiles) do
 		local p = map.movementTiles[i]
@@ -68,7 +68,7 @@ function map.render(screen)
 			(p.x - 1) * 64 - screen.offset.x,
 			(p.y - 1) * 64 - screen.offset.y)
 	end
-	
+
 	-- Attack grid rendering
 	for i=1,table.getn(map.attackTiles) do
 		local p = map.attackTiles[i]
@@ -81,14 +81,14 @@ function map.render(screen)
 	for i=1,table.getn(map.entities) do
 		getEntitiesInstance().render(map.entities[i], screen)
 	end
-	
+
 	-- Entity information rendering
 	love.graphics.setColor(0, 0, 0, 255)
 	love.graphics.rectangle("fill", 0, 0, screen.baseWidth, 33)
 	love.graphics.setColor(255, 255, 255, 255)
 	if map.currentlySelected ~= nil then
 		local ent = map.currentlySelected
-		
+
 		-- Render selected entity stats
 		love.graphics.print("HP: " .. ent.hp .. " / " .. ent.stats.hp .. "          " ..
 							"AT: " .. ent.at .. " / " .. ent.stats.at .. "          " ..
@@ -128,7 +128,7 @@ function map.getMinMaxOffset()
 	if map.offsetLimit ~= nil then
 		return map.offsetLimit.min, map.offsetLimit.max
 	end
-	
+
 	--Otherwise, calculate it
 	map.offsetLimit = {}
 	map.offsetLimit.min = {}
@@ -137,7 +137,7 @@ function map.getMinMaxOffset()
 	map.offsetLimit.max = {}
 	map.offsetLimit.max.x = 0
 	map.offsetLimit.max.y = 0
-	
+
 	-- If the level doesn't fit on one screen
 	if map.width * 64 > screen.baseWidth then
 		map.offsetLimit.max.x = (map.width * 64) - screen.baseWidth
@@ -145,18 +145,18 @@ function map.getMinMaxOffset()
 		-- This is if the level fits on one screen
 		local centerX = screen.baseWidth * 0.5
 		local xOff = centerX - (map.width * 32) -- 32 is because 64/2
-	
+
 		map.offsetLimit.min.x = -xOff
 		map.offsetLimit.max.x = -xOff
 	end
-	
+
 	-- The same setup as before but with y
 	if map.height * 64 > screen.baseHeight then
 		map.offsetLimit.max.y = (map.height * 64) - screen.baseHeight
 	else
 		local centerY = screen.baseHeight * 0.5
 		local yOff = centerY - (map.height * 32)
-	
+
 		map.offsetLimit.min.y = -yOff
 		map.offsetLimit.max.y = -yOff
 	end
@@ -171,7 +171,7 @@ function map.isEntityOnSpace(xPos, yPos)
 			return true
 		end
 	end
-	
+
 	return false
 end
 
@@ -181,7 +181,7 @@ function map.isSolid(tileX, tileY)
 	if tileX > 0 and tileY > 0 and tileX <= map.width and tileY <= map.height then
 		return map.tiles[tileX][tileY].isSolid
 	end
-	
+
 	return true
 end
 
@@ -192,7 +192,7 @@ function map.getEntity(tileX, tileY)
 			return map.entities[i]
 		end
 	end
-	
+
 	return nil
 end
 

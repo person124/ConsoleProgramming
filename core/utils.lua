@@ -36,7 +36,7 @@ function utils.containsPoint(tab, value)
 			return true
 		end
 	end
-	
+
 	return false
 end
 
@@ -47,7 +47,7 @@ function utils.containsObject(tab, obj)
 			return true
 		end
 	end
-	
+
 	return false
 end
 

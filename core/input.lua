@@ -31,16 +31,16 @@ function input.update(game, screen)
 	if not input.recieved then
 		-- Only update screen coords if needed
 		input.screenX, input.screenY = screen.screenToSubScreen(input.x, input.y)
-	
+
 		if input.screenX == -1 or input.screenY == -1 then
 			return
 		end
-	
+
 		input.recieved = true
-	
+
 		local tileX = math.floor((input.screenX + screen.offset.x) / 64) + 1
 		local tileY = math.floor((input.screenY + screen.offset.y) / 64) + 1
-		
+
 		game.tapTile(tileX, tileY)
 	end
 	else
@@ -59,7 +59,7 @@ end
 -- Built in function that is called on touch release
 function love.touchreleased(id, x, y, dx, dy, pressure)
 	input.count = input.count - 1
-	
+
 	if input.count == 0 then
 		input.x = -1
 		input.y = -1
@@ -72,7 +72,7 @@ function love.touchmoved(id, x, y, dx, dy, pressure)
 		input.x = x
 		input.y = y
 	elseif input.count == 2 then 
-		screen.addOffset(dx, dy)
+		getScreenInstance().addOffset(dx, dy)
 	end
 end
 

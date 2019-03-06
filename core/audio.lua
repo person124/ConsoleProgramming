@@ -16,6 +16,7 @@ function audio.load()
 			local path = string.sub(line, i + 1, -1)
 
 			-- Load the audio and save it
+			-- TODO add ability to load in streamed audio
 			audio[name] = love.audio.newSource("assets/" .. path)
 		else
 			skip = true

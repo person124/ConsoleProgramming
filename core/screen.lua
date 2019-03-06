@@ -86,7 +86,7 @@ end
 function screen.setOffset(x, y)
 	screen.offset.x = x
 	screen.offset.y = y
-	
+
 	checkOffset()
 end
 
@@ -94,7 +94,7 @@ end
 function screen.addOffset(dx, dy)
 	screen.offset.x = screen.offset.x + dx
 	screen.offset.y = screen.offset.y + dy
-	
+
 	checkOffset()
 end
 
@@ -119,8 +119,8 @@ function screen.screenToSubScreen(inX, inY)
 	end
 
 	-- Do some math to put the input in the screen
-	outX = (inX - screen.drawX) / screen.scaler
-	outY = (inY - screen.drawY) / screen.scaler
+	local outX = (inX - screen.drawX) / screen.scaler
+	local outY = (inY - screen.drawY) / screen.scaler
 
 	return outX, outY
 end
