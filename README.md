@@ -1,6 +1,8 @@
-# Currently Untitled Project
+# Tactical Knockout
 
 For one of my final classes (_Console Programming_) here at champlain we are tasked with creating something prefferability game related for something that _isn't_ a pc. So for my project I have chosen to move forward with a framework for a tactical turn based game where units have special abilities; oh, and its for mobile. I have chosen to write the game in LUA using [Love2D](https://love2d.org/ "Love2D Homepage") as a game creation framework.
+
+I am using a specific version of Love2D: *0.10.2*
 
 Now, the reason why I said I am making a game framework and not a game is most of the focus of my work for the course will be to make the framework to allow easy creation of entities and maps, however that is _not_ saying I'm not making a game. It is also a course requirement to have a game, so my solution is to use the framework I am making to create a short game with maybe one or two basicish levels. With the point of each level to show off the framework more then anything else.
 
