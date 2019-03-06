@@ -14,10 +14,14 @@ function love.load()
 	main.textures = require("core/textures")
 	main.textures.load()
 
+	-- Handles audio loading and caching
+	main.audio = require("core/audio")
+	main.audio.load()
+
 	-- Handles touch/mouse input
 	main.input = require("core/input")
 	main.input.load()
-	
+
 	-- Handles the subscreen and everything related to it
 	main.screen = require("core/screen")
 	main.screen.load()
@@ -40,7 +44,7 @@ end
 -- dt parameter is the step update time
 function love.update(dt)
 	main.input.update(main.game, main.screen)
-	
+
 	main.game.update(dt)
 end
 

@@ -29,7 +29,7 @@ local function containsValue(map, value)
 			return map[i]
 		end
 	end
-	
+
 	return nil
 end
 
@@ -45,23 +45,23 @@ end
 local function getPath(finishNode)
 	local path = {}
 	local current = finishNode
-	
+
 	while current.prev ~= nil do
 		table.insert(path, 1, utils.getPoint(current.x, current.y))
 		current = current.prev
 	end
-	
+
 	return path
 end
 
-function aStar(map, start, finish)
+local function aStar(map, start, finish)
 	-- Init open and closed lists
 	local open = {}
 	local closed = {}
-	
+
 	-- Enqueue start point
 	table.insert(open, node(start.x, start.y, nil))
-	
+
 	-- As long as open list isn't empty
 	while table.getn(open) > 0 do
 		-- Get point with lowest cost
@@ -73,20 +73,20 @@ function aStar(map, start, finish)
 				point = open[i]
 			end
 		end
-		
+
 		local successors = {}
 		-- Generate successors and check if is goal
 		table.insert(successors, node(point.x, point.y - 1, point))
 		table.insert(successors, node(point.x, point.y + 1, point))
 		table.insert(successors, node(point.x - 1, point.y, point))
 		table.insert(successors, node(point.x + 1, point.y, point))
-		
+
 		-- For each successor
 		for i=1,table.getn(successors) do
 			local temp = successors[i]
 			temp.cost = point.cost + 1
 			temp.heur = temp.cost + heuristic(temp, finish)
-			
+
 			-- Don't go if it is solid
 			if not map.isSolid(temp.x, temp.y) then
 
@@ -94,7 +94,7 @@ function aStar(map, start, finish)
 			if isGoal(temp, finish) then
 				return getPath(temp)
 			end
-			
+
 			-- Otherwise see if its in the open list, and compare cost
 			local other = containsValue(open, temp)
 			if other ~= nil and other.cost > temp.cost then
@@ -102,7 +102,7 @@ function aStar(map, start, finish)
 			else
 				-- Otherwise check if its in the closed list
 				other = containsValue(closed, temp)
-				
+
 				if other ~= nil then
 					-- Compare cost, and add to open if lower
 					if other.cost > temp.cost then
@@ -114,15 +114,15 @@ function aStar(map, start, finish)
 					table.insert(open, temp)
 				end
 			end
-			
+
 			-- end of isSolid
 			end
 		end
-		
+
 		removeValue(open, point)
 		table.insert(closed, point)
 	end
-	
+
 	-- If pathing failed then return nil
 	return nil
 end
