@@ -13,6 +13,10 @@ function love.load()
 	-- Handles texture loading and caching
 	main.textures = require("core/textures")
 	main.textures.load()
+	
+	-- Handles animation loading and caching
+	main.animations = require("core/animations")
+	main.animations.load()
 
 	-- Handles audio loading and caching
 	main.audio = require("core/audio")
@@ -65,6 +69,14 @@ end
 
 function getTexture(id)
 	return main.textures[id]
+end
+
+function getAnimationsInstance()
+	return main.animations
+end
+
+function getAnimation(id)
+	return main.animations[id]
 end
 
 function getInputInstance()
