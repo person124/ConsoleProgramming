@@ -35,3 +35,4 @@ Even though I *plan* to do stuff it might not be what I actually do, so this cha
 | 5           | *Basic* Entity Creation, *Basic* Entity Movement |
 | 6           | Improved Level Panning, Now Display Entity Information, Tile Loading, Attack Range Displays, Entities Can Be Marked As Enemies |
 | 7           | Added Prototype Demo Map, Fancy Background Image, Attacking, *Turns*, Basic AI |
+| 8           | *Basic* Sound Loading, *Basic* Animation Loading and Updating |
