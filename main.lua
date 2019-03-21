@@ -79,6 +79,10 @@ function getAnimation(id)
 	return main.animations[id]
 end
 
+function getAudioInstance()
+	return main.audio
+end
+
 function getInputInstance()
 	return main.input
 end
