@@ -8,19 +8,35 @@ function audio.load()
 	-- Go through each line of the file
 	for line in love.filesystem.lines("assets/audio.dat") do
 		if skip then
-			-- Find the space in the line
-			local i = string.find(line, "")
+			-- Split the string
+			local split = string.gmatch(line, "%S+")
 
-			-- Seperate the line into name and path
-			local name = string.sub(line, 1, i - 1)
-			local path = string.sub(line, i + 1, -1)
+			-- Get the data from the split string
+			local name = split()
+			local streamType = split()
+			local path = split()
 
-			-- Load the audio and save it
-			-- TODO add ability to load in streamed audio
-			audio[name] = love.audio.newSource("assets/" .. path)
+			-- Generates a love audio source
+			audio[name] = love.audio.newSource("assets/" .. path, streamType)
 		else
 			skip = true
 		end
+	end
+end
+
+-- Plays the specififed audio file
+function audio.play(id)
+	if audio[id] ~= nil then
+		love.audio.play(audio[id])
+	end
+end
+
+-- Pauses all audio or the specified audio file
+function audio.pause(id)
+	if id == nil then
+		love.audio.pause()
+	elseif audio[id] ~= nil then
+		love.audio.pause(audio[id])
 	end
 end
 
