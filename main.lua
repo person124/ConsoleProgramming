@@ -13,7 +13,7 @@ function love.load()
 	-- Handles texture loading and caching
 	main.textures = require("core/textures")
 	main.textures.load()
-	
+
 	-- Handles animation loading and caching
 	main.animations = require("core/animations")
 	main.animations.load()
