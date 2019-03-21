@@ -40,4 +40,22 @@ function audio.pause(id)
 	end
 end
 
+-- Resumes all audio or the specified audio file
+function audio.resume(id)
+	if id == nil then
+		love.audio.resume()
+	elseif audio[id] ~= nil then
+		love.audio.resume(audio[id])
+	end
+end
+
+-- Stops all audio or the specified audio file
+function audio.stop(id)
+	if id == nil then
+		love.audio.stop()
+	elseif audio[id] ~= nil then
+		love.audio.stop(audio[id])
+	end
+end
+
 return audio
