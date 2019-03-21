@@ -3,6 +3,8 @@ local audio = {}
 -- Loads in the audio files specified in the file
 -- audio.dat located in the assets folder
 function audio.load()
+	love.audio.setDistanceModel("none")
+
 	local skip = false -- variable to skip the first line of tile
 
 	-- Go through each line of the file
@@ -14,10 +16,14 @@ function audio.load()
 			-- Get the data from the split string
 			local name = split()
 			local streamType = split()
+			local loops = split()
 			local path = split()
 
 			-- Generates a love audio source
 			audio[name] = love.audio.newSource("assets/" .. path, streamType)
+
+			local loopBool = (loops == "true")
+			audio[name]:setLooping(loopBool)
 		else
 			skip = true
 		end

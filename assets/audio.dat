@@ -1,2 +1,2 @@
-<audio name> <static | stream> <audio path>
-test_audio static test.ogg
+<audio name> <static | stream> <loops: true | false> <audio path>
+test_audio static false test.ogg
