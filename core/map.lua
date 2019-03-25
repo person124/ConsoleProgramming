@@ -51,6 +51,11 @@ function map.load()
 	getScreenInstance().setOffset(0, 0)
 end
 
+-- Loads in a map from the specified file
+function map.loadFile(fileName)
+	local file = require(fileName)
+
+end
 
 -- Draws the map and entities to the screen
 function map.render(screen)
