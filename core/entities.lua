@@ -8,7 +8,6 @@ local entityDefaultFuncs = require("core/entityDefaultFunctions")
 
 -- Loads in built-in entities
 function entity.load()
-	-- entity.create("unit", 10, 5, 2, 1, "unit", nil)
 	entity.loadFile("assets/example_entity")
 end
 
