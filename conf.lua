@@ -2,7 +2,7 @@ function love.conf(t)
 	t.version = "0.10.2"
 	t.console = true
 
-	t.window.title = "No name game! :D"
+	t.window.title = "Tactical Knockout"
 
 	t.modules.joystick = false
 	t.modules.keyboard = false
