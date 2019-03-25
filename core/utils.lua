@@ -65,3 +65,19 @@ function utils.removeDeadEntities(tab)
 		end
 	end
 end
+
+-- Returns a table of functions that are present in the base
+-- And the other list of functions
+function utils.getFunctionsFromList(funcBase, funcs)
+	-- If there is no other list, then just return the base
+	if funcs == nil then return funcBase end
+
+	local returnFuncs = {}
+	for i,v in pairs(funcBase) do
+		if funcs[i] ~= nil then
+			returnFuncs[i] = funcs[i]
+		else
+			returnFuncs[i] = funcBase[i]
+		end
+	end
+end
