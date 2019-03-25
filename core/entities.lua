@@ -8,12 +8,34 @@ local entityDefaultFuncs = require("core/entityDefaultFunctions")
 
 -- Loads in built-in entities
 function entity.load()
-	entity.create("unit", 10, 5, 2, 1, "unit")
+	entity.create("unit", 10, 5, 2, 1, "unit", nil)
+end
+
+function entity.loadFile(fileName)
+	local loadedFile = require(fileName)
+
+	for i=1,table.getn(loadedFile) do
+		local e = loadedFile[i]
+
+		-- Check to make sure the vital data exists
+		assert(e.id ~= nil, "No ID set for " .. fileName)
+		assert(e.hp ~= nil, "No health set for " .. fileName)
+		assert(e.at ~= nil, "No attack set for " .. fileName)
+		assert(e.sp ~= nil, "No speed set for " .. fileName)
+		assert(e.rn ~= nil, "No range set for " .. fileName)
+		assert(e.texture ~= nil, "No texture set for " .. fileName)
+
+		entity.create(e.id, e.hp, e.at, e.sp, e.rn, e.texture, e.funcs)
+
+		if e.isEnemy ~= nil then
+			entity[e.id].isEnemy = isEnemy
+		end
+	end
 end
 
 -- Creates an entity with specified data
 -- id is internal name
-function entity.create(id, health, attack, speed, range, texture)
+function entity.create(id, health, attack, speed, range, texture, funcs)
 	entity[id] = {}
 
 	-- Default entity stats (utils.protected)
@@ -41,6 +63,7 @@ function entity.create(id, health, attack, speed, range, texture)
 	entity[id].y = 0
 
 	-- Entity Functions
+	entity[id].funcs = funcs
 	entity[id].funcs = entityDefaultFuncs
 	entity[id].funcs = utils.protect(entity[id].funcs)
 end
