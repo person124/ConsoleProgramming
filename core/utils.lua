@@ -66,9 +66,9 @@ function utils.removeDeadEntities(tab)
 	end
 end
 
--- Returns a table of functions that are present in the base
--- And the other list of functions
-function utils.getFunctionsFromList(funcBase, funcs)
+-- Returns a table of functions merged from the two tables
+-- with the first table acting as a base
+function utils.mergeFunctions(funcBase, funcs)
 	-- If there is no other list, then just return the base
 	if funcs == nil then return funcBase end
 

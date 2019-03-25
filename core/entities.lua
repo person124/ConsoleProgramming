@@ -63,7 +63,7 @@ function entity.create(id, health, attack, speed, range, texture, funcs)
 	entity[id].y = 0
 
 	-- Entity Functions
-	entity[id].funcs = utils.getFunctionsFromList(entityDefaultFuncs, funcs)
+	entity[id].funcs = utils.mergeFunctions(entityDefaultFuncs, funcs)
 	entity[id].funcs = utils.protect(entity[id].funcs)
 end
 
