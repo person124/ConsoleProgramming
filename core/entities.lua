@@ -8,7 +8,7 @@ local entityDefaultFuncs = require("core/entityDefaultFunctions")
 
 -- Loads in built-in entities
 function entity.load()
-	entity.loadFile("assets/example_entity")
+	-- entity.loadFile("assets/example_entity")
 end
 
 function entity.loadFile(fileName)

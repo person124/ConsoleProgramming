@@ -23,7 +23,7 @@ end
 -- This is where the built in tiles will be loaded as well as any other
 -- needed settings or information
 function tiles.load()
-	tiles.loadFile("assets/example_tile", true)
+	-- tiles.loadFile("assets/example_tile", true)
 end
 
 -- This will load tile(s) from a file, if the second parameter is true
@@ -31,6 +31,7 @@ end
 function tiles.loadFile(fileName, isBuiltIn)
 	local loadedFile = require(fileName)
 
+	-- TODO remove builtin
 	local builtIn = false
 	if isBuiltIn ~= nil then
 		builtIn = isBuiltIn

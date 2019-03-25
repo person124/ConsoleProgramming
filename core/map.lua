@@ -8,39 +8,47 @@ local map = {}
 -- Currently this function loads in the example map data
 -- Will be replaced by a better more versatile map loader
 function map.load()
-	map.width = 5
-	map.height = 5
+	map.loadFile("assets/example_map")
+end
 
+-- Loads in a map from the specified file
+function map.loadFile(fileName)
+	local file = require(fileName)
+
+	assert(file.width, "No width set for " .. fileName)
+	assert(file.height, "No height set for " .. fileName)
+	assert(file.tileFilesToLoad, "No tile files set for " .. fileName)
+	assert(file.tiles, "No tiles set for " .. fileName)
+	assert(file.entityFilesToLoad, "No entity files set for " .. fileName)
+	assert(file.entities, "No entities set for " .. fileName)
+
+	-- Load in the required entities and tiles data
+	for i=1,table.getn(file.tileFilesToLoad) do
+		getTilesInstance().loadFile(file.tileFilesToLoad[i])
+	end
+	for i=1,table.getn(file.entityFilesToLoad) do
+		getEntitiesInstance().loadFile(file.entityFilesToLoad[i])
+	end
+
+	map.width = file.width
+	map.height = file.height
+
+	-- Load in the tiles
 	map.tiles = {}
-	for i=1,map.width do
-		map.tiles[i] = {}
-		for j=1,map.height do
-			map.tiles[i][j] = getTile("grass")
+	for x=1,map.width do
+		map.tiles[x] = {}
+		for y=1,map.height do
+			map.tiles[x][y] = getTile(file.tiles[x][y])
 		end
 	end
 
-	map.tiles[3][4] = getTile("wall")
-	map.tiles[3][2] = getTile("wall")
-	map.tiles[3][3] = getTile("wall")
-	map.tiles[2][3] = getTile("wall")
-	map.tiles[4][3] = getTile("wall")
-
-	map.movementTiles = {}
-	map.attackTiles = {}
-
+	-- Load in the entities
 	map.entities = {}
-
-	-- Test entity one
-	map.addEntity("unit")
-	map.entities[1].x = 3
-	map.entities[1].y = 1
-
-	-- Test Entity two
-	map.addEntity("unit")
-	map.entities[2].x = 3
-	map.entities[2].y = 5
-	map.entities[2].sp = 1
-	map.entities[2].isEnemy = true
+	for i=1,table.getn(file.entities) do
+		map.addEntity(file.entities[i].id)
+		map.entities[i].x = file.entities[i].x
+		map.entities[i].y = file.entities[i].y
+	end
 
 	-- This represents the currently selected entity
 	map.currentlySelected = nil
@@ -49,12 +57,10 @@ function map.load()
 
 	-- This is called to center the screen if needed
 	getScreenInstance().setOffset(0, 0)
-end
 
--- Loads in a map from the specified file
-function map.loadFile(fileName)
-	local file = require(fileName)
-
+	-- Other data needed to be set
+	map.movementTiles = {}
+	map.attackTiles = {}
 end
 
 -- Draws the map and entities to the screen

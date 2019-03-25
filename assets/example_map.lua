@@ -26,10 +26,12 @@ map.entityFilesToLoad = {}
 map.entityFilesToLoad[1] = "assets/example_entity"
 
 map.entities = {}
+map.entities[1] = {}
 map.entities[1].id = "unit"
 map.entities[1].x = 3
 map.entities[1].y = 1
 
+map.entities[2] = {}
 map.entities[2].id = "unit_enemy"
 map.entities[2].x = 3
 map.entities[2].y = 5
