@@ -1,12 +1,12 @@
 # Tactical Knockout
 
-For one of my final classes (_Console Programming_) here at champlain we are tasked with creating something prefferability game related for something that _isn't_ a pc. So for my project I have chosen to move forward with a framework for a tactical turn based game where units have special abilities; oh, and its for mobile. I have chosen to write the game in LUA using [Love2D](https://love2d.org/ "Love2D Homepage") as a game creation framework.
+For one of my final classes (_Console Programming_) here at Champlain we are tasked with creating something preferably game related for something that _isn't_ a pc. So for my project I have chosen to move forward with a framework for a tactical turn based game where units have special abilities. I have chosen to write the game in LUA using [Love2D](https://love2d.org/ "Love2D Homepage") as a game creation framework.
 
 I am using a specific version of Love2D: *0.10.2*
 
-Now, the reason why I said I am making a game framework and not a game is most of the focus of my work for the course will be to make the framework to allow easy creation of entities and maps, however that is _not_ saying I'm not making a game. It is also a course requirement to have a game, so my solution is to use the framework I am making to create a short game with maybe one or two basicish levels. With the point of each level to show off the framework more then anything else.
+Now, the reason why I said I am making a game framework and not a game is most of the focus of my work for the course will be to make the framework to allow easy creation of entities and maps; however that is _not_ saying I'm not making a game. It is also a course requirement to have a game, so my solution is to use the framework I am making to create a short game with maybe one or two basic-ish levels. With the point of each level to show off the framework more then anything else.
 
-The rest of this readme will be a table showcase a schedule that I came up with just before the fourth week of work on the project started, as well as just before I _started_ work on the project. The schedule is something that I set myself, and can deviate from, but when I wrote it I imagined that it was the best course of action at the time.
+The rest of this readme will be a table showcasing a schedule that I came up with just before the fourth week of work on the project; this is also the first week I actually started to work on the project. The schedule is something that I set myself, and can deviate from, but when I wrote it I imagined that it was the best course of action at the time.
 
 ## Schedule
 ### Current Week: 9
@@ -27,7 +27,7 @@ The rest of this readme will be a table showcase a schedule that I came up with 
 | 15          | * **Project Due!** * Finish Stuff Up * |
 
 ## Real Cycle
-Even though I *plan* to do stuff it might not be what I actually do, so this chart will display what I actually do week by week.
+Even though I *plan* to do things it might not be what I actually do, so this chart will display what I actually do week by week.
 
 | Week Number | Actual Tasks Completed |
 | :---------: | :--------------------: |
@@ -36,3 +36,4 @@ Even though I *plan* to do stuff it might not be what I actually do, so this cha
 | 6           | Improved Level Panning, Now Display Entity Information, Tile Loading, Attack Range Displays, Entities Can Be Marked As Enemies |
 | 7           | Added Prototype Demo Map, Fancy Background Image, Attacking, *Turns*, Basic AI |
 | 8           | *Basic* Sound Loading, *Basic* Animation Loading and Updating |
+| 9           | Finished Sound Loading, Added Sound Playback Functions, Added Entity Loading Method |
