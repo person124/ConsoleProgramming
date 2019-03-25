@@ -80,4 +80,6 @@ function utils.mergeFunctions(funcBase, funcs)
 			returnFuncs[i] = funcBase[i]
 		end
 	end
+
+	return returnFuncs
 end

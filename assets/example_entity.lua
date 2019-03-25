@@ -10,7 +10,10 @@ e.sp = 2
 e.rn = 1
 e.isEnemy = false
 e.texture = "unit"
-e.funcs = nil -- Nil to use default funcs
+e.funcs = {}
+function e.funcs.damage(attacker, target, amount)
+	target.hp = 1
+end
 table.insert(entities, e)
 
 return entities

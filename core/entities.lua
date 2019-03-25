@@ -8,7 +8,8 @@ local entityDefaultFuncs = require("core/entityDefaultFunctions")
 
 -- Loads in built-in entities
 function entity.load()
-	entity.create("unit", 10, 5, 2, 1, "unit", nil)
+	-- entity.create("unit", 10, 5, 2, 1, "unit", nil)
+	entity.loadFile("assets/example_entity")
 end
 
 function entity.loadFile(fileName)
@@ -28,7 +29,7 @@ function entity.loadFile(fileName)
 		entity.create(e.id, e.hp, e.at, e.sp, e.rn, e.texture, e.funcs)
 
 		if e.isEnemy ~= nil then
-			entity[e.id].isEnemy = isEnemy
+			entity[e.id].isEnemy = e.isEnemy
 		end
 	end
 end
