@@ -4,6 +4,8 @@ local map = {}
 map.width = 5
 map.height = 5
 
+map.spriteFilesToLoad = {}
+
 -- Setting map tiles
 map.tileFilesToLoad = {}
 map.tileFilesToLoad[1] = "assets/example_tile"

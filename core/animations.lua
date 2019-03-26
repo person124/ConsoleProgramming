@@ -27,17 +27,17 @@ function animations.create(spriteSheetName, width, height, xCount, yCount, updat
 		end
 	end
 	anim.quads = utils.protect(anim.quads)
-	
+
 	-- Keep track of the timer variable
 	anim.currentTime = 0
 	anim.currentFrame = 1
-	
+
 	-- Return the resulting animation
 	return anim
 end
 
 function animations.load()
-	
+
 end
 
 -- Updates the given list of animations
@@ -51,7 +51,7 @@ function animations.update(dt, animationList)
 		if anim.curentTime > anim.info.updateTime then
 			anim.currentTime = 0
 			anim.currentFrame = anim.currentFrame + 1
-			
+
 			if anim.currentFrame > anim.info.frameCount then
 				anim.currentFrame = 1
 			end

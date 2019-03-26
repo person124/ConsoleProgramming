@@ -9,7 +9,7 @@ Now, the reason why I said I am making a game framework and not a game is most o
 The rest of this readme will be a table showcasing a schedule that I came up with just before the fourth week of work on the project; this is also the first week I actually started to work on the project. The schedule is something that I set myself, and can deviate from, but when I wrote it I imagined that it was the best course of action at the time.
 
 ## Schedule
-### Current Week: 9
+### Current Week: 10
 | Week Number | Planned Tasks |
 | :---------: | :-----------: |
 | 4           | * Basic Map Rendering * Image Loading * |
@@ -37,3 +37,4 @@ Even though I *plan* to do things it might not be what I actually do, so this ch
 | 7           | Added Prototype Demo Map, Fancy Background Image, Attacking, *Turns*, Basic AI |
 | 8           | *Basic* Sound Loading, *Basic* Animation Loading and Updating |
 | 9           | Finished Sound Loading, Added Sound Playback Functions, Added Entity Loading Method |
+| 10          | Map Loading, Dynamic Asset Loading |
