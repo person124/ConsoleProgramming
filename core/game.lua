@@ -213,6 +213,8 @@ function game.loadMap(folderName)
 	getTilesInstance().loadFile(path .. "tile")
 	getEntitiesInstance().loadFile(path .. "entity")
 	game.map.loadFile(path .. "map")
+
+	return true
 end
 
 return game
