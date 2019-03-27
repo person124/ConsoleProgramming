@@ -209,10 +209,29 @@ function game.loadMap(folderName)
 
 	path = path .. "/"
 
-	getTexturesInstance().loadFile(path .. "textures.dat", path .. "assets/")
-	getTilesInstance().loadFile(path .. "tile")
-	getEntitiesInstance().loadFile(path .. "entity")
-	game.map.loadFile(path .. "map")
+	if love.filesystem.exists(path .. "textures.dat") then
+		getTexturesInstance().loadFile(path .. "textures.dat", path .. "assets/")
+	else
+		assert(false, "Error! No textures.dat found for map: " .. folderName)
+	end
+
+	if love.filesystem.exists(path .. "tile.lua") then
+		getTilesInstance().loadFile(path .. "tile")
+	else
+		assert(false, "Error! No tile.lua found for map: " .. folderName)
+	end
+
+	if love.filesystem.exists(path .. "entity.lua") then
+		getEntitiesInstance().loadFile(path .. "entity")
+	else
+		assert(false, "Error! No entity.lua found for map: " .. folderName)
+	end
+
+	if love.filesystem.exists(path .. "map.lua") then
+		game.map.loadFile(path .. "map")
+	else
+		assert(false, "Error! No map.lua found for map: " .. folderName)
+	end
 
 	return true
 end
