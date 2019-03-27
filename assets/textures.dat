@@ -1,8 +1,5 @@
 <texture name> <texture path>
-unit tex/unit_temp.png
 movement tex/movement.png
 attack tex/attack.png
 selected-false tex/selected_friendly.png
 selected-true tex/selected_enemy.png
-grass tex/grass.png
-wall tex/wall.png

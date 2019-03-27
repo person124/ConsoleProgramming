@@ -7,10 +7,10 @@ function textures.load()
 	textures.data = {}
 
 	-- Load in the default textures
-	textures.loadFile("assets/textures.dat", true)
+	textures.loadFile("assets/textures.dat", "assets/", true)
 end
 
-function textures.loadFile(fileName, builtIn)
+function textures.loadFile(fileName, basePath, builtIn)
 	local skip = false --variable to skip first line of file
 
 	-- Go through each line of the file
@@ -28,9 +28,9 @@ function textures.loadFile(fileName, builtIn)
 
 			-- Load the texture and save it
 			if builtIn == nil then
-				textures.data[name] = love.graphics.newImage(path)
+				textures.data[name] = love.graphics.newImage(basePath .. path)
 			else
-				textures.builtIn[name] = love.graphics.newImage("assets/" .. path)
+				textures.builtIn[name] = love.graphics.newImage(basePath .. path)
 			end
 		else
 			skip = true -- This makes sure it skips the first line

@@ -4,12 +4,6 @@ local map = {}
 map.width = 5
 map.height = 5
 
-map.spriteFilesToLoad = {}
-
--- Setting map tiles
-map.tileFilesToLoad = {}
-map.tileFilesToLoad[1] = "assets/example_tile"
-
 map.tiles = {}
 for i=1,map.width do
 	map.tiles[i] = {}
@@ -22,10 +16,6 @@ map.tiles[3][2] = "wall"
 map.tiles[3][3] = "wall"
 map.tiles[2][3] = "wall"
 map.tiles[4][3] = "wall"
-
--- Setting map entities
-map.entityFilesToLoad = {}
-map.entityFilesToLoad[1] = "assets/example_entity"
 
 map.entities = {}
 map.entities[1] = {}

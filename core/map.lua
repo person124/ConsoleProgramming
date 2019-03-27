@@ -5,34 +5,14 @@
 
 local map = {}
 
--- Currently this function loads in the example map data
--- Will be replaced by a better more versatile map loader
-function map.load()
-	map.loadFile("assets/example_map")
-end
-
 -- Loads in a map from the specified file
 function map.loadFile(fileName)
 	local file = require(fileName)
 
 	assert(file.width, "No width set for " .. fileName)
 	assert(file.height, "No height set for " .. fileName)
-	assert(file.spriteFilesToLoad, "No sprite files set for " .. fileName)
-	assert(file.tileFilesToLoad, "No tile files set for " .. fileName)
 	assert(file.tiles, "No tiles set for " .. fileName)
-	assert(file.entityFilesToLoad, "No entity files set for " .. fileName)
 	assert(file.entities, "No entities set for " .. fileName)
-
-	-- Load in the required assets
-	for i=1,table.getn(file.spriteFilesToLoad) do
-		getTexturesInstance().loadFile(file.spriteFilesToLoad[i])
-	end
-	for i=1,table.getn(file.tileFilesToLoad) do
-		getTilesInstance().loadFile(file.tileFilesToLoad[i])
-	end
-	for i=1,table.getn(file.entityFilesToLoad) do
-		getEntitiesInstance().loadFile(file.entityFilesToLoad[i])
-	end
 
 	map.width = file.width
 	map.height = file.height

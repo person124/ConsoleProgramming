@@ -105,7 +105,7 @@ end
 
 function game.load()
 	game.map = require("core/map")
-	game.map.load()
+	game.loadMap("test_map")
 
 	-- Generate the first turn
 	generateTurn()
@@ -200,6 +200,19 @@ function game.render(screen)
 		love.graphics.setColor(0, 0, 255)
 		love.graphics.print("Enemy Turn!")
 	end
+end
+
+function game.loadMap(folderName)
+	local path = "maps/" .. folderName
+
+	if not love.filesystem.isDirectory(path) then return false end
+
+	path = path .. "/"
+
+	getTexturesInstance().loadFile(path .. "textures.dat", path .. "assets/")
+	getTilesInstance().loadFile(path .. "tile")
+	getEntitiesInstance().loadFile(path .. "entity")
+	game.map.loadFile(path .. "map")
 end
 
 return game
