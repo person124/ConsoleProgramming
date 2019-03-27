@@ -119,7 +119,6 @@ function game.update(dt)
 
 	local turn = game.turn
 
-	-- TODO
 	-- Steps:
 	-- 1) Get the first enemy in the list
 	-- 2) Set the offset view to them

@@ -4,11 +4,10 @@ local tiles = {}
 -- quad can be nil
 -- id is the internal name
 -- name is the human name
-local function createTile(isInternal, id, name, isSolid, texture, quad)
+local function createTile(id, name, isSolid, texture, quad)
 	local tile = {}
 
 	tile.const = {}
-	tile.const.builtIn = isInternal
 	tile.const.id = id
 	tile.const.name = name
 	utils.protect(tile.const)
@@ -28,14 +27,8 @@ end
 
 -- This will load tile(s) from a file, if the second parameter is true
 -- Than the tiles will be marked as built in ones and not deleted on refresh
-function tiles.loadFile(fileName, isBuiltIn)
+function tiles.loadFile(fileName)
 	local loadedFile = require(fileName)
-
-	-- TODO remove builtin
-	local builtIn = false
-	if isBuiltIn ~= nil then
-		builtIn = isBuiltIn
-	end
 
 	for i=1,table.getn(loadedFile) do
 		local tile = loadedFile[i]
@@ -58,7 +51,7 @@ function tiles.loadFile(fileName, isBuiltIn)
 		end
 
 		-- If it passes, then create tile
-		createTile(builtIn, tile.id, tile.name, tile.isSolid, tile.texture, quad)
+		createTile(tile.id, tile.name, tile.isSolid, tile.texture, quad)
 	end
 end
 

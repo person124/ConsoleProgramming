@@ -1,5 +1,18 @@
 local main = {}
 
+-- TODOS:
+	-- Load in animations
+	-- Level Selector
+	-- background audio
+	-- extend tiles:
+		-- On enter
+		-- On exit
+		-- On die on
+		-- On stay
+	-- Add abilities to Units
+		-- One ability per unit?
+	-- Give certain units better AI
+
 -- Both of these are global objects
 require("core/utils") -- This contains global public functions
 require("core/ai_core") -- Contains AI functions
