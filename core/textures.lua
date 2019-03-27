@@ -23,7 +23,7 @@ function textures.loadFile(fileName, basePath, builtIn)
 			local name = string.sub(line, 1, i - 1)
 			local path = string.sub(line, i + 1, -1)
 
-			assert(textures.data[name] == nil or textures.builtIn[name] == nil,
+			assert(textures.data[name] == nil and textures.builtIn[name] == nil,
 				"ERROR texture: " .. name .. " already exists!!!")
 
 			-- Load the texture and save it

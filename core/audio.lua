@@ -26,7 +26,7 @@ function audio.loadFile(fileName, basePath, builtIn)
 			local loops = split()
 			local path = split()
 
-			assert(audio.data[name] == nil or audio.builtIn[name] == nil,
+			assert(audio.data[name] == nil and audio.builtIn[name] == nil,
 				"ERROR audio file: " .. name .. " already exists!!!")
 
 			local loopBool = (loops == "true")
