@@ -68,7 +68,7 @@ function getTexturesInstance()
 end
 
 function getTexture(id)
-	return main.textures[id]
+	return main.textures.get(id)
 end
 
 function getAnimationsInstance()
