@@ -55,7 +55,8 @@ function love.load()
 	main.entity.load()
 
 	main.game = require("core/game")
-	main.game.load()
+	-- TODO change to a more dynamic load system
+	main.game.start("test_map")
 
 	screenFiller = require("core/screenFiller")
 end

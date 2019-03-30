@@ -106,9 +106,9 @@ local function pruneDeadEntities()
 	utils.removeDeadEntities(game.turn.enemy)
 end
 
-function game.load()
+function game.start(fileName)
 	game.map = require("core/map")
-	game.loadMap("test_map")
+	game.loadMap(fileName)
 
 	-- Generate the first turn
 	generateTurn()
