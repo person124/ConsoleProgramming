@@ -15,7 +15,7 @@ function audio.loadFile(fileName, basePath, builtIn)
 	local skip = false -- variable to skip the first line of tile
 
 	-- Go through each line of the file
-	for line in love.filesystem.lines("assets/audio.dat") do
+	for line in love.filesystem.lines(fileName) do
 		if skip then
 			-- Split the string
 			local split = string.gmatch(line, "%S+")
