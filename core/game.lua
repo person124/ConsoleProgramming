@@ -215,6 +215,14 @@ function game.loadMap(folderName)
 		assert(false, "Error! No textures.dat found for map: " .. folderName)
 	end
 
+	-- Load in animations
+	if love.filesystem.exists(path .. "animations.lua") then
+		getAnimationsInstance().loadFile(path .. "animations.lua")
+	else
+		print("No animations.lua found for map: " .. folderName .. ". Skipping")
+	end
+
+	-- Load in audio
 	if love.filesystem.exists(path .. "audio.dat") then
 		getAudioInstance().loadFile(path .. "audio.dat", path .. "assets/")
 	else
