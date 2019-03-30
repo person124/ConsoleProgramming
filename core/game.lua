@@ -1,5 +1,8 @@
 local game = {}
 
+-- List of animations for the map
+local animationsList = {}
+
 -- This function will generate a new turn based on map data
 local function generateTurn()
 	-- 1) Clear the turn table
@@ -114,6 +117,9 @@ end
 -- The main update function for game loop
 -- Used only during the enemies turn
 function game.update(dt)
+	-- Update animations list
+	getAnimationsInstance().update(dt, animationsList)
+
 	-- If its the player's turn the leave
 	if game.turn.isPlayerTurn then return end
 
@@ -217,7 +223,7 @@ function game.loadMap(folderName)
 
 	-- Load in animations
 	if love.filesystem.exists(path .. "anim.lua") then
-		getAnimationsInstance().loadFile(path .. "anim.lua")
+		animationsList = getAnimationsInstance().loadFile(path .. "anim.lua")
 	else
 		print("No anim.lua found for map: " .. folderName .. ". Skipping")
 	end
