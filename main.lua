@@ -65,6 +65,8 @@ end
 function love.update(dt)
 	main.input.update(main.game, main.screen)
 
+	main.animations.update(dt, defaultAnimations)
+
 	main.game.update(dt)
 end
 
