@@ -216,10 +216,10 @@ function game.loadMap(folderName)
 	end
 
 	-- Load in animations
-	if love.filesystem.exists(path .. "animations.lua") then
-		getAnimationsInstance().loadFile(path .. "animations.lua")
+	if love.filesystem.exists(path .. "anim.lua") then
+		getAnimationsInstance().loadFile(path .. "anim.lua")
 	else
-		print("No animations.lua found for map: " .. folderName .. ". Skipping")
+		print("No anim.lua found for map: " .. folderName .. ". Skipping")
 	end
 
 	-- Load in audio
