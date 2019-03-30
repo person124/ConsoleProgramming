@@ -36,8 +36,9 @@ function animations.create(spriteSheetName, width, height, xCount, yCount, updat
 	return anim
 end
 
-function animations.load()
-
+function animations.loadFile(fileName)
+	local fileLoaded = require(fileName)
+	return fileLoaded.get(animations)
 end
 
 -- Updates the given list of animations

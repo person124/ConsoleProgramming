@@ -25,11 +25,12 @@ local screenFiller = nil
 function love.load()
 	-- Handles texture loading and caching
 	main.textures = require("core/textures")
+	-- TODO load default textures
 	main.textures.load()
 
 	-- Handles animation loading and caching
 	main.animations = require("core/animations")
-	main.animations.load()
+	-- TODO Load default animations?
 
 	-- Handles audio loading and caching
 	main.audio = require("core/audio")
