@@ -21,16 +21,18 @@ require("core/ai_core") -- Contains AI functions
 -- Black and empty where the game isn't
 local screenFiller = nil
 
+-- Default animations to update
+local defaultAnimations = nil
+
 -- Built in function called before the game starts, all data will be loaded in here
 function love.load()
 	-- Handles texture loading and caching
 	main.textures = require("core/textures")
-	-- TODO load default textures
 	main.textures.load()
 
 	-- Handles animation loading and caching
 	main.animations = require("core/animations")
-	-- TODO Load default animations?
+	defaultAnimations = main.animations.loadFile("assets/anim")
 
 	-- Handles audio loading and caching
 	main.audio = require("core/audio")

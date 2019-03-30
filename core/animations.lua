@@ -38,7 +38,7 @@ end
 
 function animations.loadFile(fileName)
 	local fileLoaded = require(fileName)
-	return fileLoaded.get(animations)
+	return fileLoaded(animations)
 end
 
 -- Updates the given list of animations
