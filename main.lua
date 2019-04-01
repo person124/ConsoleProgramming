@@ -1,7 +1,6 @@
 local main = {}
 
 -- TODOS:
-	-- Load in animations
 	-- Level Selector
 	-- background audio
 	-- extend tiles:
@@ -53,8 +52,11 @@ function love.load()
 	-- Handles data for entity creation
 	main.entity = require("core/entities")
 	main.entity.load()
+	
+	local temp = require("core/modes/levelSelect")
+	temp.start("maps")
 
-	main.game = require("core/game")
+	main.game = require("core/modes/game")
 	-- TODO change to a more dynamic load system
 	main.game.start("test_map")
 
