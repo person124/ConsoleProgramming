@@ -66,7 +66,7 @@ end
 -- Built in function called every frame to have updates
 -- dt parameter is the step update time
 function love.update(dt)
-	main.input.update(main.game, main.screen)
+	main.input.update(main.mode, main.screen)
 
 	main.animations.update(dt, defaultAnimations)
 

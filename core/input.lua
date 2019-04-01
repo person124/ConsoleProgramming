@@ -20,7 +20,7 @@ function input.load()
 	input.recieved = false
 end
 
-function input.update(game, screen)
+function input.update(mode, screen)
 	if input.mouse[1] then
 		input.count = 1
 	else
@@ -38,10 +38,12 @@ function input.update(game, screen)
 
 		input.recieved = true
 
-		local tileX = math.floor((input.screenX + screen.offset.x) / 64) + 1
-		local tileY = math.floor((input.screenY + screen.offset.y) / 64) + 1
+		if mode.map ~= nil then
+			local tileX = math.floor((input.screenX + screen.offset.x) / 64) + 1
+			local tileY = math.floor((input.screenY + screen.offset.y) / 64) + 1
 
-		game.tapTile(tileX, tileY)
+			mode.tapTile(tileX, tileY)
+		end
 	end
 	else
 		input.recieved = false
