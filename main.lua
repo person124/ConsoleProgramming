@@ -25,6 +25,9 @@ local defaultAnimations = nil
 
 -- Built in function called before the game starts, all data will be loaded in here
 function love.load()
+	-- Load in the defualt font
+	love.graphics.setNewFont(64)
+
 	-- Handles texture loading and caching
 	main.textures = require("core/textures")
 	main.textures.load()
@@ -53,12 +56,9 @@ function love.load()
 	main.entity = require("core/entities")
 	main.entity.load()
 	
-	local temp = require("core/modes/levelSelect")
-	temp.start("maps")
-
-	main.game = require("core/modes/game")
-	-- TODO change to a more dynamic load system
-	main.game.start("test_map")
+	main.mode = require("core/modes/levelSelect")
+	-- Open the map folder
+	main.mode.start("maps")
 
 	screenFiller = require("core/screenFiller")
 end
@@ -70,7 +70,7 @@ function love.update(dt)
 
 	main.animations.update(dt, defaultAnimations)
 
-	main.game.update(dt)
+	main.mode.update(dt)
 end
 
 -- Built in function called every frame to render the scene
@@ -78,7 +78,7 @@ function love.draw()
 	love.graphics.draw(screenFiller)
 
 	main.screen.start()
-		main.game.render(main.screen)
+		main.mode.render(main.screen)
 	main.screen.stop()
 end
 
@@ -128,10 +128,10 @@ function getEntity(id)
 	return main.entity[id]
 end
 
-function getGameInstance()
-	return main.game
+function getModeInstance()
+	return main.mode
 end
 
 function getCurrentMap()
-	return main.game.map
+	return main.mode.map
 end
