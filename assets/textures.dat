@@ -3,3 +3,4 @@ movement tex/movement.png
 attack tex/attack.png
 selected-false tex/selected_friendly.png
 selected-true tex/selected_enemy.png
+level-select tex/level_select.png

@@ -22,8 +22,8 @@ function levelSelect.render(screen)
 	-- Set the font size bigger
 	love.graphics.setNewFont(64)
 	for i=1,table.getn(levelList) do
-		love.graphics.draw(getTexture("attack"), 20, i * 20)
-		love.graphics.print(levelList[i], 20 + 64, i * 20)
+		love.graphics.draw(getTexture("level-select"), 20, i * 20)
+		love.graphics.print(levelList[i], 20 + 64, i * 20 - 5)
 	end
 end
 
