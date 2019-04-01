@@ -1,7 +1,6 @@
 local main = {}
 
 -- TODOS:
-	-- Level Selector
 	-- background audio
 	-- extend tiles:
 		-- On enter
