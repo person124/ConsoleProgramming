@@ -10,11 +10,6 @@ function levelSelect.start(mapFolder)
 			table.insert(levelList, file)
 		end
 	end
-	table.insert(levelList, "egeg")
-	table.insert(levelList, "tester")
-	table.insert(levelList, "merpaer")
-	table.insert(levelList, "::D:D:D:D:D")
-	table.insert(levelList, "~~~~~~~~")
 end
 
 function levelSelect.update(dt)
@@ -25,9 +20,9 @@ function levelSelect.update(dt)
 
 		clickedY = math.floor((input.screenY + 24) / 84)
 
-		-- if clickedY < 1 then return end
+		if clickedY < 1 or clickedY > table.getn(levelList) then return end
 
-		print(clickedY)
+		loadMap(levelList[clickedY])
 	end
 end
 
@@ -37,8 +32,10 @@ function levelSelect.render(screen)
 	-- Set the font size bigger
 	love.graphics.setNewFont(64)
 	for i=1,table.getn(levelList) do
-		love.graphics.draw(getTexture("level-select"), 20, i * 20)
-		love.graphics.print(levelList[i], 20 + 64, (i * 84) - 24)
+		-- The y value for the texture and level name
+		local y = (i * 84) - 24
+		love.graphics.draw(getTexture("level-select"), 20, y)
+		love.graphics.print(levelList[i], 20 + 64, y - 5)
 	end
 end
 

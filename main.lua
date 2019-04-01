@@ -82,6 +82,11 @@ function love.draw()
 	main.screen.stop()
 end
 
+function loadMap(mapName)
+	main.mode = require("core/modes/game")
+	main.mode.start(mapName)
+end
+
 -- Below this point are the getter functions
 
 function getTexturesInstance()
