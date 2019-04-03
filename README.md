@@ -38,3 +38,4 @@ Even though I *plan* to do things it might not be what I actually do, so this ch
 | 8           | *Basic* Sound Loading, *Basic* Animation Loading and Updating |
 | 9           | Finished Sound Loading, Added Sound Playback Functions, Added Entity Loading Method |
 | 10          | Map Loading, Dynamic Asset Loading, Level Loading Screen |
+| 11          | Asset Unloading, Win Detection |
