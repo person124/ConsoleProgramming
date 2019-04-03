@@ -7,7 +7,6 @@ local funcs = {}
 
 function funcs.damage(attacker, target, amount)
 	target.hp = target.hp - amount
-	print(target.hp)
 end
 
 return funcs

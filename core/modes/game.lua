@@ -118,7 +118,7 @@ local function pruneDeadEntities()
 end
 
 function game.start(fileName)
-	game.map = require("core/map")
+	game.map = require("core/gameplay/map")
 	game.loadMap(fileName)
 
 	-- Generate the first turn

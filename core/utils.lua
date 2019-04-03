@@ -73,7 +73,7 @@ function utils.mergeFunctions(funcBase, funcs)
 	if funcs == nil then return funcBase end
 
 	local returnFuncs = {}
-	for i,v in pairs(funcBase) do
+	for i in pairs(funcBase) do
 		if funcs[i] ~= nil then
 			returnFuncs[i] = funcs[i]
 		else

@@ -30,11 +30,11 @@ local defaultAnimations = nil
 -- Built in function called before the game starts, all data will be loaded in here
 function love.load()
 	-- Handles texture loading and caching
-	main.textures = require("core/textures")
+	main.textures = require("core/graphics/textures")
 	main.textures.load()
 
 	-- Handles animation loading and caching
-	main.animations = require("core/animations")
+	main.animations = require("core/graphics/animations")
 	defaultAnimations = main.animations.loadFile("assets/anim")
 
 	-- Handles audio loading and caching
@@ -46,21 +46,21 @@ function love.load()
 	main.input.load()
 
 	-- Handles the subscreen and everything related to it
-	main.screen = require("core/screen")
+	main.screen = require("core/graphics/screen")
 	main.screen.load()
 
 	-- Handles all the different types of tiles
-	main.tiles = require("core/tiles")
+	main.tiles = require("core/gameplay/tiles")
 	main.tiles.load()
 
 	-- Handles data for entity creation
-	main.entity = require("core/entities")
+	main.entity = require("core/gameplay/entities")
 	main.entity.load()
-	
+
 	-- Load in the main menu
 	goToMainMenu()
 
-	screenFiller = require("core/screenFiller")
+	screenFiller = require("core/graphics/screenFiller")
 end
 
 -- Built in function called every frame to have updates

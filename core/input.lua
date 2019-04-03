@@ -75,7 +75,7 @@ function love.touchmoved(id, x, y, dx, dy, pressure)
 	if input.count == 1 then
 		input.x = x
 		input.y = y
-	elseif input.count == 2 then 
+	elseif input.count == 2 then
 		getScreenInstance().addOffset(dx, dy)
 	end
 end
