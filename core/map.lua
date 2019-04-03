@@ -85,6 +85,7 @@ function map.render(screen)
 		local ent = map.currentlySelected
 
 		-- Render selected entity stats
+		love.graphics.setNewFont(12)
 		love.graphics.print("HP: " .. ent.hp .. " / " .. ent.stats.hp .. "          " ..
 							"AT: " .. ent.at .. " / " .. ent.stats.at .. "          " ..
 							"SP: " .. ent.sp .. " / " .. ent.stats.sp .. "          " ..

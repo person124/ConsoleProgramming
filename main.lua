@@ -7,6 +7,12 @@ local main = {}
 		-- On exit
 		-- On die on
 		-- On stay
+	-- Unit Events:
+		-- On move
+		-- On kill
+		-- On Death
+	-- Animation playing system
+	-- Add unloading system!!!!!
 	-- Add abilities to Units
 		-- One ability per unit?
 	-- Give certain units better AI
@@ -24,9 +30,6 @@ local defaultAnimations = nil
 
 -- Built in function called before the game starts, all data will be loaded in here
 function love.load()
-	-- Load in the defualt font
-	love.graphics.setNewFont(64)
-
 	-- Handles texture loading and caching
 	main.textures = require("core/textures")
 	main.textures.load()
@@ -84,6 +87,11 @@ end
 function loadMap(mapName)
 	main.mode = require("core/modes/game")
 	main.mode.start(mapName)
+end
+
+function endGame(didWin)
+	main.mode = require("core/modes/afterLevel")
+	main.mode.start(didWin)
 end
 
 -- Below this point are the getter functions

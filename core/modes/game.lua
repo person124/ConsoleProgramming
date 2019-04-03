@@ -31,7 +31,13 @@ local function generateTurn()
 	game.turn.enemyMoved = false
 	game.turn.waitTime = 0
 
-	-- TODO add win condition here
+	if table.getn(game.turn.enemy) == 0 then
+		-- Player Won
+		endGame(true)
+	elseif table.getn(game.turn.player) == 0 then
+		-- Player Lost
+		endGame(false)
+	end
 end
 
 -- This function is the internal function to manage the player
