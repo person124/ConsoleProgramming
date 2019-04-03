@@ -23,6 +23,8 @@ end
 function input.update(mode, screen)
 	if input.mouse[1] then
 		input.count = 1
+	elseif input.mouse[2] then
+		input.count = 2
 	else
 		input.count = 0
 	end

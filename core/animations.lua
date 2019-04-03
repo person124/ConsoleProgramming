@@ -16,7 +16,7 @@ function animations.create(spriteSheetName, width, height, xCount, yCount, updat
 	anim.quads = {}
 	for x=1,xCount do
 		for y=1,yCount do
-			-- Generate the frame of the aimation
+			-- Generate the frame of the animation
 			anim.quads[x + ((y - 1) * xCount)] = love.graphics.newQuad(
 				(x - 1) * width, -- Frame x location
 				(y - 1) * height, -- Frame y location

@@ -40,7 +40,7 @@ end
 
 -- This function clears the list of non-builtIn textures
 function textures.clear()
-	texture.data = {}
+	textures.data = {}
 end
 
 function textures.get(id)

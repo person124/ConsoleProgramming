@@ -75,6 +75,8 @@ end
 -- Makes sure the current offset aligns with the min and
 -- the max that map allows
 local function checkOffset()
+	local map = getCurrentMap()
+	if map == nil then return end
 	-- Make sure the offset is within the map's boundaries
 	local offMin, offMax = getCurrentMap().getMinMaxOffset()
 	-- utils.minmax is in utils
