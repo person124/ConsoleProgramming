@@ -55,12 +55,12 @@ end
 function utils.removeDeadEntities(tab)
 	local done = false
 	while not done do
+		done = true
 		for i=1,table.getn(tab) do
 			if tab[i] ~= nil and tab[i].hp <= 0 then
 				table.remove(tab, i)
 				done = false
-			else
-				done = true
+				break
 			end
 		end
 	end

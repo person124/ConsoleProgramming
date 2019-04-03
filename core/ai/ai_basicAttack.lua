@@ -48,7 +48,6 @@ local function basicAttack(map, attacker, target, moveMap)
 
 	-- 4)
 	target.funcs.damage(attacker, target, attacker.at)
-	map.refresh()
 
 	return true
 end

@@ -198,9 +198,4 @@ function map.moveEntity(ent, tileX, tileY)
 	ent.y = tileY
 end
 
--- Reloads the map, clearing any killed entities
-function map.refresh()
-	utils.removeDeadEntities(map.entities)
-end
-
 return map

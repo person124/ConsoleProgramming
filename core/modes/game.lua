@@ -107,9 +107,14 @@ local function tapTileInternal(tileX, tileY)
 end
 
 local function pruneDeadEntities()
+	-- Prune turn players
 	utils.removeDeadEntities(game.turn.player)
 
+	-- Prune turn enemies
 	utils.removeDeadEntities(game.turn.enemy)
+
+	-- Prune list of enemies
+	utils.removeDeadEntities(game.map.entities)
 end
 
 function game.start(fileName)
