@@ -129,7 +129,7 @@ function getTilesInstance()
 end
 
 function getTile(id)
-	return main.tiles[id]
+	return main.tiles.data[id]
 end
 
 function getEntitiesInstance()
@@ -137,7 +137,7 @@ function getEntitiesInstance()
 end
 
 function getEntity(id)
-	return main.entity[id]
+	return main.entity.data[id]
 end
 
 function getModeInstance()

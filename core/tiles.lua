@@ -16,13 +16,12 @@ local function createTile(id, name, isSolid, texture, quad)
 	tile.texture = texture
 	tile.quad = quad
 
-	tiles[tile.const.id] = tile
+	tiles.data[tile.const.id] = tile
 end
 
--- This is where the built in tiles will be loaded as well as any other
--- needed settings or information
+-- Creates the table to store tiles in
 function tiles.load()
-	-- tiles.loadFile("assets/example_tile", true)
+	tiles.data = {}
 end
 
 -- This will load tile(s) from a file, if the second parameter is true
@@ -53,6 +52,11 @@ function tiles.loadFile(fileName)
 		-- If it passes, then create tile
 		createTile(tile.id, tile.name, tile.isSolid, tile.texture, quad)
 	end
+end
+
+-- This functions clears the list of non-builtin tiles
+function tiles.clear()
+	tiles.data = {}
 end
 
 -- TODO Rework!

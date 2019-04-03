@@ -38,6 +38,11 @@ function textures.loadFile(fileName, basePath, builtIn)
 	end
 end
 
+-- This function clears the list of non-builtIn textures
+function textures.clear()
+	texture.data = {}
+end
+
 function textures.get(id)
 	local result = textures.data[id]
 

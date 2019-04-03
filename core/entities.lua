@@ -6,9 +6,9 @@ local entity = {}
 
 local entityDefaultFuncs = require("core/entityDefaultFunctions")
 
--- Loads in built-in entities
+-- Creates entity table
 function entity.load()
-	-- entity.loadFile("assets/example_entity")
+	entity.data = {}
 end
 
 function entity.loadFile(fileName)
@@ -28,43 +28,50 @@ function entity.loadFile(fileName)
 		entity.create(e.id, e.hp, e.at, e.sp, e.rn, e.texture, e.funcs)
 
 		if e.isEnemy ~= nil then
-			entity[e.id].isEnemy = e.isEnemy
+			entity.data[e.id].isEnemy = e.isEnemy
 		end
 	end
+end
+
+-- Clears the list of entities
+function entity.clear()
+	entity.data = {}
 end
 
 -- Creates an entity with specified data
 -- id is internal name
 function entity.create(id, health, attack, speed, range, texture, funcs)
-	entity[id] = {}
+	local ent = {}
 
 	-- Default entity stats (utils.protected)
-	entity[id].stats = {}
-	entity[id].stats.hp = health
-	entity[id].stats.at = attack
-	entity[id].stats.sp = speed
-	entity[id].stats.rn = range
-	entity[id].stats = utils.protect(entity[id].stats)
+	ent.stats = {}
+	ent.stats.hp = health
+	ent.stats.at = attack
+	ent.stats.sp = speed
+	ent.stats.rn = range
+	ent.stats = utils.protect(ent.stats)
 
 	-- Applied entity stats
-	entity[id].hp = health
-	entity[id].at = attack
-	entity[id].sp = speed
-	entity[id].rn = range
+	ent.hp = health
+	ent.at = attack
+	ent.sp = speed
+	ent.rn = range
 
 	-- Is the entity not on the player's team
-	entity[id].isEnemy = false
+	ent.isEnemy = false
 
 	-- The texture of the entity
-	entity[id].texture = texture
+	ent.texture = texture
 
 	-- The position of the entity
-	entity[id].x = 0
-	entity[id].y = 0
+	ent.x = 0
+	ent.y = 0
 
 	-- Entity Functions
-	entity[id].funcs = utils.mergeFunctions(entityDefaultFuncs, funcs)
-	entity[id].funcs = utils.protect(entity[id].funcs)
+	ent.funcs = utils.mergeFunctions(entityDefaultFuncs, funcs)
+	ent.funcs = utils.protect(ent.funcs)
+
+	entity.data[id] = ent
 end
 
 -- Draws the specified entity at the entities location

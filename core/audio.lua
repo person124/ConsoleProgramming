@@ -44,6 +44,11 @@ function audio.loadFile(fileName, basePath, builtIn)
 	end
 end
 
+-- This function clears the list of non-built in audio
+function audio.clear()
+	audio.data = {}
+end
+
 -- Plays the specififed audio file
 function audio.play(id)
 	local a = audio.get(id)
