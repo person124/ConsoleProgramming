@@ -3,6 +3,7 @@ local levelSelect = {}
 local levelList = {}
 
 function levelSelect.start(mapFolder)
+	levelList = {}
 	assert(love.filesystem.isDirectory(mapFolder), "Map folder " .. mapFolder .. "not found")
 
 	for i,file in ipairs(love.filesystem.getDirectoryItems(mapFolder)) do

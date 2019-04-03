@@ -13,7 +13,7 @@ table.insert(entities, e)
 
 e = {}
 e.id = "unit_enemy"
-e.hp = 0
+e.hp = 10
 e.at = 5
 e.sp = 1
 e.rn = 1

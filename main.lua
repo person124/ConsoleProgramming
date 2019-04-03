@@ -12,7 +12,6 @@ local main = {}
 		-- On kill
 		-- On Death
 	-- Animation playing system
-	-- Add unloading system!!!!!
 	-- Add abilities to Units
 		-- One ability per unit?
 	-- Give certain units better AI
@@ -58,9 +57,8 @@ function love.load()
 	main.entity = require("core/entities")
 	main.entity.load()
 	
-	main.mode = require("core/modes/levelSelect")
-	-- Open the map folder
-	main.mode.start("maps")
+	-- Load in the main menu
+	goToMainMenu()
 
 	screenFiller = require("core/screenFiller")
 end
@@ -84,12 +82,21 @@ function love.draw()
 	main.screen.stop()
 end
 
+function goToMainMenu()
+	main.mode = {}
+	main.mode = require("core/modes/levelSelect")
+	-- Open the map folder
+	main.mode.start("maps")
+end
+
 function loadMap(mapName)
+	main.mode = {}
 	main.mode = require("core/modes/game")
 	main.mode.start(mapName)
 end
 
 function endGame(didWin)
+	main.mode = {}
 	main.mode = require("core/modes/afterLevel")
 	main.mode.start(didWin)
 end

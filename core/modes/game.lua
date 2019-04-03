@@ -233,6 +233,7 @@ function game.loadMap(folderName)
 	end
 
 	-- Load in animations
+	animationsList = {}
 	if love.filesystem.exists(path .. "anim.lua") then
 		animationsList = getAnimationsInstance().loadFile(path .. "anim.lua")
 	else

@@ -15,6 +15,7 @@ end
 function afterLevel.update(dt)
 	if getInputInstance().count == 2 then
 		-- Return to main menu
+		goToMainMenu()
 	end
 end
 
