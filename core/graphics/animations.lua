@@ -1,13 +1,7 @@
 local animations = {}
 
-local a = {}
-
-function a:getFrame()
-	return self.quads[self.currentFrame]
-end
-
 function animations.create(spriteSheetName, xOff, yOff, width, height, xCount, yCount, updateTime)
-	local anim = a
+	local anim = {}
 
 	anim.info = {}
 	anim.info.width = width
@@ -37,6 +31,11 @@ function animations.create(spriteSheetName, xOff, yOff, width, height, xCount, y
 	-- Keep track of the timer variable
 	anim.currentTime = 0
 	anim.currentFrame = 1
+
+	-- Generate the get frame function
+	anim.getFrame = function(self)
+		return self.quads[self.currentFrame]
+	end
 
 	-- Return the resulting animation
 	return anim

@@ -1,7 +1,7 @@
 -- this is an example tile file format
 local tileData = {}
 
-tile = {}
+local tile = {}
 tile.id = "grass"
 tile.name = "Grass"
 tile.isSolid = false
