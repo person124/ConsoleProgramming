@@ -57,7 +57,8 @@ function tiles.render(tile, xPos, yPos, screen)
 	adjY = adjY - screen.offset.y
 
 	-- If the tile has a quad then render it using it, otherwise render normally
-	love.graphics.draw(getTexture(tile.anim.info.spriteSheet), tile.anim:getFrame(), adjX, adjY)
+	love.graphics.draw(getTexture(tile.anim.info.sheet),
+		tile.anim:getFrame(), adjX, adjY)
 end
 
 return tiles

@@ -1,4 +1,3 @@
 <texture name> <texture path>
 unit unit_temp.png
-grass grass.png
-wall wall.png
+tiles tiles.png

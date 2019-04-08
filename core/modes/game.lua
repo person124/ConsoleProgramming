@@ -235,7 +235,7 @@ function game.loadMap(folderName)
 	-- Load in animations
 	animationsList = {}
 	if love.filesystem.exists(path .. "anim.lua") then
-		animationsList = getAnimationsInstance().loadFile(path .. "anim.lua")
+		animationsList = getAnimationsInstance().loadFile(path .. "anim")
 	else
 		print("No anim.lua found for map: " .. folderName .. ". Skipping")
 	end
@@ -249,7 +249,7 @@ function game.loadMap(folderName)
 
 	-- Load in tiles
 	if love.filesystem.exists(path .. "tile.lua") then
-		getTilesInstance().loadFile(path .. "tile")
+		getTilesInstance().loadFile(path .. "tile", animationsList)
 	else
 		assert(false, "Error! No tile.lua found for map: " .. folderName)
 	end

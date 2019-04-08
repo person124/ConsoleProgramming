@@ -6,7 +6,7 @@ function a:getFrame()
 	return self.quads[self.currentFrame]
 end
 
-function animations.create(spriteSheetName, width, height, xCount, yCount, updateTime)
+function animations.create(spriteSheetName, xOff, yOff, width, height, xCount, yCount, updateTime)
 	local anim = a
 
 	anim.info = {}
@@ -18,17 +18,17 @@ function animations.create(spriteSheetName, width, height, xCount, yCount, updat
 	anim.info = utils.protect(anim.info)
 
 	-- Get the reference sprite sheet for its width and height
-	local sheetTemp = getSprite(spriteSheetName)
+	local sheetTemp = getTexture(spriteSheetName)
 	anim.quads = {}
 	for x=1,xCount do
 		for y=1,yCount do
 			-- Generate the frame of the animation
 			anim.quads[x + ((y - 1) * xCount)] = love.graphics.newQuad(
-				(x - 1) * width, -- Frame x location
-				(y - 1) * height, -- Frame y location
+				xOff + ((x - 1) * width), -- Frame x location
+				yOff + ((y - 1) * height), -- Frame y location
 				width, -- Width of the animation
 				height, -- Height of the animation
-				sheetTemp:getDimenstions() -- Size of the reference sheet
+				sheetTemp:getDimensions() -- Size of the reference sheet
 			)
 		end
 	end
@@ -52,15 +52,17 @@ function animations.update(dt, animationList)
 	for i=1,table.getn(animationList) do
 		local anim = animationList[i]
 
-		anim.curentTime = anim.currentTime + dt
+		if anim.updateTime ~= 0 then
+			anim.curentTime = anim.currentTime + dt
 
-		-- Update the current frame of the animation
-		if anim.curentTime > anim.info.updateTime then
-			anim.currentTime = 0
-			anim.currentFrame = anim.currentFrame + 1
+			-- Update the current frame of the animation
+			if anim.curentTime > anim.info.updateTime then
+				anim.currentTime = 0
+				anim.currentFrame = anim.currentFrame + 1
 
-			if anim.currentFrame > anim.info.frameCount then
-				anim.currentFrame = 1
+				if anim.currentFrame > anim.info.frameCount then
+					anim.currentFrame = 1
+				end
 			end
 		end
 	end
