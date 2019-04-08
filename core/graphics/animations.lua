@@ -1,7 +1,13 @@
 local animations = {}
 
+local a = {}
+
+function a:getFrame()
+	return self.quads[self.currentFrame]
+end
+
 function animations.create(spriteSheetName, width, height, xCount, yCount, updateTime)
-	local anim = {}
+	local anim = a
 
 	anim.info = {}
 	anim.info.width = width
