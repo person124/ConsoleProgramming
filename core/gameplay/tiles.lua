@@ -1,5 +1,7 @@
 local tiles = {}
 
+local tilesDefaultFuncs = require("core/tileDefaultFunctions")
+
 -- create a tile with the specified data
 -- id is the internal name
 -- name is the human name
@@ -49,7 +51,7 @@ function tiles.clear()
 end
 
 function tiles.render(tile, xPos, yPos, screen)
-	-- Calculate the positon of the tile including screen offsets
+	-- Calculate the position of the tile including screen offsets
 	local adjX = (xPos - 1) * 64
 	local adjY = (yPos - 1) * 64
 

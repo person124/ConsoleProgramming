@@ -11,7 +11,6 @@ local main = {}
 		-- On move
 		-- On kill
 		-- On Death
-	-- Animation playing system
 	-- Add abilities to Units
 		-- One ability per unit?
 	-- Give certain units better AI
