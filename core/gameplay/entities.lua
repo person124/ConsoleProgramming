@@ -11,7 +11,7 @@ function entity.load()
 	entity.data = {}
 end
 
-function entity.loadFile(fileName)
+function entity.loadFile(fileName, animationsList)
 	local loadedFile = require(fileName)
 
 	for i=1,table.getn(loadedFile) do
@@ -23,9 +23,11 @@ function entity.loadFile(fileName)
 		assert(e.at ~= nil, "No attack set for " .. fileName)
 		assert(e.sp ~= nil, "No speed set for " .. fileName)
 		assert(e.rn ~= nil, "No range set for " .. fileName)
-		assert(e.texture ~= nil, "No texture set for " .. fileName)
+		assert(e.anim ~= nil, "No animation set for " .. fileName)
 
-		entity.create(e.id, e.hp, e.at, e.sp, e.rn, e.texture, e.funcs)
+		local anim = animationsList[e.anim]
+
+		entity.create(e.id, e.hp, e.at, e.sp, e.rn, anim, e.funcs)
 
 		if e.isEnemy ~= nil then
 			entity.data[e.id].isEnemy = e.isEnemy
@@ -40,7 +42,7 @@ end
 
 -- Creates an entity with specified data
 -- id is internal name
-function entity.create(id, health, attack, speed, range, texture, funcs)
+function entity.create(id, health, attack, speed, range, anim, funcs)
 	local ent = {}
 
 	-- Default entity stats (utils.protected)
@@ -60,8 +62,8 @@ function entity.create(id, health, attack, speed, range, texture, funcs)
 	-- Is the entity not on the player's team
 	ent.isEnemy = false
 
-	-- The texture of the entity
-	ent.texture = texture
+	-- The animation of the entity
+	ent.anim = anim
 
 	-- The position of the entity
 	ent.x = 0
@@ -79,7 +81,8 @@ function entity.render(ent, screen)
 	local xPos = ((ent.x - 1) * 64) - screen.offset.x
 	local yPos = ((ent.y - 1) * 64) - screen.offset.y
 
-	love.graphics.draw(getTexture(ent.texture), xPos, yPos)
+	love.graphics.draw(getTexture(ent.anim.info.sheet),
+		ent.anim:getFrame(), xPos, yPos)
 end
 
 -- Copys the given entity and returns the copy
@@ -94,7 +97,7 @@ function entity.copy(ent)
 
 	entCopy.isEnemy = ent.isEnemy
 
-	entCopy.texture = ent.texture
+	entCopy.anim = ent.anim
 
 	entCopy.x = ent.x
 	entCopy.y = ent.y

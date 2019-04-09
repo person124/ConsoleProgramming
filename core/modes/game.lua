@@ -256,7 +256,7 @@ function game.loadMap(folderName)
 
 	-- Load in entities
 	if love.filesystem.exists(path .. "entity.lua") then
-		getEntitiesInstance().loadFile(path .. "entity")
+		getEntitiesInstance().loadFile(path .. "entity", animationsList)
 	else
 		assert(false, "Error! No entity.lua found for map: " .. folderName)
 	end

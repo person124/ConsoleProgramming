@@ -7,7 +7,7 @@ e.hp = 10
 e.at = 5
 e.sp = 2
 e.rn = 1
-e.texture = "unit"
+e.anim = "unit"
 e.funcs = nil -- Leave funcs nil to use default values
 table.insert(entities, e)
 
@@ -17,7 +17,7 @@ e.hp = 10
 e.at = 5
 e.sp = 1
 e.rn = 1
-e.texture = "unit"
+e.anim = "unit"
 e.isEnemy = true
 e.funcs = nil -- Leave funcs nil to use default values
 table.insert(entities, e)
