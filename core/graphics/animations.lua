@@ -48,14 +48,14 @@ end
 
 -- Updates the given list of animations
 function animations.update(dt, animationList)
-	for i=1,table.getn(animationList) do
-		local anim = animationList[i]
+	for i,v in pairs(animationList) do
+		local anim = v
 
-		if anim.updateTime ~= 0 then
-			anim.curentTime = anim.currentTime + dt
+		if anim.info.updateTime ~= 0 then
+			anim.currentTime = anim.currentTime + dt
 
 			-- Update the current frame of the animation
-			if anim.curentTime > anim.info.updateTime then
+			if anim.currentTime > anim.info.updateTime then
 				anim.currentTime = 0
 				anim.currentFrame = anim.currentFrame + 1
 
