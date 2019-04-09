@@ -5,7 +5,7 @@ local tilesDefaultFuncs = require("core/tileDefaultFunctions")
 -- create a tile with the specified data
 -- id is the internal name
 -- name is the human name
-local function createTile(id, name, isSolid, anim)
+local function createTile(id, name, isSolid, anim, funcs)
 	local tile = {}
 
 	tile.const = {}
@@ -15,6 +15,12 @@ local function createTile(id, name, isSolid, anim)
 
 	tile.isSolid = isSolid
 	tile.anim = anim
+	
+	-- Default functions
+	print(tilesDefaultFuncs.onExit)
+	tile.funcs = utils.mergeFunctions(tilesDefaultFuncs, funcs)
+	tile.funcs = utils.protect(tile.funcs)
+	print(tile.funcs.onExit)
 
 	tiles.data[tile.const.id] = tile
 end
@@ -41,7 +47,7 @@ function tiles.loadFile(fileName, animations)
 		local anim = animations[tile.anim]
 
 		-- If it passes, then create tile
-		createTile(tile.id, tile.name, tile.isSolid, anim)
+		createTile(tile.id, tile.name, tile.isSolid, anim, funcs)
 	end
 end
 
