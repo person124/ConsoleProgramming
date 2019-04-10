@@ -195,13 +195,13 @@ end
 -- Moves the specified entity to the specified location
 function map.moveEntity(ent, tileX, tileY)
 	-- Call the old tiles on leave function
-	map.tiles[ent.x][ent.y].onExit(map, ent.x, ent.y, ent, tileX, tileY)
+	map.tiles[ent.x][ent.y].funcs.onExit(map, ent.x, ent.y, ent, tileX, tileY)
 
 	ent.x = tileX
 	ent.y = tileY
 
 	-- Call the new tiles on enter function
-	map.tiles[tileX][tileY].onExit(map, tileX, tileY, ent)
+	map.tiles[tileX][tileY].funcs.onExit(map, tileX, tileY, ent)
 end
 
 return map
