@@ -15,7 +15,7 @@ local function createTile(id, name, isSolid, anim, funcs)
 
 	tile.isSolid = isSolid
 	tile.anim = anim
-	
+
 	-- Default functions
 	tile.funcs = utils.mergeFunctions(tilesDefaultFuncs, funcs)
 	tile.funcs = utils.protect(tile.funcs)

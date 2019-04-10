@@ -71,7 +71,7 @@ function entity.create(id, health, attack, speed, range, anim, funcs)
 
 	-- Entity Functions
 	local funcsToUse = utils.mergeFunctions(entityDefaultFuncs, funcs)
-	for i,v in pairs(funcsToUse) do
+	for i in pairs(funcsToUse) do
 		ent[i] = funcsToUse[i]
 	end
 
@@ -91,7 +91,7 @@ end
 function entity.copy(ent)
 	local entCopy = {}
 
-	for i,v in pairs(ent) do
+	for i in pairs(ent) do
 		entCopy[i] = ent[i]
 	end
 
