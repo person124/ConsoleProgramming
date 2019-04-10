@@ -197,8 +197,7 @@ function map.moveEntity(ent, tileX, tileY)
 	-- Call the old tiles on leave function
 	map.tiles[ent.x][ent.y].funcs.onExit(map, ent.x, ent.y, ent, tileX, tileY)
 
-	ent.x = tileX
-	ent.y = tileY
+	ent:onMove(map, ent.x, ent.y, tileX, tileY)
 
 	-- Call the new tiles on enter function
 	map.tiles[tileX][tileY].funcs.onEnter(map, tileX, tileY, ent)

@@ -13,4 +13,9 @@ function funcs.hurt(self, amount)
 	self.hp = self.hp - amount
 end
 
+function funcs.onMove(self, map, origX, origY, newX, newY)
+	self.x = newX
+	self.y = newY
+end
+
 return funcs
