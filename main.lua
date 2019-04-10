@@ -2,11 +2,6 @@ local main = {}
 
 -- TODOS:
 	-- background audio
-	-- extend tiles:
-		-- On enter
-		-- On exit
-		-- On die on
-		-- On stay
 	-- Unit Events:
 		-- On move
 		-- On kill
