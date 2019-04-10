@@ -17,10 +17,8 @@ local function createTile(id, name, isSolid, anim, funcs)
 	tile.anim = anim
 	
 	-- Default functions
-	print(tilesDefaultFuncs.onExit)
 	tile.funcs = utils.mergeFunctions(tilesDefaultFuncs, funcs)
 	tile.funcs = utils.protect(tile.funcs)
-	print(tile.funcs.onExit)
 
 	tiles.data[tile.const.id] = tile
 end

@@ -107,6 +107,19 @@ local function tapTileInternal(tileX, tileY)
 end
 
 local function pruneDeadEntities()
+	-- If an entity is dead then call the tile function
+	for i=1,table.getn(game.map.entities) do
+		if game.map.entities[i].hp <= 0 then
+			local x = game.map.entities[i].x
+			local y = game.map.entities[i].y
+			game.map.tiles[x][y].funcs.onDeathOn(
+				game.map,
+				x,
+				y,
+				game.map.entities[i])
+		end
+	end
+
 	-- Prune turn players
 	utils.removeDeadEntities(game.turn.player)
 

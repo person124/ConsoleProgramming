@@ -201,7 +201,7 @@ function map.moveEntity(ent, tileX, tileY)
 	ent.y = tileY
 
 	-- Call the new tiles on enter function
-	map.tiles[tileX][tileY].funcs.onExit(map, tileX, tileY, ent)
+	map.tiles[tileX][tileY].funcs.onEnter(map, tileX, tileY, ent)
 end
 
 return map

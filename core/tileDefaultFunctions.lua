@@ -5,13 +5,8 @@
 
 local funcs = {}
 
-function funcs.onEnter(map, tileX, tileY, entity)
-end
-function funcs.onExit(map, tileX, tileY, entity, newX, newY)
-end
-function funcs.onDeathOn(map, tileX, tileY, entity)
-end
-function funcs.onStay(map, tileX, tileY, entity)
-end
+function funcs.onEnter(map, tileX, tileY, entity) end
+function funcs.onExit(map, tileX, tileY, entity, newX, newY) end
+function funcs.onDeathOn(map, tileX, tileY, entity) end
 
 return funcs
