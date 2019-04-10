@@ -6,6 +6,10 @@ tile.id = "grass"
 tile.name = "Grass"
 tile.isSolid = false
 tile.anim = "tile_grass"
+tile.funcs = {}
+tile.funcs.onEnter = function(map, tileX, tileY, entity)
+	print(tileX, tileY)
+end
 table.insert(tileData, tile)
 
 tile = {}

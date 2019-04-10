@@ -4,7 +4,7 @@ local entities = {}
 local e = {}
 e.id = "unit"
 e.hp = 10
-e.at = 5
+e.at = 3
 e.sp = 2
 e.rn = 1
 e.anim = "unit"
@@ -19,7 +19,10 @@ e.sp = 1
 e.rn = 1
 e.anim = "unit"
 e.isEnemy = true
-e.funcs = nil -- Leave funcs nil to use default values
+e.funcs = {}
+e.funcs.hurt = function(self, amount)
+	self.hp = self.hp - (amount * 2)
+end
 table.insert(entities, e)
 
 return entities

@@ -45,7 +45,7 @@ function tiles.loadFile(fileName, animations)
 		local anim = animations[tile.anim]
 
 		-- If it passes, then create tile
-		createTile(tile.id, tile.name, tile.isSolid, anim, funcs)
+		createTile(tile.id, tile.name, tile.isSolid, anim, tile.funcs)
 	end
 end
 
