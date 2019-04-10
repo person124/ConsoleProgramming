@@ -117,6 +117,9 @@ local function pruneDeadEntities()
 				x,
 				y,
 				game.map.entities[i])
+
+			-- Also send the entities function
+			game.map.entities[i]:onDeath()
 		end
 	end
 

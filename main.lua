@@ -2,10 +2,6 @@ local main = {}
 
 -- TODOS:
 	-- background audio
-	-- Unit Events:
-		-- On move
-		-- On kill
-		-- On Death
 	-- Add abilities to Units
 		-- One ability per unit?
 	-- Give certain units better AI
