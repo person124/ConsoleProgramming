@@ -47,7 +47,7 @@ local function basicAttack(map, attacker, target, moveMap)
 	map.moveEntity(attacker, moveMap[toUseID].x, moveMap[toUseID].y)
 
 	-- 4)
-	target.funcs.damage(attacker, target, attacker.at)
+	attacker:damage(target, attacker.at)
 
 	return true
 end

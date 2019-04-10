@@ -5,8 +5,12 @@
 
 local funcs = {}
 
-function funcs.damage(attacker, target, amount)
-	target.hp = target.hp - amount
+function funcs.damage(self, target, amount)
+	target:hurt(amount)
+end
+
+function funcs.hurt(self, amount)
+	self.hp = self.hp - amount
 end
 
 return funcs

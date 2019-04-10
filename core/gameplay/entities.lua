@@ -70,8 +70,10 @@ function entity.create(id, health, attack, speed, range, anim, funcs)
 	ent.y = 0
 
 	-- Entity Functions
-	ent.funcs = utils.mergeFunctions(entityDefaultFuncs, funcs)
-	ent.funcs = utils.protect(ent.funcs)
+	local funcsToUse = utils.mergeFunctions(entityDefaultFuncs, funcs)
+	for i,v in pairs(funcsToUse) do
+		ent[i] = funcsToUse[i]
+	end
 
 	entity.data[id] = ent
 end
@@ -89,20 +91,9 @@ end
 function entity.copy(ent)
 	local entCopy = {}
 
-	entCopy.stats = ent.stats
-	entCopy.hp = ent.hp
-	entCopy.at = ent.at
-	entCopy.sp = ent.sp
-	entCopy.rn = ent.rn
-
-	entCopy.isEnemy = ent.isEnemy
-
-	entCopy.anim = ent.anim
-
-	entCopy.x = ent.x
-	entCopy.y = ent.y
-
-	entCopy.funcs = ent.funcs
+	for i,v in pairs(ent) do
+		entCopy[i] = ent[i]
+	end
 
 	return entCopy
 end
