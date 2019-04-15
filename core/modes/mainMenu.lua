@@ -18,7 +18,7 @@ function mainMenu.update(dt)
 		if x >= 84 and x <= 400 and y >= 300 and y <= 364 then
 			goToLevelSelect()
 		elseif x >= 84 and x <= 485 and y >= 400 and y <= 445 then
-			print("Level Editor")
+			goToLevelEditor()
 		elseif x >= 84 and x <= 220 and y >= 490 and y <= 530 then
 			love.event.quit(0)
 		end

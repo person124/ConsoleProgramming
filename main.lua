@@ -84,6 +84,11 @@ function goToLevelSelect()
 	main.mode.start("maps")
 end
 
+function goToLevelEditor()
+	main.mode = {}
+	main.mode = require("core/modes/levelEditor")
+end
+
 function loadMap(mapName)
 	main.mode = {}
 	main.mode = require("core/modes/game")
