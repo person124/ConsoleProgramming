@@ -74,7 +74,7 @@ end
 
 function goToMainMenu()
 	main.mode = {}
-	main.mode = require("core/modes/levelSelect")
+	main.mode = require("core/modes/mainMenu")
 	-- Open the map folder
 	main.mode.start("maps")
 end
