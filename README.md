@@ -40,3 +40,4 @@ Even though I *plan* to do things it might not be what I actually do, so this ch
 | 10          | Map Loading, Dynamic Asset Loading, Level Loading Screen |
 | 11          | Asset Unloading, Win Detection |
 | 12          | Added Animations to Tiles and Units, Added and Implemented Tile Functions, Added and Implemented Entity Functions |
+| 13          | Added *Basic* Main Menu |
