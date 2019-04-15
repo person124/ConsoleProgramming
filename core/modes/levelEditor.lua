@@ -1,9 +1,5 @@
 local editor = {}
 
-function editor.start()
-
-end
-
 function editor.update(dt)
 
 end

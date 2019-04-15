@@ -2,10 +2,6 @@ local mainMenu = {}
 
 local yMod = 250
 
-function mainMenu.start()
-
-end
-
 function mainMenu.update(dt)
 	-- Check and see if you clicked on a option
 	local input = getInputInstance()
@@ -13,7 +9,9 @@ function mainMenu.update(dt)
 	if input.screenX ~= -1 and input.screenY ~= -1 and input.count == 1 then
 		local x = input.screenX
 		local y = input.screenY
-		--print(x, y)
+
+		-- This is used to "turn off" input
+		input.screenX = -1
 
 		if x >= 84 and x <= 400 and y >= 300 and y <= 364 then
 			goToLevelSelect()
