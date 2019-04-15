@@ -83,3 +83,11 @@ function utils.mergeFunctions(funcBase, funcs)
 
 	return returnFuncs
 end
+
+-- Returns true if the game is on android or ios
+-- False if otherwise
+function utils.isMobile()
+	if love.system.getOS() == "Android" then return true
+	elseif love.system.getOS() == "iOS" then return true
+	else return false end
+end
