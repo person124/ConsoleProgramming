@@ -9,6 +9,7 @@ local entityDefaultFuncs = require("core/entityDefaultFunctions")
 -- Creates entity table
 function entity.load()
 	entity.data = {}
+	entity.count = 0
 end
 
 function entity.loadFile(fileName, animationsList)
@@ -38,6 +39,7 @@ end
 -- Clears the list of entities
 function entity.clear()
 	entity.data = {}
+	entity.count = 0
 end
 
 -- Creates an entity with specified data
@@ -76,6 +78,7 @@ function entity.create(id, health, attack, speed, range, anim, funcs)
 	end
 
 	entity.data[id] = ent
+	entity.count = entity.count + 1
 end
 
 -- Draws the specified entity at the entities location
