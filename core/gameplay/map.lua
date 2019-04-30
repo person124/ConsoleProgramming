@@ -157,6 +157,8 @@ function map.getMinMaxOffset()
 		map.offsetLimit.min.y = -yOff
 		map.offsetLimit.max.y = -yOff
 	end
+
+	return map.offsetLimit.min, map.offsetLimit.max
 end
 
 

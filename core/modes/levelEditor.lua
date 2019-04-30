@@ -124,7 +124,7 @@ function love.keypressed(key, scancode, isrepeat)
 		end
 	end
 
-	if currentMode == MODES.TILE then
+	if currentMode == MODES.TILE and current ~= null then
 	-- Resize the map
 	if key == "up" then -- Make shorter
 		local newHeight = map.height - 1
@@ -141,14 +141,58 @@ function love.keypressed(key, scancode, isrepeat)
 		map.tiles = newTiles
 		map.height = newHeight
 		map.clearOutofBoundsEntities()
+		map.offsetLimit = nil -- Reset the offset to force it to recalculate
 	elseif key == "down" then -- Make Taller
-		
+		local newHeight = map.height + 1
+
+		local newTiles = {}
+		for x=1,map.width do
+			newTiles[x] = {}
+			for y=1,map.height do
+				newTiles[x][y] = map.tiles[x][y]
+			end
+			newTiles[x][newHeight] = current
+		end
+
+		map.tiles = newTiles
+		map.height = newHeight
+		map.offsetLimit = nil -- Reset the offset to force it to recalculate
 	end
 	
 	if key == "left" then -- Make Thinner
-		
+		local newWidth = map.width - 1
+		if newWidth <= 0 then return end
+
+		local newTiles = {}
+		for x=1,newWidth do
+			newTiles[x] = {}
+			for y=1,map.height do
+				newTiles[x][y] = map.tiles[x][y]
+			end
+		end
+
+		map.tiles = newTiles
+		map.width = newWidth
+		map.clearOutofBoundsEntities()
+		map.offsetLimit = nil -- Reset the offset to force it to recalculate
 	elseif key == "right" then -- Make fatter
-		
+		local newWidth = map.width + 1
+
+		local newTiles = {}
+		for x=1,newWidth do
+			newTiles[x] = {}
+			for y=1,map.height do
+				if x>map.width then
+					newTiles[x][y] = current
+				else
+					newTiles[x][y] = map.tiles[x][y]
+				end
+			end
+		end
+
+		map.tiles = newTiles
+		map.width = newWidth
+		map.offsetLimit = nil -- Reset the offset to force it to recalculate
 	end
 	end
 
