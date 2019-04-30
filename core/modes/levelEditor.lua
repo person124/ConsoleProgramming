@@ -58,7 +58,8 @@ function editor.start()
 	currentSelection = {1, 1}
 
 	game = require("core/modes/game")
-	game.start("editor_map")
+	game.map = require("core/gameplay/map")
+	game.loadMap("editor_map")
 
 	editor.map = game.map
 	map = game.map
