@@ -230,6 +230,54 @@ function love.keypressed(key, scancode, isrepeat)
 			end
 		end
 	end
+
+	if key == "escape" then
+		clearAllLoadedData()
+		goToMainMenu()
+	end
+
+	if key == "return" then
+		editor.saveMap()
+	end
+end
+
+function editor.saveMap()
+	local data = "local map = {}\n" ..
+	"-- Map Size\n" ..
+	"map.width = " .. map.width .. "\n" .. 
+	"map.height = " .. map.height .. "\n" ..
+
+	"-- Tile Setup\n" ..
+	"map.tiles = {}\n" ..
+	"for x=1,map.width do\n" ..
+	"map.tiles[x] = {}\n" ..
+	"end\n" ..
+	"-- Tile Data\n"
+	for x=1,map.width do
+		for y=1,map.height do
+			data = data .. "map.tiles[" .. x .. "][" .. y .. "] = \"" ..
+			map.tiles[x][y].const.id .. "\"\n"
+		end
+	end
+
+	data = data .. "-- Entity Data\n" ..
+	"map.entities = {}\n"
+	for i=1,table.getn(map.entities) do
+		data = data .. "map.entities[" .. i .. "] = {}\n" ..
+		"map.entities[" .. i .. "].id = \"" .. map.entities[i].stats.id .. "\"\n" ..
+		"map.entities[" .. i .. "].x = " .. map.entities[i].x .. "\n" ..
+		"map.entities[" .. i .. "].y = " .. map.entities[i].y .. "\n"
+	end
+
+	data = data .. "-- Return the map data\nreturn map"
+
+	-- Open the file
+	local file = love.filesystem.newFile("maps/editor_map/map.lua")
+	file:open("w")
+	-- Write the data
+	file:write(data)
+	-- Close the file
+	file:close()
 end
 
 return editor

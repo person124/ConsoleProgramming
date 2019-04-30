@@ -49,6 +49,7 @@ function entity.create(id, health, attack, speed, range, anim, funcs)
 
 	-- Default entity stats (utils.protected)
 	ent.stats = {}
+	ent.stats.id = id
 	ent.stats.hp = health
 	ent.stats.at = attack
 	ent.stats.sp = speed
