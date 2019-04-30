@@ -89,8 +89,16 @@ end
 
 function editor.tapTile(tileX, tileY)
 	if tileX > 0 and tileY > 0 and tileX <= map.width and tileY <= map.height then
+		if currentMode == MODES.DEL_ENTITY then
+			local ent = map.getEntity(tileX, tileY)
+			if ent ~= nil then
+				ent.hp = 0
+				utils.removeDeadEntities(map.entities)
+			end
+		end
+
 		if current == nil then return end
-		
+
 		if currentMode == MODES.TILE then
 			map.tiles[tileX][tileY] = current
 		end
