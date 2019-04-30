@@ -101,6 +101,13 @@ function editor.tapTile(tileX, tileY)
 
 		if currentMode == MODES.TILE then
 			map.tiles[tileX][tileY] = current
+		elseif currentMode == MODES.ENTITY then
+			if not map.isEntityOnSpace(tileX, tileY) then
+				local ent = getEntitiesInstance().copy(current)
+				ent.x = tileX
+				ent.y = tileY
+				table.insert(map.entities, ent)
+			end
 		end
 	end
 end
