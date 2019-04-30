@@ -48,6 +48,10 @@ function game.start(fileName)
 	generateTurn()
 end
 
+function game.getAnimations()
+	return animationsList
+end
+
 -- This function is the internal function to manage the player
 -- Tapping on a tile
 local function tapTileInternal(tileX, tileY)

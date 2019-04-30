@@ -21,11 +21,13 @@ local function createTile(id, name, isSolid, anim, funcs)
 	tile.funcs = utils.protect(tile.funcs)
 
 	tiles.data[tile.const.id] = tile
+	tiles.count = tiles.count + 1
 end
 
 -- Creates the table to store tiles in
 function tiles.load()
 	tiles.data = {}
+	tiles.count = 0
 end
 
 -- This will load tile(s) from a file, if the second parameter is true
@@ -52,6 +54,7 @@ end
 -- This functions clears the list of non-builtin tiles
 function tiles.clear()
 	tiles.data = {}
+	tiles.count = 0
 end
 
 function tiles.render(tile, xPos, yPos, screen)
