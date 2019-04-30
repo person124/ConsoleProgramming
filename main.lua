@@ -1,11 +1,5 @@
 local main = {}
 
--- TODOS:
-	-- background audio
-	-- Add abilities to Units
-		-- One ability per unit?
-	-- Give certain units better AI
-
 -- Both of these are global objects
 require("core/utils") -- This contains global public functions
 require("core/ai_core") -- Contains AI functions
@@ -87,6 +81,7 @@ end
 function goToLevelEditor()
 	main.mode = {}
 	main.mode = require("core/modes/levelEditor")
+	main.mode.start()
 end
 
 function loadMap(mapName)

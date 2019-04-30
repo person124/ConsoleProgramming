@@ -1,7 +1,14 @@
 local editor = {}
 
-function editor.update(dt)
+local map = {}
 
+function editor.start()
+	map = require("core/modes/game")
+	map.start("test_map")
+end
+
+function editor.update(dt)
+	
 end
 
 function editor.render(screen)

@@ -40,6 +40,14 @@ local function generateTurn()
 	end
 end
 
+function game.start(fileName)
+	game.map = require("core/gameplay/map")
+	game.loadMap(fileName)
+
+	-- Generate the first turn
+	generateTurn()
+end
+
 -- This function is the internal function to manage the player
 -- Tapping on a tile
 local function tapTileInternal(tileX, tileY)
@@ -131,14 +139,6 @@ local function pruneDeadEntities()
 
 	-- Prune list of enemies
 	utils.removeDeadEntities(game.map.entities)
-end
-
-function game.start(fileName)
-	game.map = require("core/gameplay/map")
-	game.loadMap(fileName)
-
-	-- Generate the first turn
-	generateTurn()
 end
 
 -- The main update function for game loop
