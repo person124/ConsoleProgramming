@@ -9,7 +9,7 @@ Now, the reason why I said I am making a game framework and not a game is most o
 The rest of this readme will be a table showcasing a schedule that I came up with just before the fourth week of work on the project; this is also the first week I actually started to work on the project. The schedule is something that I set myself, and can deviate from, but when I wrote it I imagined that it was the best course of action at the time.
 
 ## Schedule
-### Current Week: 13
+### Current Week: 15
 | Week Number | Planned Tasks |
 | :---------: | :-----------: |
 | 4           | * Basic Map Rendering * Image Loading * |
@@ -41,3 +41,4 @@ Even though I *plan* to do things it might not be what I actually do, so this ch
 | 11          | Asset Unloading, Win Detection |
 | 12          | Added Animations to Tiles and Units, Added and Implemented Tile Functions, Added and Implemented Entity Functions |
 | 13          | Added *Basic* Main Menu |
+| 14          | **WEEK 14 WAS CONSUMED BY CAPSTONE** |
