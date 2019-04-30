@@ -13,7 +13,7 @@ local input = {}
 local currentMode = MODES.TILE
 local currentSelection = {1, 1}
 local oldSelection = {1, 1}
-local currentAnim = nil
+local current = nil
 
 -- Returns the currently selected sprite
 local function getCurrentAnim()
@@ -26,7 +26,7 @@ local function getCurrentAnim()
 			local counter = 1
 			for i,v in pairs(getTilesInstance().data) do
 				if counter == currentSelection[1] then
-					currentAnim = v.anim
+					current = v
 					return
 				else
 					counter = counter + 1
@@ -42,7 +42,7 @@ local function getCurrentAnim()
 			local counter = 1
 			for i,v in pairs(getEntitiesInstance().data) do
 				if counter == currentSelection[2] then
-					currentAnim = v.anim
+					current = v
 					return
 				else
 					counter = counter + 1
@@ -73,10 +73,6 @@ function editor.update(dt)
 	getCurrentAnim()
 end
 
-function editor.tapTile(tileX, tileY)
-	print(tileX, tileY)
-end
-
 function editor.render(screen)
 	map.render(screen)
 
@@ -85,9 +81,19 @@ function editor.render(screen)
 
 	love.graphics.setNewFont(32)
 	love.graphics.print("Currently Selected: ", 0, 64)
-	if currentAnim ~= nil then
-		love.graphics.draw(getTexture(currentAnim.info.sheet),
-			currentAnim:getFrame(), 308, 66, 0, 0.5, 0.5)
+	if current ~= nil then
+		love.graphics.draw(getTexture(current.anim.info.sheet),
+			current.anim:getFrame(), 308, 66, 0, 0.5, 0.5)
+	end
+end
+
+function editor.tapTile(tileX, tileY)
+	if tileX > 0 and tileY > 0 and tileX <= map.width and tileY <= map.height then
+		if current == nil then return end
+		
+		if currentMode == MODES.TILE then
+			map.tiles[tileX][tileY] = current
+		end
 	end
 end
 
@@ -98,7 +104,7 @@ function love.keypressed(key, scancode, isrepeat)
 	for i,v in pairs(MODES) do
 		if v[1] == key then
 			currentMode = v
-			currentAnim = nil
+			current = nil
 			return
 		end
 	end
