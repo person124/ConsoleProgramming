@@ -60,6 +60,7 @@ function editor.start()
 	game = require("core/modes/game")
 	game.start("test_map")
 
+	editor.map = game.map
 	map = game.map
 	map.getMinMaxOffset()
 
@@ -70,14 +71,10 @@ function editor.update(dt)
 	-- Update animations
 	getAnimationsInstance().update(dt, game.getAnimations())
 	getCurrentAnim()
+end
 
-	-- On Left Click
-	-- Enact the current mode
-	if input.count == 1 then
-		if currentMode == MODES.TILE then
-		print("click!")
-		end
-	end
+function editor.tapTile(tileX, tileY)
+	print(tileX, tileY)
 end
 
 function editor.render(screen)
