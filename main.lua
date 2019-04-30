@@ -96,6 +96,13 @@ function endGame(didWin)
 	main.mode.start(didWin)
 end
 
+function clearAllLoadedData()
+	getEntitiesInstance().clear()
+	getTilesInstance().clear()
+	getAudioInstance().clear()
+	getTexturesInstance().clear()
+end
+
 -- Below this point are the getter functions
 
 function getTexturesInstance()

@@ -78,10 +78,11 @@ function map.render(screen)
 	end
 
 	-- Entity information rendering
-	love.graphics.setColor(0, 0, 0, 255)
-	love.graphics.rectangle("fill", 0, 0, screen.baseWidth, 33)
-	love.graphics.setColor(255, 255, 255, 255)
 	if map.currentlySelected ~= nil then
+		love.graphics.setColor(0, 0, 0, 255)
+		love.graphics.rectangle("fill", 0, 0, screen.baseWidth, 33)
+		love.graphics.setColor(255, 255, 255, 255)
+
 		local ent = map.currentlySelected
 
 		-- Render selected entity stats

@@ -6,10 +6,7 @@ function afterLevel.start(didWin)
 	won = didWin
 
 	-- Clear all unneeded data
-	getEntitiesInstance().clear()
-	getTilesInstance().clear()
-	getAudioInstance().clear()
-	getTexturesInstance().clear()
+	clearAllLoadedData()
 end
 
 function afterLevel.update(dt)

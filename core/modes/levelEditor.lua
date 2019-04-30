@@ -1,19 +1,42 @@
+local MODES = {
+	TILE = {"q", "Place Tiles"},
+	ENTITY = {"w", "Place Entity"},
+	DEL_ENTITY = {"e", "Remove Entity"}
+}
+
 local editor = {}
 
+local game = {}
 local map = {}
 
+local currentMode = MODES.TILE
+
 function editor.start()
-	map = require("core/modes/game")
-	map.start("test_map")
+	currentMode = MODES.TILE
+
+	game = require("core/modes/game")
+	game.start("test_map")
+	
+	map = game.map
+	map.getMinMaxOffset()
 end
 
 function editor.update(dt)
-	
+
+	-- Switch current mode
+	for i,v in pairs(MODES) do
+		if love.keyboard.isDown(v[1]) then
+			currentMode = v
+			break
+		end
+	end
 end
 
 function editor.render(screen)
-	love.graphics.newFont(64)
-	love.graphics.print("Still a WIP!", 0, 0)
+	map.render(screen)
+
+	love.graphics.setNewFont(64)
+	love.graphics.print(currentMode[2])
 end
 
 return editor
