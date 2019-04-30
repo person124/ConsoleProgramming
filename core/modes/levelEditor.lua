@@ -58,7 +58,7 @@ function editor.start()
 	currentSelection = {1, 1}
 
 	game = require("core/modes/game")
-	game.start("test_map")
+	game.start("editor_map")
 
 	editor.map = game.map
 	map = game.map
@@ -122,6 +122,34 @@ function love.keypressed(key, scancode, isrepeat)
 			current = nil
 			return
 		end
+	end
+
+	if currentMode == MODES.TILE then
+	-- Resize the map
+	if key == "up" then -- Make shorter
+		local newHeight = map.height - 1
+		if newHeight <= 0 then return end
+
+		local newTiles = {}
+		for x=1,map.width do
+			newTiles[x] = {}
+			for y=1,newHeight do
+				newTiles[x][y] = map.tiles[x][y]
+			end
+		end
+
+		map.tiles = newTiles
+		map.height = newHeight
+		map.clearOutofBoundsEntities()
+	elseif key == "down" then -- Make Taller
+		
+	end
+	
+	if key == "left" then -- Make Thinner
+		
+	elseif key == "right" then -- Make fatter
+		
+	end
 	end
 
 	-- Adjust current selection

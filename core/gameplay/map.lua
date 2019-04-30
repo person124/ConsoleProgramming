@@ -204,4 +204,20 @@ function map.moveEntity(ent, tileX, tileY)
 	map.tiles[tileX][tileY].funcs.onEnter(map, tileX, tileY, ent)
 end
 
+-- Removes entities out of bounds of the level
+function map.clearOutofBoundsEntities()
+	local done = false
+	while not done do
+		done = true
+		for i=1,table.getn(map.entities) do
+			local ent = map.entities[i]
+			if ent.x < 0 or ent.x > map.width or ent.y < 0 or ent.y > map.height then
+				table.remove(map.entities, i)
+				done = false
+				break
+			end
+		end
+	end
+end
+
 return map
