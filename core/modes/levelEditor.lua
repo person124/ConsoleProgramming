@@ -257,7 +257,7 @@ function editor.saveMap()
 	for x=1,map.width do
 		for y=1,map.height do
 			data = data .. "map.tiles[" .. x .. "][" .. y .. "] = \"" ..
-			map.tiles[x][y].const.id .. "\"\n"
+			map.tiles[x][y].id .. "\"\n"
 		end
 	end
 

@@ -3,15 +3,10 @@ local tiles = {}
 local tilesDefaultFuncs = require("core/tileDefaultFunctions")
 
 -- create a tile with the specified data
--- id is the internal name
--- name is the human name
-local function createTile(id, name, isSolid, anim, funcs)
+local function createTile(id, isSolid, anim, funcs)
 	local tile = {}
 
-	tile.const = {}
-	tile.const.id = id
-	tile.const.name = name
-	utils.protect(tile.const)
+	tile.id = id
 
 	tile.isSolid = isSolid
 	tile.anim = anim
@@ -20,7 +15,7 @@ local function createTile(id, name, isSolid, anim, funcs)
 	tile.funcs = utils.mergeFunctions(tilesDefaultFuncs, funcs)
 	tile.funcs = utils.protect(tile.funcs)
 
-	tiles.data[tile.const.id] = tile
+	tiles.data[tile.id] = tile
 	tiles.count = tiles.count + 1
 end
 
@@ -40,14 +35,13 @@ function tiles.loadFile(fileName, animations)
 
 		-- Check the tile data
 		assert(tile.id ~= nil, "No ID set for " .. fileName)
-		assert(tile.name ~= nil, "No name set for " .. fileName)
 		assert(tile.isSolid ~= nil, "No solidity set for " .. fileName)
 		assert(tile.anim ~= nil, "No animation set for " .. fileName)
 
 		local anim = animations[tile.anim]
 
 		-- If it passes, then create tile
-		createTile(tile.id, tile.name, tile.isSolid, anim, tile.funcs)
+		createTile(tile.id, tile.isSolid, anim, tile.funcs)
 	end
 end
 
