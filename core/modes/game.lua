@@ -191,8 +191,8 @@ function game.update(dt)
 			getScreenInstance().setOffset(x, y)
 
 			-- 3)
-			-- Wait time is three seconds
-			turn.waitTime = 3
+			-- Wait time is 1.5 seconds
+			turn.waitTime = 1.5
 		else
 			if not turn.enemyMoved then
 				-- 4)
@@ -201,8 +201,8 @@ function game.update(dt)
 				pruneDeadEntities()
 
 				-- 5)
-				-- Wait time is three seconds
-				turn.waitTime = 3
+				-- Wait time is 1.5 seconds
+				turn.waitTime = 1.5
 				turn.enemyMoved = true
 			else
 				-- 6)
