@@ -5,7 +5,7 @@ local yMod = 250
 function mainMenu.update(dt)
 	-- Check and see if you clicked on a option
 	local input = getInputInstance()
-	
+
 	if input.screenX ~= -1 and input.screenY ~= -1 and input.count == 1 then
 		local x = input.screenX
 		local y = input.screenY
@@ -38,7 +38,7 @@ function mainMenu.render(screen)
 	if not utils.isMobile() then
 		love.graphics.print("Create Level", 20 + 64, yMod + 139)
 	end
-	
+
 	love.graphics.print("Quit", 20 + 64, yMod + 223)
 end
 

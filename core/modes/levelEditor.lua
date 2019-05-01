@@ -8,7 +8,6 @@ local editor = {}
 
 local game = {}
 local map = {}
-local input = {}
 
 local currentMode = MODES.TILE
 local currentSelection = {1, 1}
@@ -245,7 +244,7 @@ end
 function editor.saveMap()
 	local data = "local map = {}\n" ..
 	"-- Map Size\n" ..
-	"map.width = " .. map.width .. "\n" .. 
+	"map.width = " .. map.width .. "\n" ..
 	"map.height = " .. map.height .. "\n" ..
 
 	"-- Tile Setup\n" ..
