@@ -1,0 +1,5 @@
+<texture name> <texture path>
+tiles tiles.png
+tile_lava lava.png
+enemy the_enemy.png
+ally the_ally.png
