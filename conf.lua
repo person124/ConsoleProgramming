@@ -1,6 +1,6 @@
 function love.conf(t)
 	t.version = "0.10.2"
-	t.console = true
+	t.console = false
 
 	t.window.title = "Tactical Knockout"
 
