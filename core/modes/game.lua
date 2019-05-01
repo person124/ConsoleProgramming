@@ -8,6 +8,7 @@ local function generateTurn()
 	-- 1) Clear the turn table
 	-- 2) Get the list of player entities
 	-- 3) Get the list of enemy entities
+	-- 3.5) Reset entity stats
 	-- 4) Set other turn variables
 
 	-- 1)
@@ -17,6 +18,12 @@ local function generateTurn()
 	game.turn.player = {}
 	game.turn.enemy = {}
 	for i=1,table.getn(game.map.entities) do
+		-- 3.5)
+		local ent = game.map.entities[i]
+		ent.at = ent.stats.at
+		ent.sp = ent.stats.sp
+		ent.rn = ent.stats.rn
+
 		if game.map.entities[i].isEnemy then
 			table.insert(game.turn.enemy, game.map.entities[i])
 		else
