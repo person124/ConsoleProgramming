@@ -42,4 +42,4 @@ Even though I *plan* to do things it might not be what I actually do, so this ch
 | 12          | Added Animations to Tiles and Units, Added and Implemented Tile Functions, Added and Implemented Entity Functions |
 | 13          | Added *Basic* Main Menu |
 | 14          | **WEEK 14 WAS CONSUMED BY CAPSTONE** |
-| 15          | Completed a Level Editor |
+| 15          | Completed a Level Editor, Completed Example Levels |
